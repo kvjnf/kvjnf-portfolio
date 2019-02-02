@@ -5,7 +5,9 @@ import TopThumb from './TopThumb';
 const TopThumbnails = ({ posts }) => {
   return (
     <div className="inner boxfade-init">
-      { posts.map( post => <TopThumb key={ post.id } post={ post }/>) }
+      {posts.map(post => {
+        return <TopThumb key={post.id} post={post} />;
+      })}
     </div>
   );
 };

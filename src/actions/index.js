@@ -3,6 +3,12 @@ import ActionTypes from '../constants';
 
 export default {
   fetchPosts: actionCreator(ActionTypes.FETCH_POSTS),
-  fetchPostsSuccess: actionCreator(ActionTypes.FETCH_POSTS_SUCCESS, 'posts'),
-  fetchPostsFail: actionCreator(ActionTypes.FETCH_POSTS_FAIL)
+  fetchPostsSuccess: actionCreator(ActionTypes.FETCH_POSTS_SUCCESS, 'data'),
+  fetchPostsFail: actionCreator(ActionTypes.FETCH_POSTS_FAIL),
+  fetchPost: actionCreator(ActionTypes.FETCH_POST_DETAIL, 'id'),
+  fetchPostSuccess: actionCreator(
+    ActionTypes.FETCH_POST_DETAIL_SUCCESS,
+    'data'
+  ),
+  fetchPostFail: actionCreator(ActionTypes.FETCH_POST_DETAIL_FAIL)
 };

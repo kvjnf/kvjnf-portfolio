@@ -1,3 +1,4 @@
+@import './utils';
 /*-----------------*/
 /* home
 /*-----------------*/
@@ -9,6 +10,10 @@
     margin: 0 auto;
     padding: 100px 0px;
     box-sizing: border-box;
+
+    @include SP(){
+      padding: 60px 30px;
+    }
   }
 }
 
@@ -16,6 +21,11 @@ h2{
   text-align: center;
   font-size: 24px;
   margin-bottom: 40px;
+
+  @include SP(){
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
 }
 
 /**
@@ -27,8 +37,16 @@ works_contents
   padding: 100px 0 75px 0px;
   position: relative;
 
+  @include SP(){
+    padding: 60px 0;
+  }
+
   h2{
     margin-bottom: 15px;
+
+    @include SP(){
+      margin-bottom: 10px;
+    }
   }
 
   .border_line{
@@ -54,6 +72,13 @@ works_contents
     align-items: center;
     flex-wrap: wrap;
 
+    @include SP(){
+      padding: 0px 20px;
+      .item{
+        margin: 10px 0px;
+      }
+    }
+
     &:after{
       content:"";
       display: block;
@@ -73,65 +98,32 @@ works_contents
       -webkit-transition: all .3s ease-in-out 0s;
       transition: all .3s ease-in-out 0s;
 
+      @include SP($breakpoint2){
+        width: 48%;
+        height: 150px;
+        text-align: center;
+      }
+
+      img{
+        @include SP(){
+          width: 100%;
+        }
+        @include SP($breakpoint2){
+          width: 50%;
+        }
+
+        @include SP($breakpoint650){
+          width: 60%;
+        }
+
+        @include SP($breakpoint480){
+          width: 90%;
+        }
+      }
 
       &:hover{
         box-shadow: 0 10px 18px rgba(0,0,0,.12);
       }
     }
-  }
-}
-
-/*-----------------*/
-/* home
-/*-----------------*/
-@media screen and (max-width:1000px) {
-  #header h1{
-    padding: 60px 30px;
-  }
-
-  h2{
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-
-  .works_contents{
-    padding: 60px 0;
-
-    h2{
-      margin-bottom: 10px;
-    }
-    .inner{
-      padding: 0px 20px;
-      .item{
-        margin: 10px 0px;
-        img{
-          width: 100%;
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width:768px) {
-
-  .works_contents .inner .item{
-    width: 48%;
-    height: 150px;
-    text-align: center;
-
-    img{
-      width: 50%;
-    }
-  }
-}
-
-@media screen and (max-width:650px) {
-  .works_contents .inner .item img{
-    width: 60%;
-  }
-}
-
-@media screen and (max-width:480px) {
-  .works_contents .inner .item img{
-    width: 90%;
   }
 }

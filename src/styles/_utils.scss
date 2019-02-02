@@ -1,0 +1,16 @@
+@import './valiables';
+
+//************************************************
+// メディアクエリ
+//************************************************
+@mixin PC() {
+    @media screen and (min-width:$breakpoint + 1) {
+      @content;
+    }
+  }
+  
+  @mixin SP($bp: $breakpoint) {
+    @media screen and (max-width: $bp) {
+      @content;
+    }
+  }

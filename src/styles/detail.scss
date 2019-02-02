@@ -1,3 +1,5 @@
+@import './utils';
+
 /*-----------------*/
 /* works
 /*-----------------*/
@@ -8,13 +10,17 @@
   margin: 0 auto;
   padding: 70px 0px;
   box-sizing: border-box;
+
+  @include SP(){
+    padding: 60px 30px;
+  }
 }
 
 .works_archives{
   position: relative;
 
   .in_wrap{
-    width: 1000px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 60px 0;
     position: relative;
@@ -27,6 +33,16 @@
     justify-content: center;
     align-items: center;
     height: 250px;
+
+    @include SP() {
+      height: 200px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    @include SP($breakpoint2) {
+      width: 40%;
+    }
   }
 
   .works_desc{
@@ -40,6 +56,14 @@
       padding: 70px 0;
       p{
         margin-bottom: 10px;
+      }
+
+      @include SP(){
+        width: 100%;
+        margin: 0 auto;
+        padding: 20px 20px;
+        position: relative;
+        box-sizing: border-box;
       }
     }
 
@@ -61,6 +85,10 @@
   .works_view{
     padding-bottom: 100px;
 
+    @include SP(){
+      padding-bottom: 50px;
+    }
+
     .device_section{
       width: 1000px;
       height: 560px;
@@ -69,18 +97,38 @@
       text-align: center;
       padding: 100px 0;
 
+      @include SP(){
+        width: 100%;
+        height: auto;
+        padding: 50px 20px;
+        box-sizing: border-box;
+      }
+
       &.col1{
         height: auto;
       }
 
       img{
         position: absolute;
+
+        @include SP(){
+          position: relative;
+          width: 100%;
+        }
       }
 
       .display{
         z-index: 0;
         left: 50%;
         margin-left: -305.5px;
+
+        @include SP(){
+          left: 0;
+          margin-left: 0px;
+          top: 0;
+          margin-bottom: 20px;
+          width: 90%;
+        }
 
         &.col1{
           z-index: 0;
@@ -97,12 +145,27 @@
         z-index: 1;
         /*left: 100px;*/
         bottom: 100px;
+
+        @include SP(){
+          z-index: 0;
+          left: 0px;
+          bottom: 0;
+          margin-bottom: 20px;
+          width: 40%;
+          box-sizing: border-box;
+        }
       }
 
       .macbook{
         z-index: 1;
         /*right: 0px;*/
         bottom: 60px;
+
+        @include SP(){
+          z-index: 0;
+          right: 0px;
+          bottom: 0;
+        }
       }
     }
 
@@ -118,13 +181,23 @@
         align-items: center;
         flex-wrap: wrap;
 
+        @include SP(){
+          flex-direction: column;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+
         .item{
           display: flex;
           justify-content: center;
           align-items:flex-start;
-          width: 48%;
           border: 1px solid #eee;
           margin-bottom: 40px;
+          max-width: 1000px;
+
+          @include SP(){
+            margin-bottom: 30px;
+          }
 
           &col1{
             width: 100%;
@@ -198,103 +271,5 @@
         transition: all 0.3s ease;
       }
     }
-  }
-}
-
-.viewsite_btn{
-  width: 200px;
-  position: absolute;
-  right: 0;
-  bottom: 70px;
-}
-
-@media screen and (max-width:1000px) {
-  /*-----------------*/
-  /* works
-  /*-----------------*/
-  #header_in{
-    width: 100%;
-    margin: 0 auto;
-    padding: 60px 30px;
-    box-sizing: border-box;
-  }
-
-  .works_archives{
-
-    .works_logo{
-      width: 100%;
-      background: #f9f9f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 200px;
-      box-sizing: border-box;
-      text-align: center;
-    }
-
-    .works_desc .in_wrap{
-      width: 100%;
-      margin: 0 auto;
-      padding: 20px 20px;
-      position: relative;
-      box-sizing: border-box;
-    }
-
-    .works_view {
-      padding-bottom: 50px;
-
-      .device_section{
-        width: 100%;
-        height: auto;
-        margin: 0 auto;
-        position: relative;
-        text-align: center;
-        padding: 50px 20px;
-        box-sizing: border-box;
-
-        img{
-          position: relative;
-          width: 100%;
-        }
-
-        .display{
-          z-index: 0;
-          left: 0;
-          margin-left: 0px;
-          top: 0;
-          margin-bottom: 20px;
-          width: 90%;
-        }
-
-        .iphone{
-          z-index: 0;
-          left: 0px;
-          bottom: 0;
-          margin-bottom: 20px;
-          width: 40%;
-          box-sizing: border-box;
-        }
-
-        .macbook{
-          z-index: 0;
-          right: 0px;
-          bottom: 0;
-        }
-      }
-
-      .screen img{
-        width: 100%;
-
-        .flex_layout .item{
-          margin-bottom: 30px;
-        }
-      }
-    }
-  }
-}
-
-@media screen and (max-width:768px) {
-  .works_archives .works_logo img{
-    width: 40%;
   }
 }

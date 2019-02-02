@@ -110,6 +110,19 @@ a{
     transition:all .8s ease .4s;
 }
 
+.border_line{
+  display: block;
+  position: absolute;
+  left:50%;
+  margin-left: -1px;
+  top: -25px;
+  margin: 0 auto;
+  content: "";
+  /*height: 50px;*/
+  width: 2px;
+  background-color: #666;
+}
+
 .macbookfade {
     opacity: 1.0;
     right: 0px;

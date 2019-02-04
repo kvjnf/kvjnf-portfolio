@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 
+import history from './../history';
 import Header from './partials/Header';
 import Top from './Top';
 import Detail from './Details';
@@ -9,7 +10,7 @@ import NotFound from './NotFound';
 const App = () => {
   return (
     <div>
-      <Router>
+      <Router history={history}>
         <div>
           <Header />
           <Switch>

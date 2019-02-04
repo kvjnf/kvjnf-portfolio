@@ -12,7 +12,7 @@ export default function() {
   const middlewares = [sagaMiddleware];
 
   // Redux Logger
-  if (process.env.__DEV__) {
+  if (process.env.NODE_ENV === 'development') {
     middlewares.push(logger);
   }
 
@@ -21,7 +21,7 @@ export default function() {
   let composeEnhancers = compose;
 
   // ReduxDevTOOL
-  if (process.env.__DEV__) {
+  if (process.env.NODE_ENV === 'development') {
     if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
       composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
     }

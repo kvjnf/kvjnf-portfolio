@@ -4,11 +4,17 @@ import { Link } from 'react-router-dom';
 
 import Logo from './Logo';
 
-const TopThumb = ({ post }) => {
+const TopThumb = ({ post, index }) => {
   const { id } = post;
+  const option = {
+    opacity: 1,
+    easing: 'easeOutCubic',
+    duration: 1000,
+    delay: index * 100
+  };
   return (
     <Link to={`/detail/${id}/`} className="item">
-      <Logo post={post} />
+      <Logo post={post} option={option} />
     </Link>
   );
 };

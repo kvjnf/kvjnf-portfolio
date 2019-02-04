@@ -1,3 +1,5 @@
+@import './utils';
+
 html,body{
   margin: 0;
   padding: 0;
@@ -16,6 +18,33 @@ a{
   color: #222;
   text-decoration: none;
 }
+
+#header {
+  max-width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  h1{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 40px 0px 40px;
+    box-sizing: border-box;
+    @include SP(){
+      padding: 60px 30px;
+    }
+  }
+}
+
+h2{
+  font-size: 16px;
+  margin-bottom: 20px;
+
+  @include SP(){
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+}
+
 
 .Montserrat{
 	font-family: 'Montserrat', sans-serif;
@@ -86,8 +115,8 @@ a{
 }
 
 .displayfade-init {
-    top: 150px;
-    transition:all .8s ease;
+    opacity: 0;
+    //transition:all .8s ease;
 }
 
 .displayfade {
@@ -96,8 +125,9 @@ a{
 }
 
 .iphonefade-init {
+    opacity: 0;
     left: 50px;
-    transition:all .8s ease .2s;
+    //transition:all .8s ease .2s;
 }
 
 .iphonefade {
@@ -130,12 +160,12 @@ a{
 
 .borderani-init{
   height: 0;
-  transition: .8s;
+  transition: 1s;
 }
 
 .borderani{
   height: 50px;
-  transition: .8s;
+  transition: 1s;
 }
 
 /**
@@ -147,6 +177,10 @@ pagetop
   text-align: center;
   transition: all 0.3s ease;
 
+  @include SP(){
+    padding: 15px 0;
+  }
+
   .arrow{
     display: block;
     width: 25px;
@@ -157,6 +191,11 @@ pagetop
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
     transition: all 0.3s ease;
+
+    @include SP(){
+      width: 20px;
+      height: 20px;
+    }
   }
 
   &:hover {
@@ -165,79 +204,5 @@ pagetop
       border-top: 2px solid #666;
       border-right: 2px solid #666;
     }
-  }
-}
-
-/***************************************************************/
-/* mobile
-***************************************************************/
-
-@media screen and (max-width:1000px) {
-
-  .border_line{
-    display: block;
-    position: absolute;
-    left:50%;
-    margin-left: -1px;
-    top: -25px;
-    margin: 0 auto;
-    content: "";
-    width: 2px;
-    background-color: #555;
-  }
-
-  .viewsite_btn{
-    width: 200px;
-    position: relative;;
-    right: 0;
-    bottom: 0;
-    margin: 50px auto 0 auto;;
-  }
-
-
-  /*-----------------*/
-  /* home
-  /*-----------------*/
-
-  #header h1{
-    padding: 60px 30px;
-  }
-
-  h2{
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-
-  .works_contents{
-    padding: 60px 0;
-
-    h2{
-      margin-bottom: 10px;
-    }
-
-    .inner{
-      padding: 0px 20px;
-
-      .item{
-        margin: 10px 0px;
-        img{
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  .pagetop{
-    border-top: 1px solid #eee;
-    padding: 15px 0;
-    text-align: center;
-    transition: all 0.3s ease;
-  }
-
-  .pagetop .arrow{
-    display: block;
-    width: 20px;
-    height: 20px;
-    margin: 10px auto 0 auto;
   }
 }

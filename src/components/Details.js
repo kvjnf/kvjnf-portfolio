@@ -14,7 +14,9 @@ import ProjectCapture from './partials/details/ProjectCaptures';
 
 class Details extends Component {
   componentDidMount() {
+    const { setInitialReady } = this.props;
     if (Object.keys(this.props.post.content).length > 0) {
+      setInitialReady();
       return;
     }
     const { fetchPost } = this.props;
@@ -33,16 +35,34 @@ class Details extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.unsetInitialReady();
+  }
+
   render() {
     const { content } = this.props.post;
+    const { pageReady } = this.props.initial;
     const { eye_catch = {} } = content;
     const { project_detail = [] } = content;
+    const borderClassNames = [
+      'border_line',
+      'borderani-init',
+      `${pageReady ? 'borderani' : ''}`
+    ].join(' ');
 
     return (
       <div className="works_archives">
-        <span className="border_line borderani-init borderani" />
+        <span className={borderClassNames} />
         <div className="works_logo">
-          <Logo post={content} />
+          <Logo
+            post={content}
+            option={{
+              translateY: [50, 0],
+              opacity: [0, 1],
+              easing: 'easeOutCubic',
+              duration: 800
+            }}
+          />
         </div>
         <div className="works_view">
           <DeviceSection devices={eye_catch} />
@@ -66,7 +86,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state, ownProps) {
-  return { post: state.post, match: ownProps.match };
+  const { post, initial } = state;
+  return { post, initial, match: ownProps.match };
 }
 
 export default connect(

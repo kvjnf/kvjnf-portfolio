@@ -10,5 +10,7 @@ export default {
     ActionTypes.FETCH_POST_DETAIL_SUCCESS,
     'data'
   ),
-  fetchPostFail: actionCreator(ActionTypes.FETCH_POST_DETAIL_FAIL)
+  fetchPostFail: actionCreator(ActionTypes.FETCH_POST_DETAIL_FAIL),
+  setInitialReady: actionCreator(ActionTypes.INITIAL_READY),
+  unsetInitialReady: actionCreator(ActionTypes.INITIAL_UNREADY)
 };

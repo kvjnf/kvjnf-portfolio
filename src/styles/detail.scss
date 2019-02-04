@@ -3,21 +3,12 @@
 /*-----------------*/
 /* works
 /*-----------------*/
-
-#header_in{
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 70px 0px;
-  box-sizing: border-box;
-
-  @include SP(){
-    padding: 60px 30px;
-  }
-}
-
 .works_archives{
   position: relative;
+
+  .description{
+    opacity: 0;
+  }
 
   .in_wrap{
     max-width: 1000px;
@@ -32,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 250px;
+    height: 200px;
 
     @include SP() {
       height: 200px;
@@ -42,6 +33,12 @@
 
     @include SP($breakpoint2) {
       width: 40%;
+      margin: 0 auto;
+    }
+
+    img{
+      opacity: 0;
+      max-width: 100%;
     }
   }
 
@@ -95,12 +92,12 @@
       margin: 0 auto;
       position: relative;
       text-align: center;
-      padding: 100px 0;
+      padding: 0 0 100px;
 
       @include SP(){
         width: 100%;
         height: auto;
-        padding: 50px 20px;
+        padding: 0 20px 50px;
         box-sizing: border-box;
       }
 
@@ -128,6 +125,7 @@
           top: 0;
           margin-bottom: 20px;
           width: 90%;
+          transform: none !important;
         }
 
         &.col1{
@@ -153,6 +151,7 @@
           margin-bottom: 20px;
           width: 40%;
           box-sizing: border-box;
+          transform: none!important
         }
       }
 
@@ -194,9 +193,11 @@
           border: 1px solid #eee;
           margin-bottom: 40px;
           max-width: 1000px;
+          opacity: 0;
 
           @include SP(){
             margin-bottom: 30px;
+            transform: none!important;
           }
 
           &col1{

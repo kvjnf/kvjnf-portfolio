@@ -2,21 +2,6 @@
 /*-----------------*/
 /* home
 /*-----------------*/
-#header{
-  text-align: center;
-  h1{
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 100px 0px;
-    box-sizing: border-box;
-
-    @include SP(){
-      padding: 60px 30px;
-    }
-  }
-}
-
 h2{
   text-align: center;
   font-size: 24px;
@@ -95,8 +80,7 @@ works_contents
       margin: 25px 0px;
       width: 30%;
       height: 200px;
-      -webkit-transition: all .3s ease-in-out 0s;
-      transition: all .3s ease-in-out 0s;
+      transition: box-shadow .3s ease-in-out 0s;
 
       @include SP($breakpoint2){
         width: 48%;
@@ -105,20 +89,8 @@ works_contents
       }
 
       img{
-        @include SP(){
-          width: 100%;
-        }
-        @include SP($breakpoint2){
-          width: 50%;
-        }
-
-        @include SP($breakpoint650){
-          width: 60%;
-        }
-
-        @include SP($breakpoint480){
-          width: 90%;
-        }
+        opacity: 0;
+        max-width: 100%;
       }
 
       &:hover{

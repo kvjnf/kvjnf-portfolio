@@ -9,6 +9,9 @@ html,body{
   /*background: #f9f9f9;*/
 }
 
+.flag-icon{
+  margin-right: 1em;
+}
 
 /*-----------------*/
 /* common style
@@ -23,14 +26,74 @@ a{
   max-width: 300px;
   margin: 0 auto;
   text-align: center;
+  margin-bottom: 40px;
+
+  @include SP(){
+    margin-bottom: 60px;
+  }
   h1{
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    padding: 40px 0px 40px;
+    padding: 40px 0 0;
     box-sizing: border-box;
     @include SP(){
-      padding: 60px 30px;
+      padding: 60px 30px 0;
+    }
+  }
+
+  .lang-btn{
+    border: 1px solid #040000;
+    color: #040000;
+    transition: all .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+    i.world{
+      font-size: 20px;
+      @include SP($breakpoint2){
+        font-size: 16px;
+      }
+    }
+    .text{
+      letter-spacing: 3px;
+      @include SP($breakpoint2){
+        font-size: 12px;
+      }
+    }
+
+    .item{
+      @include SP(){
+        font-size: 12px;
+      }
+    }
+    &.fixed{
+      position: fixed;
+      top: 40px;
+      right: 20px;
+      z-index: 10;
+      display: inline-flex;
+      border-radius: 40px;
+      height: 70px;
+      padding: .7em !important;
+      align-items: center;
+
+      i.world{
+        margin-right: 5px !important;
+        position: static;
+        width: auto;
+        height: auto;
+        &::before{
+          position: static;
+          display: inline;
+        }
+      }
+      .text{
+        width: 20px;
+        letter-spacing: 2px;
+      }
+      .menu{
+        right: 0;
+        left: auto;
+      }
     }
   }
 }
@@ -45,6 +108,9 @@ h2{
   }
 }
 
+.transparent{
+  background-color: transparent !important;
+}
 
 .Montserrat{
 	font-family: 'Montserrat', sans-serif;

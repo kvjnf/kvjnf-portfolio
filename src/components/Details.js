@@ -40,10 +40,12 @@ class Details extends Component {
   }
 
   render() {
+    const { current } = this.props.lang;
     const { content } = this.props.post;
     const { pageReady } = this.props.initial;
     const { eye_catch = {} } = content;
     const { project_detail = [] } = content;
+    const post = current in content ? content[current] : {};
     const borderClassNames = [
       'border_line',
       'borderani-init',
@@ -55,7 +57,7 @@ class Details extends Component {
         <span className={borderClassNames} />
         <div className="works_logo">
           <Logo
-            post={content}
+            post={post}
             option={{
               translateY: [50, 0],
               opacity: [0, 1],
@@ -66,7 +68,7 @@ class Details extends Component {
         </div>
         <div className="works_view">
           <DeviceSection devices={eye_catch} />
-          <Description post={content} />
+          <Description post={post} />
           <ProjectCapture gallery={project_detail} />
           <Link to="/" className="Montserrat link_btn fade-init">
             <span className="arrow">BACK TO LIST</span>
@@ -86,8 +88,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state, ownProps) {
-  const { post, initial } = state;
-  return { post, initial, match: ownProps.match };
+  const { post, initial, lang } = state;
+  return { post, initial, lang, match: ownProps.match };
 }
 
 export default connect(

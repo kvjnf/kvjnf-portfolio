@@ -9,9 +9,10 @@ import '../styles/top.scss';
 
 class Top extends Component {
   componentDidMount() {
-    const { fetchPosts, posts } = this.props;
+    const { fetchPosts, fetchTop, posts } = this.props;
     if (posts.contents.length === 0) {
       fetchPosts();
+      fetchTop();
     }
   }
 
@@ -29,6 +30,11 @@ class Top extends Component {
 
   render() {
     const { posts } = this.props;
+    const { current } = this.props.lang;
+    const content =
+      current in this.props.top.content
+        ? this.props.top.content[current].acf
+        : {};
     const { pageReady } = this.props.initial;
     const borderClassNames = [
       'border_line',
@@ -41,7 +47,7 @@ class Top extends Component {
         <span className={borderClassNames} />
         <h2 className="Montserrat upfade">MY WORKS</h2>
         <TopThumbnails posts={posts.contents} />
-        <AboutMe />
+        <AboutMe content={content} />
       </div>
     );
   }
@@ -51,8 +57,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(Actions, dispatch);
 }
 
-function mapStateToProps({ posts, initial }) {
-  return { posts, initial };
+function mapStateToProps({ posts, initial, top, lang }) {
+  return { posts, initial, top, lang };
 }
 
 export default connect(

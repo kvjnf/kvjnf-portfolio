@@ -4,6 +4,6 @@ import { restfulApiConfig } from './config';
 export default axios.create({
   baseURL: restfulApiConfig.apiURL,
   headers: {
-    'Access-Control-Allow-Headers': 'X-Requested-With'
+    'X-Requested-With': 'XMLHttpRequest'
   }
 });

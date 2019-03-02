@@ -29,11 +29,13 @@
       height: 200px;
       box-sizing: border-box;
       text-align: center;
+      margin-bottom: 40px;
     }
 
     @include SP($breakpoint2) {
       width: 40%;
       margin: 0 auto;
+      margin-bottom: 40px;
     }
 
     img{

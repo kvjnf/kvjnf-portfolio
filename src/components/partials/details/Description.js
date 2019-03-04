@@ -10,7 +10,7 @@ function Description({ post }) {
   if ('acf' in post) {
     const { acf } = post;
     const getLink = () => {
-      if ('project_link' in acf) {
+      if (acf.project_link.length > 0) {
         return (
           <Link
             to={acf.project_link}

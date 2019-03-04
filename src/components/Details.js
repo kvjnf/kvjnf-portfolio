@@ -14,29 +14,10 @@ import ProjectCapture from './partials/details/ProjectCaptures';
 
 class Details extends Component {
   componentDidMount() {
-    const { setInitialReady } = this.props;
-    if (Object.keys(this.props.post.content).length > 0) {
-      setInitialReady();
-      return;
-    }
     const { fetchPost } = this.props;
     const { id } = this.props.match.params;
 
     fetchPost({ id });
-  }
-
-  componentDidUpdate(prevProps) {
-    const { id } = this.props.match.params;
-    const prevId = prevProps.match.params.id;
-
-    if (id !== prevId) {
-      const { fetchPost } = this.props;
-      fetchPost({ id });
-    }
-  }
-
-  componentWillUnmount() {
-    this.props.unsetInitialReady();
   }
 
   render() {

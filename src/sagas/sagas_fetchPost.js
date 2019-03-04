@@ -7,7 +7,8 @@ export default function* sagasFetchPost({ payload }) {
   try {
     const { id } = payload;
     const acfUrl = baseAcfPath.replace(/ID/, id);
-    const photoGal1 = acfUrl + '/project_capture?type=photo_gallery';
+    const photoGal1 =
+      acfUrl + '/project_capture?type=photo_gallery&orderby=post__in';
     const photoGal2 =
       acfUrl + '/project_capture2?type=photo_gallery&orderby=post__in';
     const [post, postEn, postDe, acfGallery, acfGallery2] = yield all([

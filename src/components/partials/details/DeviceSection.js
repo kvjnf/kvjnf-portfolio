@@ -18,6 +18,22 @@ function DeviceSection({ devices }) {
       duration: 1000
     };
 
+    const spScroll = () => {
+      if (devices.sp) {
+        return (
+          <ScrollAnimation show={spScrollOption} baseLine={'center'}>
+            <img
+              className="iphone iphonefade-init"
+              src={devices.sp.full_image_url}
+              alt={devices.sp.title}
+            />
+          </ScrollAnimation>
+        );
+      }
+
+      return null;
+    };
+
     return (
       <div className="device_section">
         <ScrollAnimation show={pcScrollOption} baseLine={'center'}>
@@ -27,13 +43,7 @@ function DeviceSection({ devices }) {
             alt={devices.pc.title}
           />
         </ScrollAnimation>
-        <ScrollAnimation show={spScrollOption} baseLine={'center'}>
-          <img
-            className="iphone iphonefade-init"
-            src={devices.sp.full_image_url}
-            alt={devices.sp.title}
-          />
-        </ScrollAnimation>
+        {spScroll()}
       </div>
     );
   }

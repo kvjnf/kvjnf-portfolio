@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import anime from 'animejs';
 
-export default class Portfolio extends Component {
+class Portfolio extends Component {
   logoAnimation = async () => {
     await anime({
       targets: '#svg-logo path',
@@ -22,14 +23,15 @@ export default class Portfolio extends Component {
     }).finished;
   };
 
-  componentDidMount() {
-    this.logoAnimation();
+  componentDidUpdate() {
+    if (this.props.open) {
+      this.logoAnimation();
+    }
   }
   render() {
     return (
       <svg
         id="svg-logo"
-        // width="386px"
         viewBox="0 0 386 150"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -145,3 +147,9 @@ export default class Portfolio extends Component {
     );
   }
 }
+
+Portfolio.propTypes = {
+  open: PropTypes.bool
+};
+
+export default Portfolio;

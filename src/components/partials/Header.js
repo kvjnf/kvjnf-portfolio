@@ -1,17 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Portfolio from '../../logos/logo3.svg';
 import LanguageSelector from './LanguageSelector';
 
-export default function Header() {
-  return (
-    <header id="header">
-      <Link to="/">
-        <h1>
-          <Portfolio />
-        </h1>
-      </Link>
-      <LanguageSelector />
-    </header>
-  );
+function Header({ initial }) {
+  const logoOpen = initial.isRemoved ? 'open' : '';
+  const renderLogo = () => {
+    if (!initial.imgReady) {
+      return null;
+    }
+    return (
+      <header id="header" className={logoOpen}>
+        <Link to="/">
+          <h1>
+            <Portfolio open={initial.isRemoved} />
+          </h1>
+        </Link>
+        <LanguageSelector />
+      </header>
+    );
+  };
+
+  return renderLogo();
 }
+
+Header.propTypes = {
+  initial: PropTypes.object
+};
+
+function mapStateToProps(state) {
+  const { initial } = state;
+  return { initial };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(Header);

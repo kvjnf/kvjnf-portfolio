@@ -15,7 +15,7 @@ export default function LoadingOverRay({ ready, isRemoved, remove }) {
           remove();
         }
       });
-    }, 3000);
+    }, 2000);
   }
 
   return <div id="loading_overray" className={overrayClassNames} />;

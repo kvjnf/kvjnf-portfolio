@@ -16,3 +16,16 @@ export const nl2br = str => {
     return line;
   });
 };
+
+export const imageLoader = src => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = e => reject(e);
+    img.src = src;
+  });
+};
+
+export function loadImagesAll(srcs) {
+  return Promise.all(srcs.map(src => imageLoader(src)));
+}

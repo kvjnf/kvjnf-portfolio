@@ -1,0 +1,14 @@
+#loading_overray{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #222;
+    z-index: 20;
+    top: 0;
+    &.open{
+        display: none;
+    }
+}

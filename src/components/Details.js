@@ -4,6 +4,8 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Actions from '../actions';
+import LoadingOverRay from './partials/details/LoadingOverray';
+import { loadImagesAll } from '../utils';
 import './../styles/common.scss';
 import './../styles/detail.scss';
 
@@ -20,43 +22,91 @@ class Details extends Component {
     fetchPost({ id });
   }
 
-  render() {
+  componentDidUpdate() {
+    const { setImagesLoading } = this.props;
+    const { loadReady, imgReady, isImageLoading } = this.props.initial;
+    if (loadReady && !imgReady && !isImageLoading) {
+      setImagesLoading();
+      this.finishLoading();
+    }
+  }
+
+  componentWillUnmount() {
+    const { resetOverray } = this.props;
+    resetOverray();
+  }
+
+  async removeLoaderAfterImagesLoaded(srcs) {
+    await loadImagesAll(srcs);
+    const { setImagesReady } = this.props;
+    setImagesReady();
+  }
+
+  finishLoading() {
     const { current } = this.props.lang;
     const { content } = this.props.post;
-    const { pageReady } = this.props.initial;
-    const { eye_catch = {} } = content;
-    const { project_detail = [] } = content;
-    const post = current in content ? content[current] : {};
+    const { eye_catch } = content;
+    let srcs = [
+      content[current]._embedded['wp:featuredmedia'][0].source_url,
+      eye_catch.pc.full_image_url
+    ];
+    if (eye_catch.sp) {
+      srcs = [...srcs, eye_catch.sp.full_image_url];
+    }
+    this.removeLoaderAfterImagesLoaded(srcs);
+  }
+
+  renderDetailComponents() {
+    const { removeOverray } = this.props;
+    const { current } = this.props.lang;
+    const { content } = this.props.post;
+    const { loadReady, imgReady, isRemoved } = this.props.initial;
     const borderClassNames = [
       'border_line',
       'borderani-init',
-      `${pageReady ? 'borderani' : ''}`
+      `${imgReady ? 'borderani' : ''}`
     ].join(' ');
 
+    if (!loadReady) {
+      return null;
+    }
+
     return (
-      <div className="works_archives">
-        <span className={borderClassNames} />
-        <div className="works_logo">
-          <Logo
-            post={post}
-            option={{
-              translateY: [50, 0],
-              opacity: [0, 1],
-              easing: 'easeOutCubic',
-              duration: 800
-            }}
-          />
+      <React.Fragment>
+        <LoadingOverRay
+          ready={imgReady}
+          isRemoved={isRemoved}
+          remove={removeOverray}
+        />
+        <div className="works_archives">
+          <span className={borderClassNames} />
+          <div className="works_logo">
+            <Logo
+              post={content[current]}
+              option={{
+                translateY: [50, 0],
+                opacity: [0, 1],
+                easing: 'easeOutCubic',
+                duration: 800,
+                ready: loadReady
+              }}
+            />
+          </div>
+          <div className="works_view">
+            <DeviceSection devices={content.eye_catch} loadReady={loadReady} />
+            <Description post={content[current]} />
+            <ProjectCapture gallery={content.project_detail} />
+            <Link to="/" className="Montserrat link_btn fade-init">
+              <span className="arrow">BACK TO LIST</span>
+            </Link>
+          </div>
         </div>
-        <div className="works_view">
-          <DeviceSection devices={eye_catch} />
-          <Description post={post} />
-          <ProjectCapture gallery={project_detail} />
-          <Link to="/" className="Montserrat link_btn fade-init">
-            <span className="arrow">BACK TO LIST</span>
-          </Link>
-        </div>
-      </div>
+      </React.Fragment>
     );
+  }
+
+  render() {
+    return this.renderDetailComponents();
   }
 }
 

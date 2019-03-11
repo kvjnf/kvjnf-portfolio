@@ -18,7 +18,7 @@ class Top extends Component {
 
   componentDidUpdate() {
     const { setInitialReady, posts, initial } = this.props;
-    if (!initial.pageReady && Object.keys(posts.contents).length > 0) {
+    if (!initial.loadReady && Object.keys(posts.contents).length > 0) {
       setInitialReady();
       return;
     }
@@ -35,11 +35,11 @@ class Top extends Component {
       current in this.props.top.content
         ? this.props.top.content[current].acf
         : {};
-    const { pageReady } = this.props.initial;
+    const { loadReady } = this.props.initial;
     const borderClassNames = [
       'border_line',
       'borderani-init',
-      `${pageReady ? 'borderani' : ''}`
+      `${loadReady ? 'borderani' : ''}`
     ].join(' ');
 
     return (

@@ -1,55 +1,76 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import anime from 'animejs';
 
-import ScrollAnimation from './../../../utils/ScrollAnimation';
+class DeviceSection extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { show: false };
+  }
 
-function DeviceSection({ devices, loadReady }) {
-  if (Object.keys(devices).length > 0) {
+  showAnimation() {
+    const { ready } = this.props;
     const pcScrollOption = {
-      translateY: 50,
-      opacity: 1,
+      targets: '.display',
+      translateY: [-50, 0],
+      opacity: [0, 1],
       easing: 'easeOutCubic',
       duration: 1000,
-      ready: loadReady
+      complete: () => {
+        this.setState({ show: true });
+      }
     };
     const spScrollOption = {
-      translateX: 50,
-      opacity: 1,
+      targets: '.iphone',
+      translateX: [0, 50],
+      opacity: [0, 1],
       easing: 'easeOutCubic',
       duration: 1000,
-      ready: loadReady
+      complete: () => {
+        this.setState({ show: true });
+      }
     };
+    if (!ready) {
+      return;
+    }
 
-    const spScroll = () => {
-      if (devices.sp) {
-        return (
-          <ScrollAnimation show={spScrollOption} baseLine={'center'}>
+    if (!this.state.show) {
+      anime(pcScrollOption);
+      anime(spScrollOption);
+    }
+  }
+
+  render() {
+    const { devices } = this.props;
+    if (Object.keys(devices).length > 0) {
+      this.showAnimation();
+      const spScroll = () => {
+        if (devices.sp) {
+          return (
             <img
               className="iphone iphonefade-init"
               src={devices.sp.full_image_url}
               alt={devices.sp.title}
             />
-          </ScrollAnimation>
-        );
-      }
+          );
+        }
 
-      return null;
-    };
+        return null;
+      };
 
-    return (
-      <div className="device_section">
-        <ScrollAnimation show={pcScrollOption} baseLine={'center'}>
+      return (
+        <div className="device_section">
           <img
             className="display displayfade-init"
             src={devices.pc.full_image_url}
             alt={devices.pc.title}
           />
-        </ScrollAnimation>
-        {spScroll()}
-      </div>
-    );
+          {spScroll()}
+        </div>
+      );
+    }
+    return null;
   }
-  return null;
 }
 
 DeviceSection.propTypes = {

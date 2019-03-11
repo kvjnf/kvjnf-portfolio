@@ -64,7 +64,7 @@ class Details extends Component {
     const borderClassNames = [
       'border_line',
       'borderani-init',
-      `${imgReady ? 'borderani' : ''}`
+      `${isRemoved ? 'borderani' : ''}`
     ].join(' ');
 
     if (!loadReady) {
@@ -84,16 +84,16 @@ class Details extends Component {
             <Logo
               post={content[current]}
               option={{
-                translateY: [50, 0],
+                translateY: [20, 0],
                 opacity: [0, 1],
                 easing: 'easeOutCubic',
                 duration: 800,
-                ready: loadReady
+                ready: isRemoved
               }}
             />
           </div>
           <div className="works_view">
-            <DeviceSection devices={content.eye_catch} loadReady={loadReady} />
+            <DeviceSection devices={content.eye_catch} ready={isRemoved} />
             <Description post={content[current]} />
             <ProjectCapture gallery={content.project_detail} />
             <Link to="/" className="Montserrat link_btn fade-init">

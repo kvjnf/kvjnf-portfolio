@@ -6,11 +6,16 @@ export default createTypes([
   ...async('FETCH_TOP'),
   'INITIAL_READY',
   'INITIAL_UNREADY',
+  'IMAGES_READY',
+  'IMAGES_UNREADY',
   'CHANGE_LANGUAGE',
   'CHANGE_LANGUAGE_OPEN',
   'CHANGE_LANGUAGE_CLOSE',
   'FIXED_LANG_MENU',
-  'UNFIXED_LANG_MENU'
+  'UNFIXED_LANG_MENU',
+  'IS_IMAGE_LOADING',
+  'REMOVED_OVERRAY',
+  'RESET_OVERRAY'
 ]);
 
 export const baseWpPath = '/wp-json/wp/v2';

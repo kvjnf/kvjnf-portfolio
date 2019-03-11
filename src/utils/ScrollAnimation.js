@@ -5,7 +5,8 @@ import anime from 'animejs';
 export default class ScrollAnimation extends Component {
   constructor(props) {
     super(props);
-    const { show, hide = false, baseLine = 'bottom' } = props;
+    const { show, hide = false, baseLine = 'bottom', ready = true } = props;
+    this.ready = ready;
     this.show = show;
     this.hide = hide;
     this.baseLine = baseLine;
@@ -13,7 +14,9 @@ export default class ScrollAnimation extends Component {
   }
 
   componentDidMount() {
-    this.init();
+    if (this.ready) {
+      this.init();
+    }
   }
 
   init() {
@@ -30,8 +33,10 @@ export default class ScrollAnimation extends Component {
 
   scrollEventListener() {
     if (!this.ref) return;
+
     const baseY = this.scrollTop() + window.innerHeight;
     let targetY = this.ref.getBoundingClientRect().top + window.pageYOffset;
+
     if (this.baseLine === 'center') {
       targetY += this.ref.clientHeight / 2;
     }

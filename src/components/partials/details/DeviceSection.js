@@ -3,19 +3,21 @@ import PropTypes from 'prop-types';
 
 import ScrollAnimation from './../../../utils/ScrollAnimation';
 
-function DeviceSection({ devices }) {
+function DeviceSection({ devices, loadReady }) {
   if (Object.keys(devices).length > 0) {
     const pcScrollOption = {
       translateY: 50,
       opacity: 1,
       easing: 'easeOutCubic',
-      duration: 1000
+      duration: 1000,
+      ready: loadReady
     };
     const spScrollOption = {
       translateX: 50,
       opacity: 1,
       easing: 'easeOutCubic',
-      duration: 1000
+      duration: 1000,
+      ready: loadReady
     };
 
     const spScroll = () => {

@@ -5,25 +5,29 @@ import anime from 'animejs';
 class Logo extends Component {
   constructor(props) {
     super(props);
-    this.state = { show: false };
+  }
+
+  componentDidUpdate() {
+    const { option = {}, id = 1, ready } = this.props;
+    if (ready) {
+      const logoClass = `portfolio-logo-${id}`;
+      anime({
+        ...option,
+        targets: '.' + logoClass
+      });
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.ready !== nextProps.ready;
   }
 
   render() {
-    const { post, option = {}, id = 1 } = this.props;
+    const { post, id = 1 } = this.props;
     if (Object.keys(post).length > 0) {
       const imgSource = post._embedded['wp:featuredmedia'][0].source_url || '';
-      const { ready = true } = option;
       const logoClass = `portfolio-logo-${id}`;
 
-      if (ready && !this.state.show) {
-        anime({
-          ...option,
-          targets: '.' + logoClass,
-          complete: () => {
-            this.setState({ show: true });
-          }
-        });
-      }
       return (
         <img className={logoClass} src={imgSource} alt={post.title.rendered} />
       );
@@ -35,7 +39,8 @@ class Logo extends Component {
 
 Logo.propTypes = {
   post: PropTypes.object,
-  option: PropTypes.object
+  option: PropTypes.object,
+  ready: PropTypes.bool
 };
 
 export default Logo;

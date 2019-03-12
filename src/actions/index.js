@@ -14,7 +14,6 @@ export default {
   fetchTop: actionCreator(ActionTypes.FETCH_TOP),
   fetchTopSuccess: actionCreator(ActionTypes.FETCH_TOP_SUCCESS, 'data'),
   fetchTopFail: actionCreator(ActionTypes.FETCH_TOP_FAIL),
-  setImagesLoading: actionCreator(ActionTypes.IS_IMAGE_LOADING),
   setInitialReady: actionCreator(ActionTypes.INITIAL_READY),
   unsetInitialReady: actionCreator(ActionTypes.INITIAL_UNREADY),
   setImagesReady: actionCreator(ActionTypes.IMAGES_READY),

@@ -8,42 +8,40 @@ class DeviceSection extends Component {
     this.state = { showDevice: false };
   }
 
-  showAnimation() {
+  componentDidUpdate() {
     const { ready } = this.props;
+    if (ready) {
+      this.showAnimation();
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return this.props.ready !== nextProps.ready;
+  }
+
+  showAnimation() {
     const pcScrollOption = {
       targets: '.display',
       translateY: [-50, 0],
       opacity: [0, 1],
       easing: 'easeOutCubic',
-      duration: 1000,
-      complete: () => {
-        this.setState({ showDevice: true });
-      }
+      duration: 1000
     };
     const spScrollOption = {
       targets: '.iphone',
       translateX: [0, 50],
       opacity: [0, 1],
       easing: 'easeOutCubic',
-      duration: 1000,
-      complete: () => {
-        this.setState({ showDevice: true });
-      }
+      duration: 1000
     };
-    if (!ready) {
-      return;
-    }
 
-    if (!this.state.showDevice) {
-      anime(pcScrollOption);
-      anime(spScrollOption);
-    }
+    anime(pcScrollOption);
+    anime(spScrollOption);
   }
 
   render() {
     const { devices } = this.props;
     if (Object.keys(devices).length > 0) {
-      this.showAnimation();
       const spScroll = () => {
         if (devices.sp) {
           return (

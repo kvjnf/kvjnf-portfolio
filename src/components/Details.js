@@ -15,16 +15,10 @@ import Description from './partials/details/Description';
 import ProjectCapture from './partials/details/ProjectCaptures';
 
 class Details extends Component {
-  constructor(props) {
-    super(props);
-    this._isMounted = false;
-  }
-
   componentDidMount() {
     const { fetchPost } = this.props;
     const { id } = this.props.match.params;
-    this._isMounted = true;
-    this._isMounted && fetchPost({ id });
+    fetchPost({ id });
   }
 
   componentDidUpdate() {
@@ -39,7 +33,6 @@ class Details extends Component {
   componentWillUnmount() {
     const { resetOverray } = this.props;
     resetOverray();
-    this._isMounted = false;
   }
 
   async removeLoaderAfterImagesLoaded(srcs) {
@@ -77,7 +70,7 @@ class Details extends Component {
       return null;
     }
 
-    if (content.length === 0) {
+    if (Object.keys(content).length === 0) {
       return null;
     }
 

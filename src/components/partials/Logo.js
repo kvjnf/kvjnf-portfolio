@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import anime from 'animejs';
 
 class Logo extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidUpdate() {
     const { option = {}, id = 1, ready } = this.props;
     if (ready) {

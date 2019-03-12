@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import AboutMe from './partials/AboutMe';
 import TopThumbnails from './partials/TopThumbnails';
 import Actions from '../actions';
+import LoadingOverRay from './partials/details/LoadingOverray';
+import { loadImagesAll } from '../utils';
 import '../styles/top.scss';
 
 class Top extends Component {
@@ -17,25 +19,44 @@ class Top extends Component {
   }
 
   componentDidUpdate() {
-    const { setInitialReady, posts, initial } = this.props;
-    if (!initial.loadReady && Object.keys(posts.contents).length > 0) {
-      setInitialReady();
-      return;
+    const { setImagesLoading } = this.props;
+    const { loadReady, imgReady, isImageLoading } = this.props.initial;
+    if (loadReady && !imgReady && !isImageLoading) {
+      setImagesLoading();
+      this.finishLoading();
     }
   }
 
   componentWillUnmount() {
-    this.props.unsetInitialReady();
+    const { resetOverray } = this.props;
+    resetOverray();
+  }
+
+  async removeLoaderAfterImagesLoaded(srcs) {
+    await loadImagesAll(srcs);
+    const { setImagesReady } = this.props;
+    setImagesReady();
+  }
+
+  finishLoading() {
+    const { contents } = this.props.posts;
+
+    const srcs = contents.map(post => {
+      return post._embedded['wp:featuredmedia'][0].source_url;
+    });
+
+    this.removeLoaderAfterImagesLoaded(srcs);
   }
 
   render() {
-    const { posts } = this.props;
+    const { loadReady, imgReady, isRemoved } = this.props.initial;
+    if (!loadReady) {
+      return null;
+    }
+    const { posts, removeOverray } = this.props;
     const { current } = this.props.lang;
-    const content =
-      current in this.props.top.content
-        ? this.props.top.content[current].acf
-        : {};
-    const { loadReady } = this.props.initial;
+    const content = this.props.top.content[current].acf;
+
     const borderClassNames = [
       'border_line',
       'borderani-init',
@@ -44,9 +65,14 @@ class Top extends Component {
 
     return (
       <div className="works_contents">
+        <LoadingOverRay
+          ready={imgReady}
+          isRemoved={isRemoved}
+          remove={removeOverray}
+        />
         <span className={borderClassNames} />
         <h2 className="Montserrat upfade">MY WORKS</h2>
-        <TopThumbnails posts={posts.contents} />
+        <TopThumbnails posts={posts.contents} ready={isRemoved} />
         <AboutMe content={content} />
       </div>
     );

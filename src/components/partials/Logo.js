@@ -9,21 +9,23 @@ class Logo extends Component {
   }
 
   render() {
-    const { post, option = {} } = this.props;
+    const { post, option = {}, id = 1 } = this.props;
     if (Object.keys(post).length > 0) {
       const imgSource = post._embedded['wp:featuredmedia'][0].source_url || '';
-      const { ready = false } = option;
+      const { ready = true } = option;
+      const logoClass = `portfolio-logo-${id}`;
+
       if (ready && !this.state.show) {
         anime({
           ...option,
-          targets: '#portfolio-logo',
+          targets: '.' + logoClass,
           complete: () => {
             this.setState({ show: true });
           }
         });
       }
       return (
-        <img id="portfolio-logo" src={imgSource} alt={post.title.rendered} />
+        <img className={logoClass} src={imgSource} alt={post.title.rendered} />
       );
     }
 

@@ -8,6 +8,7 @@ export default function* sagasFetchPosts() {
     const res = yield call(api.get, `${baseWpPath}/posts?_embed`);
 
     yield put(Actions.fetchPostsSuccess(res));
+    yield put(Actions.setInitialReady());
   } catch (err) {
     yield put(Actions.fetchPostsFail());
     console.log(err);

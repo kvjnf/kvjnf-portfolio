@@ -2,18 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TopThumb from './TopThumb';
 
-const TopThumbnails = ({ posts }) => {
+const TopThumbnails = ({ posts, ready }) => {
   return (
     <div className="inner boxfade-init">
       {posts.map((post, index) => {
-        return <TopThumb key={post.id} post={post} index={index} />;
+        return (
+          <TopThumb key={post.id} post={post} index={index} ready={ready} />
+        );
       })}
     </div>
   );
 };
 
 TopThumbnails.propTypes = {
-  posts: PropTypes.array
+  posts: PropTypes.array,
+  ready: PropTypes.bool
 };
 
 export default TopThumbnails;

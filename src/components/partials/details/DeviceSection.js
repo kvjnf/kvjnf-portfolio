@@ -5,7 +5,7 @@ import anime from 'animejs';
 class DeviceSection extends Component {
   constructor(props) {
     super(props);
-    this.state = { show: false };
+    this.state = { showDevice: false };
   }
 
   showAnimation() {
@@ -17,7 +17,7 @@ class DeviceSection extends Component {
       easing: 'easeOutCubic',
       duration: 1000,
       complete: () => {
-        this.setState({ show: true });
+        this.setState({ showDevice: true });
       }
     };
     const spScrollOption = {
@@ -27,14 +27,14 @@ class DeviceSection extends Component {
       easing: 'easeOutCubic',
       duration: 1000,
       complete: () => {
-        this.setState({ show: true });
+        this.setState({ showDevice: true });
       }
     };
     if (!ready) {
       return;
     }
 
-    if (!this.state.show) {
+    if (!this.state.showDevice) {
       anime(pcScrollOption);
       anime(spScrollOption);
     }

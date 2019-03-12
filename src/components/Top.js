@@ -10,11 +10,21 @@ import { loadImagesAll } from '../utils';
 import '../styles/top.scss';
 
 class Top extends Component {
+  constructor(props) {
+    super(props);
+    this._isMounted = false;
+  }
   componentDidMount() {
     const { fetchPosts, fetchTop, posts } = this.props;
-    if (posts.contents.length === 0) {
+    this._isMounted = true;
+    if (posts.contents.length === 0 && this._isMounted) {
       fetchPosts();
       fetchTop();
+    }
+
+    const { setInitialReady } = this.props;
+    if (posts.contents.length > 0 && this._isMounted) {
+      setInitialReady();
     }
   }
 
@@ -30,6 +40,7 @@ class Top extends Component {
   componentWillUnmount() {
     const { resetOverray } = this.props;
     resetOverray();
+    this._isMounted = false;
   }
 
   async removeLoaderAfterImagesLoaded(srcs) {
@@ -51,6 +62,9 @@ class Top extends Component {
   render() {
     const { loadReady, imgReady, isRemoved } = this.props.initial;
     if (!loadReady) {
+      return null;
+    }
+    if (this.props.posts.contents.length === 0) {
       return null;
     }
     const { posts, removeOverray } = this.props;

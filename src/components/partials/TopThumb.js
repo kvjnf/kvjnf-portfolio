@@ -10,12 +10,11 @@ const TopThumb = ({ post, index, ready }) => {
     opacity: [0, 1],
     easing: 'easeOutCubic',
     duration: 1000,
-    delay: index * 100,
-    ready: ready
+    delay: index * 100
   };
   return (
     <Link to={`/detail/${id}/`} className="item">
-      <Logo id={id} post={post} option={option} />
+      <Logo key={id} id={id} post={post} option={option} ready={ready} />
     </Link>
   );
 };

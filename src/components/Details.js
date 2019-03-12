@@ -15,11 +15,16 @@ import Description from './partials/details/Description';
 import ProjectCapture from './partials/details/ProjectCaptures';
 
 class Details extends Component {
+  constructor(props) {
+    super(props);
+    this._isMounted = false;
+  }
+
   componentDidMount() {
     const { fetchPost } = this.props;
     const { id } = this.props.match.params;
-
-    fetchPost({ id });
+    this._isMounted = true;
+    this._isMounted && fetchPost({ id });
   }
 
   componentDidUpdate() {
@@ -34,6 +39,7 @@ class Details extends Component {
   componentWillUnmount() {
     const { resetOverray } = this.props;
     resetOverray();
+    this._isMounted = false;
   }
 
   async removeLoaderAfterImagesLoaded(srcs) {
@@ -71,6 +77,10 @@ class Details extends Component {
       return null;
     }
 
+    if (content.length === 0) {
+      return null;
+    }
+
     return (
       <React.Fragment>
         <LoadingOverRay
@@ -82,14 +92,15 @@ class Details extends Component {
           <span className={borderClassNames} />
           <div className="works_logo">
             <Logo
+              key={content[current].id}
               post={content[current]}
               option={{
                 translateY: [20, 0],
                 opacity: [0, 1],
                 easing: 'easeOutCubic',
-                duration: 800,
-                ready: isRemoved
+                duration: 800
               }}
+              ready={isRemoved}
             />
           </div>
           <div className="works_view">

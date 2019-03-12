@@ -6,68 +6,44 @@ import AboutMe from './partials/AboutMe';
 import TopThumbnails from './partials/TopThumbnails';
 import Actions from '../actions';
 import LoadingOverRay from './partials/details/LoadingOverray';
-import { loadImagesAll } from '../utils';
 import '../styles/top.scss';
 
 class Top extends Component {
   constructor(props) {
     super(props);
-    this._isMounted = false;
+    this.state = { srcs: [] };
   }
   componentDidMount() {
     const { fetchPosts, fetchTop, posts } = this.props;
-    this._isMounted = true;
-    if (posts.contents.length === 0 && this._isMounted) {
+    if (posts.contents.length === 0) {
       fetchPosts();
       fetchTop();
     }
+  }
 
+  componentDidUpdate(prevProps) {
     const { setInitialReady } = this.props;
-    if (posts.contents.length > 0 && this._isMounted) {
+    const { loadReady } = this.props.initial;
+    if (loadReady !== prevProps.initial.loadReady && !loadReady) {
       setInitialReady();
     }
   }
 
-  componentDidUpdate() {
-    const { setImagesLoading } = this.props;
-    const { loadReady, imgReady, isImageLoading } = this.props.initial;
-    if (loadReady && !imgReady && !isImageLoading) {
-      setImagesLoading();
-      this.finishLoading();
-    }
-  }
-
-  componentWillUnmount() {
-    const { resetOverray } = this.props;
-    resetOverray();
-    this._isMounted = false;
-  }
-
-  async removeLoaderAfterImagesLoaded(srcs) {
-    await loadImagesAll(srcs);
-    const { setImagesReady } = this.props;
-    setImagesReady();
-  }
-
   finishLoading() {
     const { contents } = this.props.posts;
-
     const srcs = contents.map(post => {
       return post._embedded['wp:featuredmedia'][0].source_url;
     });
 
-    this.removeLoaderAfterImagesLoaded(srcs);
+    this.setState({ srcs });
   }
 
-  render() {
-    const { loadReady, imgReady, isRemoved } = this.props.initial;
-    if (!loadReady) {
+  getTopContent() {
+    const { loadReady, isRemoved } = this.props.initial;
+    const { posts } = this.props;
+    if (!loadReady || posts.contents.length === 0) {
       return null;
     }
-    if (this.props.posts.contents.length === 0) {
-      return null;
-    }
-    const { posts, removeOverray } = this.props;
     const { current } = this.props.lang;
     const content = this.props.top.content[current].acf;
 
@@ -78,16 +54,26 @@ class Top extends Component {
     ].join(' ');
 
     return (
-      <div className="works_contents">
-        <LoadingOverRay
-          ready={imgReady}
-          isRemoved={isRemoved}
-          remove={removeOverray}
-        />
+      <React.Fragment>
         <span className={borderClassNames} />
         <h2 className="Montserrat upfade">MY WORKS</h2>
         <TopThumbnails posts={posts.contents} ready={isRemoved} />
         <AboutMe content={content} />
+      </React.Fragment>
+    );
+  }
+
+  render() {
+    const { loadReady } = this.props.initial;
+
+    return (
+      <div className="works_contents">
+        <LoadingOverRay
+          ready={loadReady}
+          srcs={this.state.srcs}
+          makeSrcData={this.finishLoading.bind(this)}
+        />
+        {this.getTopContent()}
       </div>
     );
   }

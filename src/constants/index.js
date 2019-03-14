@@ -13,7 +13,6 @@ export default createTypes([
   'CHANGE_LANGUAGE_CLOSE',
   'FIXED_LANG_MENU',
   'UNFIXED_LANG_MENU',
-  'IS_IMAGE_LOADING',
   'REMOVED_OVERRAY',
   'RESET_OVERRAY'
 ]);

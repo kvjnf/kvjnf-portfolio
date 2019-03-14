@@ -1,13 +1,56 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-const NotFound = () =>{
-  return (
-    <div>
-      <h2>URLが存在しません。</h2>
-      <p>404 not found</p>
-    </div>
-  );
-};
+import Actions from '../actions';
+import LoadingOverRay from './partials/details/LoadingOverray';
 
+import './../styles/common.scss';
+import './../styles/not-found.scss';
 
-export default NotFound;
+class NotFound extends Component {
+  componentDidMount() {
+    const { setInitialReady } = this.props;
+    setInitialReady();
+  }
+
+  componentDidUpdate(prevProps) {
+    const { initial } = this.props;
+    const preInitial = prevProps.initial;
+    if (initial.loadReady !== preInitial.loadReady && initial.loadReady) {
+      const { removeOverray, setImagesReady } = this.props;
+      setImagesReady();
+      setTimeout(() => {
+        removeOverray();
+      }, 10);
+    }
+  }
+
+  componentWillUnmount() {
+    const { resetOverray } = this.props;
+    resetOverray();
+  }
+
+  render() {
+    return (
+      <div id="not-found">
+        <h2>URLが存在しません。</h2>
+        <p>404 not found</p>
+      </div>
+    );
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(Actions, dispatch);
+}
+
+function mapStateToProps(state) {
+  const { initial } = state;
+  return { initial };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NotFound);

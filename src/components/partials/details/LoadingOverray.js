@@ -48,7 +48,7 @@ class LoadingOverRay extends Component {
           removeOverray();
         }
       });
-    }, 1000);
+    }, 0);
   }
 
   render() {

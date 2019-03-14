@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+
 import Actions from '../actions';
 import LoadingOverRay from './partials/details/LoadingOverray';
+
 import './../styles/common.scss';
 import './../styles/detail.scss';
 

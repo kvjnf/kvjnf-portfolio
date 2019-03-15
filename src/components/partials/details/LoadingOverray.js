@@ -48,13 +48,22 @@ class LoadingOverRay extends Component {
           removeOverray();
         }
       });
-    }, 0);
+    }, 1000);
   }
 
   render() {
     const { isRemoved } = this.props.initial;
     const overrayClassNames = [`${isRemoved ? 'open' : ''}`].join(' ');
-    return <div id="loading_overray" className={overrayClassNames} />;
+    return (
+      <div id="loading_overray" className={overrayClassNames}>
+        <div class="loader">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+    );
   }
 }
 

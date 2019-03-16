@@ -1,7 +1,7 @@
 import ActionTypes from '../constants';
 
 const initialState = {
-  current: 'ja',
+  current: 'en',
   options: ['ja', 'en', 'de'],
   open: false,
   fixed: false

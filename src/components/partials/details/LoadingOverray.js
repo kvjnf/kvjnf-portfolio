@@ -56,7 +56,7 @@ class LoadingOverRay extends Component {
     const overrayClassNames = [`${isRemoved ? 'open' : ''}`].join(' ');
     return (
       <div id="loading_overray" className={overrayClassNames}>
-        <div class="loader">
+        <div className="loader">
           <span />
           <span />
           <span />

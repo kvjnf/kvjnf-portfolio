@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Actions from '../actions';
-import LoadingOverRay from './partials/details/LoadingOverray';
 
 import './../styles/common.scss';
 import './../styles/not-found.scss';
@@ -34,8 +33,7 @@ class NotFound extends Component {
   render() {
     return (
       <div id="not-found">
-        <h2>URLが存在しません。</h2>
-        <p>404 not found</p>
+        <h2>404 NOT FOUND</h2>
       </div>
     );
   }

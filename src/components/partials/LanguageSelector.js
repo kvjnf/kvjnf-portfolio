@@ -22,9 +22,8 @@ function LanguageSelector(props) {
     lang
   } = props;
   const activeBtn = [
-    'Montserrat lang-btn transparent ui floating dropdown labeled search icon button',
-    `${lang.open ? 'active visible' : ''}`,
-    `${lang.fixed ? 'fixed' : ''}`
+    lang.fixed ? 'fixed' : '',
+    `${lang.open ? 'active visible' : ''}`
   ].join(' ');
   const dropClass = ['menu', `${lang.open ? 'transition visible' : ''}`].join(
     ' '
@@ -54,36 +53,37 @@ function LanguageSelector(props) {
   };
 
   return (
-    <div
-      ref={ref => addScrollEvent(ref)}
-      className={activeBtn}
-      onClick={() =>
-        !lang.open ? changeLanguageOpen() : changeLanguageClose()
-      }
-    >
-      <i className="world icon transparent" />
-      <span className="text Montserrat">{lang.current.toUpperCase()}</span>
-      <div className={dropClass}>
-        <div
-          className="item"
-          onClick={() => changeLanguage({ language: 'ja' })}
-        >
-          <i className="flag-icon flag-icon-jp" />
-          JAPANESE
-        </div>
-        <div
-          className="item"
-          onClick={() => changeLanguage({ language: 'en' })}
-        >
-          <i className="flag-icon flag-icon-us" />
-          ENGLISH
-        </div>
-        <div
-          className="item"
-          onClick={() => changeLanguage({ language: 'de' })}
-        >
-          <i className="flag-icon flag-icon-de" />
-          DEUTSCH
+    <div id="lang" className={activeBtn} ref={ref => addScrollEvent(ref)}>
+      <div
+        className="Montserrat lang-btn transparent ui floating dropdown labeled search icon button"
+        onClick={() =>
+          !lang.open ? changeLanguageOpen() : changeLanguageClose()
+        }
+      >
+        <i className="world icon transparent" />
+        <span className="text Montserrat">{lang.current.toUpperCase()}</span>
+        <div className={dropClass}>
+          <div
+            className="item"
+            onClick={() => changeLanguage({ language: 'ja' })}
+          >
+            <i className="flag-icon flag-icon-jp" />
+            JAPANESE
+          </div>
+          <div
+            className="item"
+            onClick={() => changeLanguage({ language: 'en' })}
+          >
+            <i className="flag-icon flag-icon-us" />
+            ENGLISH
+          </div>
+          <div
+            className="item"
+            onClick={() => changeLanguage({ language: 'de' })}
+          >
+            <i className="flag-icon flag-icon-de" />
+            DEUTSCH
+          </div>
         </div>
       </div>
     </div>

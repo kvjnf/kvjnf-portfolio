@@ -18,6 +18,18 @@ function Header({ initial }) {
             <Portfolio open={initial.isRemoved} />
           </h1>
         </Link>
+        <div className="github-wrapper">
+          <a
+            className="github-link"
+            href="https://github.com/kvjnf/kvjnf-portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="github-inner">
+              <i className="fab fa-github" />
+            </span>
+          </a>
+        </div>
         <LanguageSelector />
       </header>
     );

@@ -46,57 +46,126 @@ a{
     }
   }
 
-  .lang-btn{
-    border: 1px solid #040000;
-    color: #040000;
-    transition: all .5s cubic-bezier(0.165, 0.84, 0.44, 1);
-
-    i.world{
-      font-size: 20px;
-      @include SP($breakpoint2){
-        font-size: 16px;
+  .github-wrapper{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    .github-link{
+      position: relative;
+      display: block;
+      width: 30px;
+      height: 30px;
+      border: solid 1px #999;
+      box-sizing: border-box;
+      transform: rotate(45deg);
+      transition: border 0.1s linear;
+      &:hover{
+        border: solid 1px #000;
+        .github-inner::before{
+          transform: scale(1);
+        }
       }
-    }
-    .text{
-      letter-spacing: 3px;
-      @include SP($breakpoint2){
-        font-size: 12px;
-      }
-    }
-
-    .item{
-      @include SP(){
-        font-size: 12px;
-      }
-    }
-    &.fixed{
-      position: fixed;
-      top: 40px;
-      right: 20px;
-      z-index: 10;
-      display: inline-flex;
-      border-radius: 40px;
-      height: 70px;
-      padding: .7em !important;
-      align-items: center;
-
-      i.world{
-        margin-right: 5px !important;
-        position: static;
-        width: auto;
-        height: auto;
+      .github-inner{
+        display: block;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: calc(100% - 4px);
+        height: calc(100% - 4px);
+        background-color: #ccc;
         &::before{
-          position: static;
-          display: inline;
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #000;
+          transform: scale(0);
+          transition: all 0.2s ease-in-out;
+        }
+        .fa-github{
+          position: absolute;
+          top: 0;
+          left: 0;
+          display: flex;
+          width: 100%;
+          height: 100%;
+          font-size: 20px;
+          justify-content: center;
+          align-items: center;
+          transform: rotate(-45deg);
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  #lang{
+    display: inline-block;
+    transition: box-shadow .5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    &:hover{
+      cursor: pointer;
+      box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    .lang-btn{
+      // border: 1px solid #040000;
+      margin-right: 0;
+      color: #040000;
+      i.world{
+        font-size: 20px;
+        @include SP($breakpoint2){
+          font-size: 16px;
         }
       }
       .text{
-        width: 20px;
-        letter-spacing: 2px;
+        letter-spacing: 3px;
+        cursor: pointer;
+        @include SP($breakpoint2){
+          font-size: 12px;
+        }
       }
-      .menu{
-        right: 0;
-        left: auto;
+  
+      .item{
+        @include SP(){
+          font-size: 12px;
+        }
+      }
+    }
+
+    &.fixed {
+        position: fixed;
+        top: 40px;
+        right: 20px;
+        z-index: 10;
+        display: inline-flex;
+        border-radius: 40px;
+      .lang-btn{
+        height: 70px;
+        padding: .7em !important;
+        align-items: center;
+        display: flex;
+
+        i.world{
+          margin-right: 5px !important;
+          position: static;
+          width: auto;
+          height: auto;
+          &::before{
+            position: static;
+            display: inline;
+          }
+        }
+        .text{
+          width: 20px;
+          letter-spacing: 2px;
+        }
+        .menu{
+          right: 0;
+          left: auto;
+        }
       }
     }
   }

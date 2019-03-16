@@ -1,5 +1,6 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import history from './../history';
 import Header from './partials/Header';
@@ -7,9 +8,9 @@ import Top from './Top';
 import Detail from './Details';
 import NotFound from './NotFound';
 
-const App = () => {
+const App = ({ initial }) => {
   return (
-    <div>
+    <div className={initial.isRemoved ? '' : 'loading'}>
       <Router history={history}>
         <div>
           <Header />
@@ -24,4 +25,12 @@ const App = () => {
   );
 };
 
-export default App;
+function mapStateToProps(state) {
+  const { initial } = state;
+  return { initial };
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(App);

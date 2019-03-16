@@ -6,6 +6,23 @@ import onClickOutside from 'react-onclickoutside';
 import Actions from '../../actions/';
 
 class LanguageSelector extends Component {
+  componentDidMount() {
+    const priorityLang = this.getPriorityLanguage();
+    const { changeLanguage, lang } = this.props;
+    if (priorityLang === 'ja-JP' && !lang.changed) {
+      changeLanguage({ language: 'ja' });
+    }
+  }
+
+  getPriorityLanguage() {
+    return (
+      (window.navigator.languages && window.navigator.languages[0]) ||
+      window.navigator.language ||
+      window.navigator.userLanguage ||
+      window.navigator.browserLanguage
+    );
+  }
+
   getWindowScrollPostion = () => {
     if (window.pageYOffset) return window.pageYOffset;
     return document.documentElement.clientHeight

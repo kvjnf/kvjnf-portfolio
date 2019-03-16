@@ -1,41 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import onClickOutside from 'react-onclickoutside';
 
 import Actions from '../../actions/';
 
-const getWindowScrollPostion = () => {
-  if (window.pageYOffset) return window.pageYOffset;
-  return document.documentElement.clientHeight
-    ? document.documentElement.scrollTop
-    : document.body.scrollTop;
-};
+class LanguageSelector extends Component {
+  getWindowScrollPostion = () => {
+    if (window.pageYOffset) return window.pageYOffset;
+    return document.documentElement.clientHeight
+      ? document.documentElement.scrollTop
+      : document.body.scrollTop;
+  };
 
-function LanguageSelector(props) {
-  const {
-    changeLanguage,
-    changeLanguageOpen,
-    changeLanguageClose,
-    fixedLangMenu,
-    unfixedLangMenu,
-    lang
-  } = props;
-  const activeBtn = [
-    lang.fixed ? 'fixed' : '',
-    `${lang.open ? 'active visible' : ''}`
-  ].join(' ');
-  const dropClass = ['menu', `${lang.open ? 'transition visible' : ''}`].join(
-    ' '
-  );
-  LanguageSelector.outSideClickEventHandler = () => changeLanguageClose();
-
-  const addScrollEvent = ref => {
+  addScrollEvent(ref) {
     let fixedFlag = false;
     let targetPosition = 0;
+    const { fixedLangMenu, unfixedLangMenu } = this.props;
+
     window.addEventListener('scroll', () => {
       if (!ref) return;
-      const baseY = getWindowScrollPostion();
+      const baseY = this.getWindowScrollPostion();
       let targetY = ref.getBoundingClientRect().top + window.pageYOffset;
 
       if (!fixedFlag && baseY > targetY) {
@@ -50,44 +35,66 @@ function LanguageSelector(props) {
         targetPosition = 0;
       }
     });
-  };
+  }
 
-  return (
-    <div id="lang" className={activeBtn} ref={ref => addScrollEvent(ref)}>
+  render() {
+    const {
+      changeLanguage,
+      changeLanguageOpen,
+      changeLanguageClose,
+      lang
+    } = this.props;
+
+    const activeBtn = [
+      lang.fixed ? 'fixed' : '',
+      `${lang.open ? 'active visible' : ''}`
+    ].join(' ');
+    const dropClass = ['menu', `${lang.open ? 'transition visible' : ''}`].join(
+      ' '
+    );
+    LanguageSelector.outSideClickEventHandler = () => changeLanguageClose();
+
+    return (
       <div
-        className="Montserrat lang-btn transparent ui floating dropdown labeled search icon button"
-        onClick={() =>
-          !lang.open ? changeLanguageOpen() : changeLanguageClose()
-        }
+        id="lang"
+        className={activeBtn}
+        ref={ref => this.addScrollEvent(ref)}
       >
-        <i className="world icon transparent" />
-        <span className="text Montserrat">{lang.current.toUpperCase()}</span>
-        <div className={dropClass}>
-          <div
-            className="item"
-            onClick={() => changeLanguage({ language: 'ja' })}
-          >
-            <i className="flag-icon flag-icon-jp" />
-            JAPANESE
-          </div>
-          <div
-            className="item"
-            onClick={() => changeLanguage({ language: 'en' })}
-          >
-            <i className="flag-icon flag-icon-us" />
-            ENGLISH
-          </div>
-          <div
-            className="item"
-            onClick={() => changeLanguage({ language: 'de' })}
-          >
-            <i className="flag-icon flag-icon-de" />
-            DEUTSCH
+        <div
+          className="Montserrat lang-btn transparent ui floating dropdown labeled search icon button"
+          onClick={() =>
+            !lang.open ? changeLanguageOpen() : changeLanguageClose()
+          }
+        >
+          <i className="world icon transparent" />
+          <span className="text Montserrat">{lang.current.toUpperCase()}</span>
+          <div className={dropClass}>
+            <div
+              className="item"
+              onClick={() => changeLanguage({ language: 'ja' })}
+            >
+              <i className="flag-icon flag-icon-jp" />
+              JAPANESE
+            </div>
+            <div
+              className="item"
+              onClick={() => changeLanguage({ language: 'en' })}
+            >
+              <i className="flag-icon flag-icon-us" />
+              ENGLISH
+            </div>
+            <div
+              className="item"
+              onClick={() => changeLanguage({ language: 'de' })}
+            >
+              <i className="flag-icon flag-icon-de" />
+              DEUTSCH
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 function mapDispatchToProps(dispatch) {

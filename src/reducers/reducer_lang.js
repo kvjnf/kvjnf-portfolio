@@ -4,7 +4,8 @@ const initialState = {
   current: 'en',
   options: ['ja', 'en', 'de'],
   open: false,
-  fixed: false
+  fixed: false,
+  changed: false
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -14,7 +15,7 @@ export default (state = initialState, { type, payload }) => {
     case ActionTypes.CHANGE_LANGUAGE_CLOSE:
       return { ...state, open: false };
     case ActionTypes.CHANGE_LANGUAGE:
-      return { ...state, current: payload.language };
+      return { ...state, current: payload.language, changed: true };
     case ActionTypes.FIXED_LANG_MENU:
       return { ...state, fixed: true };
     case ActionTypes.UNFIXED_LANG_MENU:

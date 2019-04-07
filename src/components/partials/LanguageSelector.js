@@ -100,13 +100,6 @@ class LanguageSelector extends Component {
               <i className="flag-icon flag-icon-us" />
               ENGLISH
             </div>
-            <div
-              className="item"
-              onClick={() => changeLanguage({ language: 'de' })}
-            >
-              <i className="flag-icon flag-icon-de" />
-              DEUTSCH
-            </div>
           </div>
         </div>
       </div>

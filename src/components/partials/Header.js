@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Portfolio from '../../logos/logo3.svg';
+import IconLink from './IconLink';
 import LanguageSelector from './LanguageSelector';
 
 function Header({ initial }) {
@@ -18,17 +19,17 @@ function Header({ initial }) {
             <Portfolio open={initial.isRemoved} />
           </h1>
         </Link>
-        <div className="github-wrapper">
-          <a
-            className="github-link"
-            href="https://github.com/kvjnf/kvjnf-portfolio"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="github-inner">
-              <i className="fab fa-github" />
-            </span>
-          </a>
+        <div className="header-icon-links">
+          <IconLink
+            link="https://www.linkedin.com/in/daisuke-akiyama-5b0222120/"
+            bgc="#0073b1"
+            iconName="fa-linkedin-in"
+          />
+          <IconLink
+            link="https://github.com/kvjnf/kvjnf-portfolio"
+            bgc="#000"
+            iconName="fa-github"
+          />
         </div>
         <LanguageSelector />
       </header>

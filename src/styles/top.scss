@@ -13,18 +13,23 @@ h2{
   }
 }
 
+.content-wrapper{
+  width: 100%;
+  padding: 100px 0 75px 0px;
+  position: relative;
+  @include SP(){
+    padding: 60px 0;
+  }
+}
+
+.bgc-gray{
+  background: #f8f8f8;
+}
+
 /**
 works_contents
 **/
 .works_contents{
-  width: 100%;
-  background: #f9f9f9;
-  padding: 100px 0 75px 0px;
-  position: relative;
-
-  @include SP(){
-    padding: 60px 0;
-  }
 
   h2{
     margin-bottom: 15px;

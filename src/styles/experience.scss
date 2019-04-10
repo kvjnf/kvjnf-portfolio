@@ -1,0 +1,113 @@
+@import './utils';
+
+#experience{
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  #experience-timeline{
+    margin: 30px auto 0 auto;
+    position: relative;
+    max-width: 1000px;
+    *:before{
+      box-sizing: border-box;
+    }
+  
+    &:before{
+      position: absolute;
+      content: '';
+      top: 0;
+      bottom: 0;
+      left: 303px;
+      right: auto;
+      height: 100%;
+      width: 3px;
+      background: #021521;
+      z-index: 0;
+
+      @include SP(){
+        left: 23px;
+      }
+    }
+  
+    .vtimeline-point{
+      position: relative;
+      display: block;
+      vertical-align: top;
+      margin-bottom: 30px;
+  
+      .vtimeline-icon{
+        position: relative;
+        color: #fff;
+        width: 50px;
+        height: 50px;
+        background: #021521;
+        border-radius: 50%;
+        float: left;
+        margin-left: 280px;
+        z-index: 10;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        @include SP(){
+          margin-left: 0;
+        }
+  
+        i{
+          display: block;
+          font-size: 2em;
+        }
+      }
+  
+      .vtimeline-block{
+        .vtimeline-date{
+          width: 260px;
+          text-align: right;
+          position: absolute;
+          left: 0;
+          top: 10px;
+          font-weight: 300;
+          color: #374054;
+
+          @include SP(){
+            width: auto;
+            text-align: left;
+            position: relative;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: 70px;
+          }
+        }
+        .vtimeline-content{
+          margin-left: 350px;
+          background: #fff;
+          box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
+          padding: 15px;
+          border-radius: 3px;
+          text-align: left;
+
+          @include SP(){
+            margin-left: 70px;
+          }
+  
+          h3{
+            font-size: 1.5em;
+            font-weight: 300;
+            display: inline-block;
+            margin-bottom: 8px;
+          }
+          h4{
+            font-size: 1.2em;
+            font-weight: 300;
+            color: #7e8890;
+            margin: 0 0 15px 0;
+          }
+          p{
+            font-size: 0.9em;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }

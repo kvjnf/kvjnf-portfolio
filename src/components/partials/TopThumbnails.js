@@ -4,13 +4,16 @@ import TopThumb from './TopThumb';
 
 const TopThumbnails = ({ posts, ready }) => {
   return (
-    <div className="inner boxfade-init">
-      {posts.map((post, index) => {
-        return (
-          <TopThumb key={post.id} post={post} index={index} ready={ready} />
-        );
-      })}
-    </div>
+    <section id="works" className="sections">
+      <h2 className="Montserrat upfade">MY WORKS</h2>
+      <div className="inner boxfade-init">
+        {posts.map((post, index) => {
+          return (
+            <TopThumb key={post.id} post={post} index={index} ready={ready} />
+          );
+        })}
+      </div>
+    </section>
   );
 };
 

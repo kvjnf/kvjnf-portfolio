@@ -10,6 +10,12 @@ export default {
     ActionTypes.FETCH_POST_DETAIL_SUCCESS,
     'data'
   ),
+  fetchExperience: actionCreator(ActionTypes.FETCH_EXPERIENCE),
+  fetchExperienceSuccess: actionCreator(
+    ActionTypes.FETCH_EXPERIENCE_SUCCESS,
+    'data'
+  ),
+  fetchExperienceFail: actionCreator(ActionTypes.FETCH_EXPERIENCE_FAIL),
   fetchPostFail: actionCreator(ActionTypes.FETCH_POST_DETAIL_FAIL),
   fetchTop: actionCreator(ActionTypes.FETCH_TOP),
   fetchTopSuccess: actionCreator(ActionTypes.FETCH_TOP_SUCCESS, 'data'),

@@ -29,3 +29,9 @@ export const imageLoader = src => {
 export function loadImagesAll(srcs) {
   return Promise.all(srcs.map(src => imageLoader(src)));
 }
+
+export function decodeHtml(html) {
+  var txt = document.createElement('textarea');
+  txt.innerHTML = html;
+  return txt.value;
+}

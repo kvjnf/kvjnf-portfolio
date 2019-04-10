@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 
 import HoverableBtn from './partials/HoverableBtn';
 import AboutMe from './partials/AboutMe';
+import Experience from './partials/Experience';
 import TopThumbnails from './partials/TopThumbnails';
-import Actions from '../actions';
 import LoadingOverRay from './partials/details/LoadingOverray';
+import Actions from '../actions';
 import '../styles/top.scss';
 
 class Top extends Component {
@@ -15,10 +16,11 @@ class Top extends Component {
     this.state = { srcs: [] };
   }
   componentDidMount() {
-    const { fetchPosts, fetchTop, posts } = this.props;
+    const { fetchPosts, fetchTop, fetchExperience, posts } = this.props;
     if (posts.contents.length === 0) {
       fetchPosts();
       fetchTop();
+      fetchExperience();
     }
   }
 
@@ -47,12 +49,13 @@ class Top extends Component {
     }
     const { current } = this.props.lang;
     const content = this.props.top.content[current].acf;
+    const experiences = this.props.experience.contents[current];
 
     return (
       <React.Fragment>
-        <h2 className="Montserrat upfade">MY WORKS</h2>
-        <TopThumbnails posts={posts.contents} ready={isRemoved} />
         <AboutMe content={content} />
+        <Experience experiences={experiences} />
+        <TopThumbnails posts={posts.contents} ready={isRemoved} />
       </React.Fragment>
     );
   }
@@ -66,18 +69,18 @@ class Top extends Component {
     ].join(' ');
     return (
       <React.Fragment>
-        <div className="content-wrapper bgc-gray">
+        <section className="content-wrapper bgc-gray">
           <span className={borderClassNames} />
           <HoverableBtn text="View CV" link="/resources/pdf/cv-daisukev2.pdf" />
-        </div>
-        <div className="works_contents content-wrapper">
+        </section>
+        <section className="works_contents">
           <LoadingOverRay
             ready={loadReady}
             srcs={this.state.srcs}
             makeSrcData={this.finishLoading.bind(this)}
           />
           {this.getTopContent()}
-        </div>
+        </section>
       </React.Fragment>
     );
   }
@@ -87,8 +90,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(Actions, dispatch);
 }
 
-function mapStateToProps({ posts, initial, top, lang }) {
-  return { posts, initial, top, lang };
+function mapStateToProps({ posts, initial, top, lang, experience }) {
+  return { posts, initial, top, lang, experience };
 }
 
 export default connect(

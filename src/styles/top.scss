@@ -26,13 +26,26 @@ h2{
   background: #f8f8f8;
 }
 
+.link_btn{
+  opacity: 0;
+}
+
+.borderani + .link_btn{
+  opacity: 1;
+}
+
+.sections{
+  padding-top: 75px;
+  padding-bottom: 100px;
+}
+
 /**
 works_contents
 **/
 .works_contents{
 
   h2{
-    margin-bottom: 15px;
+    margin-bottom: 60px;
 
     @include SP(){
       margin-bottom: 10px;

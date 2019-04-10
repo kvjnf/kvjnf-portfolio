@@ -5,11 +5,11 @@ import './../../styles/about.scss';
 
 const AboutMe = ({ content }) => {
   return (
-    <div className="about_contents">
+    <section className="about_contents sections">
       <h2 className="Montserrat">ABOUT ME</h2>
       <p className="en Montserrat">{content.about_me_title}</p>
       <p className="readtxt">{nl2br(content.about_me_text)}</p>
-    </div>
+    </section>
   );
 };
 

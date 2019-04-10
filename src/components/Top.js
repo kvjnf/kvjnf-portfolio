@@ -69,7 +69,7 @@ class Top extends Component {
     ].join(' ');
     return (
       <React.Fragment>
-        <section className="content-wrapper bgc-gray">
+        <section className="content-wrapper bgc-gray top-content">
           <span className={borderClassNames} />
           <HoverableBtn text="View CV" link="/resources/pdf/cv-daisukev2.pdf" />
         </section>

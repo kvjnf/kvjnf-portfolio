@@ -27,10 +27,6 @@ a{
   margin: 0 auto;
   text-align: center;
   margin-bottom: 40px;
-  opacity: 0;
-  &.open{
-    opacity: 1;
-  }
 
   .header-icon-links{
     display: flex;

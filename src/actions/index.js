@@ -2,20 +2,11 @@ import { actionCreator } from 'redux-action-creator';
 import ActionTypes from '../constants';
 
 export default {
-  fetchPosts: actionCreator(ActionTypes.FETCH_POSTS),
-  fetchPostsSuccess: actionCreator(ActionTypes.FETCH_POSTS_SUCCESS, 'data'),
-  fetchPostsFail: actionCreator(ActionTypes.FETCH_POSTS_FAIL),
   fetchPost: actionCreator(ActionTypes.FETCH_POST_DETAIL, 'id'),
   fetchPostSuccess: actionCreator(
     ActionTypes.FETCH_POST_DETAIL_SUCCESS,
     'data'
   ),
-  fetchExperience: actionCreator(ActionTypes.FETCH_EXPERIENCE),
-  fetchExperienceSuccess: actionCreator(
-    ActionTypes.FETCH_EXPERIENCE_SUCCESS,
-    'data'
-  ),
-  fetchExperienceFail: actionCreator(ActionTypes.FETCH_EXPERIENCE_FAIL),
   fetchPostFail: actionCreator(ActionTypes.FETCH_POST_DETAIL_FAIL),
   fetchTop: actionCreator(ActionTypes.FETCH_TOP),
   fetchTopSuccess: actionCreator(ActionTypes.FETCH_TOP_SUCCESS, 'data'),

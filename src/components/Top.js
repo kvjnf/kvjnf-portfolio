@@ -16,25 +16,25 @@ class Top extends Component {
     this.state = { srcs: [] };
   }
   componentDidMount() {
-    const { fetchPosts, fetchTop, fetchExperience, posts } = this.props;
-    if (posts.contents.length === 0) {
-      fetchPosts();
+    const { fetchTop, top } = this.props;
+
+    if (top.posts.length === 0) {
       fetchTop();
-      fetchExperience();
     }
   }
 
   componentDidUpdate(prevProps) {
     const { setInitialReady } = this.props;
     const { loadReady } = this.props.initial;
-    if (loadReady !== prevProps.initial.loadReady && !loadReady) {
+
+    if (!loadReady) {
       setInitialReady();
     }
   }
 
   finishLoading() {
-    const { contents } = this.props.posts;
-    const srcs = contents.map(post => {
+    const { posts } = this.props.top;
+    const srcs = posts.map(post => {
       return post._embedded['wp:featuredmedia'][0].source_url;
     });
 
@@ -43,19 +43,19 @@ class Top extends Component {
 
   getTopContent() {
     const { loadReady, isRemoved } = this.props.initial;
-    const { posts } = this.props;
-    if (!loadReady || posts.contents.length === 0) {
+    const { posts, about, experience } = this.props.top;
+    if (!loadReady || posts.length === 0) {
       return null;
     }
     const { current } = this.props.lang;
-    const content = this.props.top.content[current].acf;
-    const experiences = this.props.experience.contents[current];
+    const content = about[current].acf;
+    const experiences = experience[current];
 
     return (
       <React.Fragment>
         <AboutMe content={content} />
         <Experience experiences={experiences} />
-        <TopThumbnails posts={posts.contents} ready={isRemoved} />
+        <TopThumbnails posts={posts} ready={isRemoved} />
       </React.Fragment>
     );
   }
@@ -68,7 +68,7 @@ class Top extends Component {
       `${isRemoved ? 'borderani' : ''}`
     ].join(' ');
     return (
-      <React.Fragment>
+      <div id="top-content">
         <section className="content-wrapper bgc-gray top-content">
           <span className={borderClassNames} />
           <HoverableBtn text="View CV" link="/resources/pdf/cv-daisukev2.pdf" />
@@ -81,7 +81,7 @@ class Top extends Component {
           />
           {this.getTopContent()}
         </section>
-      </React.Fragment>
+      </div>
     );
   }
 }
@@ -90,8 +90,8 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators(Actions, dispatch);
 }
 
-function mapStateToProps({ posts, initial, top, lang, experience }) {
-  return { posts, initial, top, lang, experience };
+function mapStateToProps({ initial, top, lang }) {
+  return { initial, top, lang };
 }
 
 export default connect(

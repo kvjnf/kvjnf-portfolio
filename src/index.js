@@ -9,10 +9,17 @@ import App from './components/App';
 import configureStore from './store';
 
 const store = configureStore();
+const mainRender = () => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('root')
+  );
+};
 
-ReactDOM.render(
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.getElementById('root')
-);
+if (process.env.NODE_ENV === 'development') {
+  setTimeout(mainRender, 1000);
+} else {
+  mainRender();
+}

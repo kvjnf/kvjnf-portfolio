@@ -1,10 +1,8 @@
 import { createTypes, async } from 'redux-action-creator';
 
 export default createTypes([
-  ...async('FETCH_POSTS'),
   ...async('FETCH_POST_DETAIL'),
   ...async('FETCH_TOP'),
-  ...async('FETCH_EXPERIENCE'),
   'INITIAL_READY',
   'INITIAL_UNREADY',
   'IMAGES_READY',

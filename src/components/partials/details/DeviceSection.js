@@ -8,15 +8,8 @@ class DeviceSection extends Component {
     this.state = { showDevice: false };
   }
 
-  componentDidUpdate() {
-    const { ready } = this.props;
-    if (ready) {
-      this.showAnimation();
-    }
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.ready !== nextProps.ready;
+  componentDidMount() {
+    this.showAnimation();
   }
 
   showAnimation() {

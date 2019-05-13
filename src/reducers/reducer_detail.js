@@ -8,18 +8,20 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case ActionTypes.FETCH_POST_DETAIL:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isLoading: true
-      });
+      };
     case ActionTypes.FETCH_POST_DETAIL_SUCCESS:
-      return Object.assign({}, state, {
+      return {
         isLoading: false,
         content: payload.data
-      });
+      };
     case ActionTypes.FETCH_POST_DETAIL_FAIL:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isLoading: false
-      });
+      };
     default:
       return state;
   }

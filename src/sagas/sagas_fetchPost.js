@@ -30,7 +30,6 @@ export default function* sagasFetchPost({ payload }) {
     };
 
     yield put(Actions.fetchPostSuccess({ data: res }));
-    yield put(Actions.setInitialReady());
   } catch (err) {
     yield put(Actions.fetchPostFail());
     console.error(err);

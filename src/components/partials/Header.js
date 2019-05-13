@@ -1,23 +1,16 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import SvgLogo from './SvgLogo';
 import IconLink from './IconLink';
 import LanguageSelector from './LanguageSelector';
 
-function Header({ initial }) {
-  const logoOpen = initial.isRemoved ? 'open' : '';
-
+export default function Header() {
   const renderLogo = () => {
-    if (!initial.imgReady) {
-      return null;
-    }
     return (
-      <header id="header" className={logoOpen}>
+      <header id="header" className="open">
         <Link to="/">
           <h1>
-            <SvgLogo open={initial.isRemoved} />
+            <SvgLogo />
           </h1>
         </Link>
         <div className="header-icon-links">
@@ -39,17 +32,3 @@ function Header({ initial }) {
 
   return renderLogo();
 }
-
-Header.propTypes = {
-  initial: PropTypes.object
-};
-
-function mapStateToProps(state) {
-  const { initial } = state;
-  return { initial };
-}
-
-export default connect(
-  mapStateToProps,
-  null
-)(Header);

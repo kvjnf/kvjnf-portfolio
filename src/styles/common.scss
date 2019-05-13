@@ -37,6 +37,10 @@ a{
     }
   }
 
+  // #svg-logo path{
+  //   stroke-dashoffset: -150;
+  // }
+
   @include SP(){
     margin-bottom: 60px;
   }

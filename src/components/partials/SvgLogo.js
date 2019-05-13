@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import anime from 'animejs';
-
 import Svg from '../../logos/logo3.svg';
 
-class SvgLogo extends Component {
+export default class SvgLogo extends Component {
+  componentDidMount() {
+    this.logoAnimation();
+  }
+
   logoAnimation = async () => {
     await anime({
       targets: '#svg-logo path',
       strokeDashoffset: [anime.setDashoffset, 0],
       duration: 1000,
       delay: (el, i) => {
-        return i * 100;
+        return i * 150;
       },
       easing: 'easeOutCubic',
       direction: 'normal'
@@ -25,18 +27,7 @@ class SvgLogo extends Component {
     }).finished;
   };
 
-  componentDidUpdate() {
-    if (this.props.open) {
-      this.logoAnimation();
-    }
-  }
   render() {
     return <Svg />;
   }
 }
-
-SvgLogo.propTypes = {
-  open: PropTypes.bool
-};
-
-export default SvgLogo;

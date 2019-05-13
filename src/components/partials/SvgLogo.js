@@ -11,7 +11,7 @@ export default class SvgLogo extends Component {
     await anime({
       targets: '#svg-logo path',
       strokeDashoffset: [anime.setDashoffset, 0],
-      duration: 1000,
+      duration: 800,
       delay: (el, i) => {
         return i * 150;
       },
@@ -22,7 +22,7 @@ export default class SvgLogo extends Component {
     await anime({
       targets: '#svg-logo path',
       fill: '#040000',
-      duration: 1000,
+      duration: 800,
       easing: 'easeOutCubic'
     }).finished;
   };

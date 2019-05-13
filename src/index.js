@@ -19,7 +19,7 @@ const mainRender = () => {
 };
 
 if (process.env.NODE_ENV === 'development') {
-  setTimeout(mainRender, 1000);
+  setTimeout(mainRender, 10);
 } else {
   mainRender();
 }

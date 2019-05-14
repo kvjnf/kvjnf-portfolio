@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import anime from 'animejs';
 
-import '../../../styles/loading-overray.scss';
-
 function DeviceSection({ devices }) {
   const pcScrollOption = {
     targets: '.display',
@@ -39,15 +37,6 @@ function DeviceSection({ devices }) {
       return null;
     };
 
-    const place = (
-      <div id="loader">
-        <span />
-        <span />
-        <span />
-        <span />
-      </div>
-    );
-
     return (
       <div className="device_section">
         <LazyLoadImage
@@ -57,7 +46,6 @@ function DeviceSection({ devices }) {
           afterLoad={() => {
             animateDevice(pcScrollOption);
           }}
-          placeholder={place}
         />
         {spScroll()}
       </div>

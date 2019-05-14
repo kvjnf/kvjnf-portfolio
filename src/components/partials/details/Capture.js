@@ -13,13 +13,17 @@ class Capture extends Component {
   render() {
     const { item, index, scrollPosition } = this.props;
 
-    const animeOption = {
+    let animeOption = {
       translateY: [-20, 0],
       translateX: index % 2 === 0 ? [-20, 0] : [20, 0],
       opacity: [0.2, 1],
       easing: 'easeOutCubic',
       duration: 1000
     };
+
+    if (/^mlb.*$/.test(item.title)) {
+      delete animeOption.translateX;
+    }
 
     return (
       <ScrollAnimation show={animeOption} baseLine={'center'}>

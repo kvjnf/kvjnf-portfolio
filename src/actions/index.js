@@ -15,5 +15,6 @@ export default {
   changeLanguageOpen: actionCreator(ActionTypes.CHANGE_LANGUAGE_OPEN),
   changeLanguageClose: actionCreator(ActionTypes.CHANGE_LANGUAGE_CLOSE),
   fixedLangMenu: actionCreator(ActionTypes.FIXED_LANG_MENU),
-  unfixedLangMenu: actionCreator(ActionTypes.UNFIXED_LANG_MENU)
+  unfixedLangMenu: actionCreator(ActionTypes.UNFIXED_LANG_MENU),
+  resetDetailContent: actionCreator(ActionTypes.FETCH_POST_DETAIL_CLEAR)
 };

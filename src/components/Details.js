@@ -28,6 +28,11 @@ class Details extends Component {
     fetchPost({ id });
   }
 
+  componentWillUnmount() {
+    const { resetDetailContent } = this.props;
+    resetDetailContent();
+  }
+
   renderDetailComponents() {
     const { current } = this.props.lang;
     const { content } = this.props.post;
@@ -36,15 +41,8 @@ class Details extends Component {
       return null;
     }
 
-    const borderClassNames = [
-      'border_line',
-      'borderani-init',
-      this.state.initial ? 'borderani' : ''
-    ].join(' ');
-
     return (
       <React.Fragment>
-        <span className={borderClassNames} />
         <div className="works_logo">
           <Logo
             key={content[current].id}
@@ -70,8 +68,17 @@ class Details extends Component {
   }
 
   render() {
+    const borderClassNames = [
+      'border_line',
+      'borderani-init',
+      this.state.initial ? 'borderani' : ''
+    ].join(' ');
+
     return (
-      <div className="works_archives">{this.renderDetailComponents()}</div>
+      <div className="works_archives">
+        <span className={borderClassNames} />
+        {this.renderDetailComponents()}
+      </div>
     );
   }
 }

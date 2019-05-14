@@ -22,6 +22,11 @@ export default (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false
       };
+    case ActionTypes.FETCH_POST_DETAIL_CLEAR:
+      return {
+        ...state,
+        content: {}
+      };
     default:
       return state;
   }

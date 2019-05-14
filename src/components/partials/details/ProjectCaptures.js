@@ -17,6 +17,15 @@ function ProjectCaptures({ gallery, scrollPosition }) {
           easing: 'easeOutCubic',
           duration: 1000
         };
+
+        const place = (
+          <div id="loader">
+            <span />
+            <span />
+            <span />
+            <span />
+          </div>
+        );
         return (
           <ScrollAnimation key={item.id} show={animeOption} baseLine={'center'}>
             <div className="item">
@@ -25,6 +34,7 @@ function ProjectCaptures({ gallery, scrollPosition }) {
                 src={item.full_image_url}
                 alt={item.title}
                 threshold={50}
+                placeholder={place}
               />
             </div>
           </ScrollAnimation>

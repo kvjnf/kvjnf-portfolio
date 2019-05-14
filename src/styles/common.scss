@@ -37,10 +37,6 @@ a{
     }
   }
 
-  // #svg-logo path{
-  //   stroke-dashoffset: -150;
-  // }
-
   @include SP(){
     margin-bottom: 60px;
   }
@@ -208,11 +204,11 @@ h2{
 
 .displayfade-init {
     opacity: 0;
-    //transition:all .8s ease;
+    // transition:all .8s ease;
 }
 
 .displayfade {
-    opacity: 1.0;
+    opacity: 1;
     top: 100px;
 }
 
@@ -220,16 +216,6 @@ h2{
     opacity: 0;
     left: 50px;
     //transition:all .8s ease .2s;
-}
-
-.iphonefade {
-    opacity: 1.0;
-    left: 100px;
-}
-
-.macbookfade-init {
-    right: -50px;
-    transition:all .8s ease .4s;
 }
 
 .border_line{

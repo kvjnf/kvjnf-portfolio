@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  LazyLoadImage,
+  trackWindowScroll
+} from 'react-lazy-load-image-component';
 import ScrollAnimation from './../../../utils/ScrollAnimation';
 
-function ProjectCaptures({ gallery }) {
+function ProjectCaptures({ gallery, scrollPosition }) {
   if (gallery.length > 0) {
     const getGalleryItems = () => {
       return gallery.map((item, index) => {
@@ -16,7 +20,12 @@ function ProjectCaptures({ gallery }) {
         return (
           <ScrollAnimation key={item.id} show={animeOption} baseLine={'center'}>
             <div className="item">
-              <img src={item.full_image_url} alt="item.title" />
+              <LazyLoadImage
+                scrollPosition={scrollPosition}
+                src={item.full_image_url}
+                alt={item.title}
+                threshold={50}
+              />
             </div>
           </ScrollAnimation>
         );
@@ -35,4 +44,4 @@ ProjectCaptures.propTypes = {
   gallery: PropTypes.array
 };
 
-export default ProjectCaptures;
+export default trackWindowScroll(ProjectCaptures);

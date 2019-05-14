@@ -1,6 +1,6 @@
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory } from 'history';
 
-const browserHistory = createHistory();
+const browserHistory = createBrowserHistory();
 
 browserHistory.listen((location, action) => {
   window.scrollTo(0, 0);

@@ -34,7 +34,7 @@
 	}
 }
 
-#loader {
+.loader-effect {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -43,6 +43,10 @@
 	transform: translate(-50%, -50%) rotate(45deg) translate3d(0,0,0);
 	animation: loader 1.2s infinite ease-in-out;
 	z-index: 10;
+
+	&.loaded{
+		display: none;
+	}
 
 	span {
 		position: absolute;

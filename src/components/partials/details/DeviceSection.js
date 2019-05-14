@@ -38,6 +38,7 @@ function DeviceSection({ devices }) {
 
       return null;
     };
+
     const place = (
       <div id="loader">
         <span />

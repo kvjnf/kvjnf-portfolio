@@ -3,19 +3,13 @@ import PropTypes from 'prop-types';
 import anime from 'animejs';
 
 class Logo extends Component {
-  componentDidUpdate() {
-    const { option = {}, id = 1, ready } = this.props;
-    if (ready) {
-      const logoClass = `portfolio-logo-${id}`;
-      anime({
-        ...option,
-        targets: '.' + logoClass
-      });
-    }
-  }
-
-  shouldComponentUpdate(nextProps) {
-    return this.props.ready !== nextProps.ready;
+  componentDidMount() {
+    const { option = {}, id = 1 } = this.props;
+    const logoClass = `portfolio-logo-${id}`;
+    anime({
+      ...option,
+      targets: '.' + logoClass
+    });
   }
 
   render() {
@@ -35,8 +29,7 @@ class Logo extends Component {
 
 Logo.propTypes = {
   post: PropTypes.object,
-  option: PropTypes.object,
-  ready: PropTypes.bool
+  option: PropTypes.object
 };
 
 export default Logo;

@@ -1,21 +1,14 @@
 import { createTypes, async } from 'redux-action-creator';
 
 export default createTypes([
-  ...async('FETCH_POSTS'),
   ...async('FETCH_POST_DETAIL'),
   ...async('FETCH_TOP'),
-  ...async('FETCH_EXPERIENCE'),
-  'INITIAL_READY',
-  'INITIAL_UNREADY',
-  'IMAGES_READY',
-  'IMAGES_UNREADY',
+  'FETCH_POST_DETAIL_CLEAR',
   'CHANGE_LANGUAGE',
   'CHANGE_LANGUAGE_OPEN',
   'CHANGE_LANGUAGE_CLOSE',
   'FIXED_LANG_MENU',
-  'UNFIXED_LANG_MENU',
-  'REMOVED_OVERRAY',
-  'RESET_OVERRAY'
+  'UNFIXED_LANG_MENU'
 ]);
 
 export const baseWpPath = '/wp-json/wp/v2';

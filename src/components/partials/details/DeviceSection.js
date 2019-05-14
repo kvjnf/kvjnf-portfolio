@@ -1,74 +1,74 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import anime from 'animejs';
 
-class DeviceSection extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showDevice: false };
-  }
+import '../../../styles/loading-overray.scss';
 
-  componentDidUpdate() {
-    const { ready } = this.props;
-    if (ready) {
-      this.showAnimation();
-    }
-  }
+function DeviceSection({ devices }) {
+  const pcScrollOption = {
+    targets: '.display',
+    translateY: [-50, 0],
+    opacity: [0, 1],
+    easing: 'easeOutCubic',
+    duration: 1000
+  };
+  const spScrollOption = {
+    targets: '.iphone',
+    translateX: [0, 50],
+    opacity: [0, 1],
+    easing: 'easeOutCubic',
+    duration: 1000
+  };
 
-  shouldComponentUpdate(nextProps) {
-    return this.props.ready !== nextProps.ready;
-  }
-
-  showAnimation() {
-    const pcScrollOption = {
-      targets: '.display',
-      translateY: [-50, 0],
-      opacity: [0, 1],
-      easing: 'easeOutCubic',
-      duration: 1000
-    };
-    const spScrollOption = {
-      targets: '.iphone',
-      translateX: [0, 50],
-      opacity: [0, 1],
-      easing: 'easeOutCubic',
-      duration: 1000
-    };
-
-    anime(pcScrollOption);
-    anime(spScrollOption);
-  }
-
-  render() {
-    const { devices } = this.props;
-    if (Object.keys(devices).length > 0) {
-      const spScroll = () => {
-        if (devices.sp) {
-          return (
-            <img
-              className="iphone iphonefade-init"
-              src={devices.sp.full_image_url}
-              alt={devices.sp.title}
-            />
-          );
-        }
-
-        return null;
-      };
-
-      return (
-        <div className="device_section">
-          <img
-            className="display displayfade-init"
-            src={devices.pc.full_image_url}
-            alt={devices.pc.title}
+  if (Object.keys(devices).length > 0) {
+    const spScroll = () => {
+      if (devices.sp) {
+        return (
+          <LazyLoadImage
+            className="iphone iphonefade-init"
+            src={devices.sp.full_image_url}
+            alt={devices.sp.title}
+            afterLoad={() => {
+              animateDevice(spScrollOption);
+            }}
           />
-          {spScroll()}
-        </div>
-      );
-    }
-    return null;
+        );
+      }
+
+      return null;
+    };
+    const place = (
+      <div id="loader">
+        <span />
+        <span />
+        <span />
+        <span />
+      </div>
+    );
+
+    return (
+      <div className="device_section">
+        <LazyLoadImage
+          className="display displayfade-init"
+          src={devices.pc.full_image_url}
+          alt={devices.pc.title}
+          afterLoad={() => {
+            animateDevice(pcScrollOption);
+          }}
+          placeholder={place}
+        />
+        {spScroll()}
+      </div>
+    );
   }
+  return null;
+}
+
+function animateDevice(option = {}) {
+  setTimeout(() => {
+    anime(option);
+  }, 1);
 }
 
 DeviceSection.propTypes = {

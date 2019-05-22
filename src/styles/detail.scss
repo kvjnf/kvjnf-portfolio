@@ -195,6 +195,7 @@
           margin-bottom: 40px;
           max-width: 1000px;
           opacity: 0;
+          position: relative;
 
           @include SP(){
             margin-bottom: 30px;
@@ -208,6 +209,22 @@
           img{
             width: 100%;
             vertical-align: top;
+          }
+
+          .dummy{
+            max-width: 480px;
+
+            &.hide{
+              display: none;
+            }
+          }
+          .capture{
+            position: absolute;
+            left: 0;
+            top: 0;
+            &.loaded{
+              position: static;
+            }
           }
         }
       }

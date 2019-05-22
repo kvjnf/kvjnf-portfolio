@@ -29,14 +29,19 @@ class Capture extends Component {
       <ScrollAnimation show={animeOption} baseLine={'center'}>
         <div className="item">
           <LoaderEffect loaded={this.state.loaded} />
+          <img
+            className={`dummy ${this.state.loaded ? 'hide' : ''}`}
+            src="/resources/img/placeholder-capture.png"
+          />
           <LazyLoadImage
+            className={`capture ${this.state.loaded ? 'loaded' : ''}`}
             scrollPosition={scrollPosition}
             src={item.full_image_url}
             alt={item.title}
             threshold={100}
             effect="blur"
             afterLoad={() => this.setState({ loaded: true })}
-            width="100%"
+            placeholderSrc="/resources/img/placeholder-capture.png"
           />
         </div>
       </ScrollAnimation>

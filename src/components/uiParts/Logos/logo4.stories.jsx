@@ -1,7 +1,7 @@
 import { LogoVariant4 } from "./logo4.svg";
 
 export default {
-  title: 'SVG/LOGO/Atoms/Header',
+  title: 'UIParts/Logo/SVG',
   component: LogoVariant4
 }
 

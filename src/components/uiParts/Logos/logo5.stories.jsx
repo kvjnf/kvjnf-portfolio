@@ -1,7 +1,7 @@
 import { LogoVariant5 } from "./logo5.svg";
 
 export default {
-  title: 'SVG/LOGO/Atoms/Header',
+  title: 'UIParts/Logo/SVG',
   component: LogoVariant5
 }
 

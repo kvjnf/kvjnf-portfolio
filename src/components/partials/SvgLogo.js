@@ -1,3 +1,5 @@
+//Already replaced
+
 import React, { Component } from 'react';
 import anime from 'animejs';
 import Svg from '../../logos/logo3.svg';

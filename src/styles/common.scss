@@ -1,6 +1,7 @@
 @import './utils';
 
-html,body{
+html,
+body {
   margin: 0;
   padding: 0;
   line-height: 1.6em;
@@ -9,7 +10,7 @@ html,body{
   /*background: #f9f9f9;*/
 }
 
-.flag-icon{
+.flag-icon {
   margin-right: 1em;
 }
 
@@ -17,7 +18,7 @@ html,body{
 /* common style
 /*-----------------*/
 
-a{
+a {
   color: #222;
   text-decoration: none;
 }
@@ -28,90 +29,90 @@ a{
   text-align: center;
   margin-bottom: 40px;
 
-  .header-icon-links{
+  .header-icon-links {
     display: flex;
     justify-content: center;
 
-    .icon-wrapper:not(:last-child){
+    .icon-wrapper:not(:last-child) {
       margin-right: 20px;
     }
   }
 
-  @include SP(){
+  @include SP() {
     margin-bottom: 60px;
   }
-  h1{
+  h1 {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
     padding: 40px 0 0;
     box-sizing: border-box;
-    @include SP(){
+    @include SP() {
       padding: 60px 30px 0;
     }
   }
 
-  #lang{
+  #lang {
     display: inline-block;
-    transition: box-shadow .5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    &:hover{
+    transition: box-shadow 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    &:hover {
       cursor: pointer;
       box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
     }
 
-    .lang-btn{
+    .lang-btn {
       // border: 1px solid #040000;
       margin-right: 0;
       color: #040000;
-      i.world{
+      i.world {
         font-size: 20px;
-        @include SP($breakpoint2){
+        @include SP($breakpoint2) {
           font-size: 16px;
         }
       }
-      .text{
+      .text {
         letter-spacing: 3px;
         cursor: pointer;
-        @include SP($breakpoint2){
+        @include SP($breakpoint2) {
           font-size: 12px;
         }
       }
-  
-      .item{
-        @include SP(){
+
+      .item {
+        @include SP() {
           font-size: 12px;
         }
       }
     }
 
     &.fixed {
-        position: fixed;
-        top: 40px;
-        right: 20px;
-        z-index: 10;
-        display: inline-flex;
-        border-radius: 40px;
-      .lang-btn{
+      position: fixed;
+      top: 40px;
+      right: 20px;
+      z-index: 10;
+      display: inline-flex;
+      border-radius: 40px;
+      .lang-btn {
         height: 70px;
-        padding: .7em !important;
+        padding: 0.7em !important;
         align-items: center;
         display: flex;
 
-        i.world{
+        i.world {
           margin-right: 5px !important;
           position: static;
           width: auto;
           height: auto;
-          &::before{
+          &::before {
             position: static;
             display: inline;
           }
         }
-        .text{
+        .text {
           width: 20px;
           letter-spacing: 2px;
         }
-        .menu{
+        .menu {
           right: 0;
           left: auto;
         }
@@ -120,128 +121,127 @@ a{
   }
 }
 
-h2{
+h2 {
   font-size: 16px;
   margin-bottom: 20px;
 
-  @include SP(){
+  @include SP() {
     font-size: 16px;
     margin-bottom: 20px;
   }
 }
 
-.transparent{
+.transparent {
   background-color: transparent !important;
 }
 
-.Montserrat{
-	font-family: 'Montserrat', sans-serif;
-	font-style              : normal;
-	font-weight             : 400;
-	letter-spacing          : 5px;
-	-webkit-font-smoothing  : antialiased;
-	-moz-osx-font-smoothing : grayscale;
+.Montserrat {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.fade-init{
-    transition: .8s;
+.fade-init {
+  transition: 0.8s;
 }
 
 .fade {
-    opacity: 1.0;
+  opacity: 1;
 }
 
 .upfade-init {
-    transform: translate(0, 20px);
-    -webkit-transform: translate(0, 20px);
-    transition: .8s;
+  transform: translate(0, 20px);
+  -webkit-transform: translate(0, 20px);
+  transition: 0.8s;
 }
 
 .upfade {
-    opacity: 1.0;
-    transform: translate(0, 0);
-    -webkit-transform: translate(0, 0)
+  opacity: 1;
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
 }
 
-
 .Lfade-init {
-    transform: translate(-20px, 0px);
-    -webkit-transform: translate(-20px, 0px);
-    transition: .8s;
+  transform: translate(-20px, 0px);
+  -webkit-transform: translate(-20px, 0px);
+  transition: 0.8s;
 }
 
 .Lfade {
-    opacity: 1.0;
-    transform: translate(0, 0);
-    -webkit-transform: translate(0, 0)
+  opacity: 1;
+  transform: translate(0, 0);
+  -webkit-transform: translate(0, 0);
 }
 
-.L-oblique-init{
+.L-oblique-init {
   opacity: 0;
   transform: translate(-30px, -30px);
   -webkit-transform: translate(-30px, -30px);
-  transition: .8s ease;
+  transition: 0.8s ease;
 }
 
-.L-oblique{
-  opacity: 1.0;
+.L-oblique {
+  opacity: 1;
   transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
 }
 
-.R-oblique-init{
+.R-oblique-init {
   opacity: 0;
   transform: translate(30px, -30px);
   -webkit-transform: translate(30px, -30px);
-  transition: .8s ease;
+  transition: 0.8s ease;
 }
 
-.R-oblique{
-  opacity: 1.0;
+.R-oblique {
+  opacity: 1;
   transform: translate(0px, 0px);
   -webkit-transform: translate(0px, 0px);
 }
 
 .displayfade-init {
-    opacity: 0;
-    // transition:all .8s ease;
+  opacity: 0;
+  // transition:all .8s ease;
 }
 
 .displayfade {
-    opacity: 1;
-    top: 100px;
+  opacity: 1;
+  top: 100px;
 }
 
 .iphonefade-init {
-    opacity: 0;
-    left: 50px;
-    //transition:all .8s ease .2s;
+  opacity: 0;
+  left: 50px;
+  //transition:all .8s ease .2s;
 }
 
-.border_line{
+.border_line {
   display: block;
   position: absolute;
-  left:50%;
+  left: 50%;
   margin-left: -1px;
   top: -25px;
   margin: 0 auto;
-  content: "";
+  content: '';
   /*height: 50px;*/
   width: 2px;
   background-color: #666;
 }
 
 .macbookfade {
-    opacity: 1.0;
-    right: 0px;
+  opacity: 1;
+  right: 0px;
 }
 
-.borderani-init{
+.borderani-init {
   height: 0;
   transition: 1s;
 }
 
-.borderani{
+.borderani {
   height: 50px;
   transition: 1s;
 }
@@ -249,17 +249,17 @@ h2{
 /**
 pagetop
 **/
-.pagetop{
+.pagetop {
   border-top: 1px solid #eee;
   padding: 20px 0;
   text-align: center;
   transition: all 0.3s ease;
 
-  @include SP(){
+  @include SP() {
     padding: 15px 0;
   }
 
-  .arrow{
+  .arrow {
     display: block;
     width: 25px;
     height: 25px;
@@ -270,7 +270,7 @@ pagetop
     transform: rotate(-45deg);
     transition: all 0.3s ease;
 
-    @include SP(){
+    @include SP() {
       width: 20px;
       height: 20px;
     }
@@ -278,7 +278,7 @@ pagetop
 
   &:hover {
     cursor: pointer;
-    .arrow{
+    .arrow {
       border-top: 2px solid #666;
       border-right: 2px solid #666;
     }

@@ -1,6 +1,7 @@
 import React from "react"
+import { ThemeProvider } from "styled-components";
 
-import { GlobalCss } from "../src/components/styles/global"
+import { GlobalCss, theme } from "../src/components/styles/global"
 import { ResetCss } from "../src/components/styles/reset";
 
 export const parameters = {
@@ -14,11 +15,13 @@ export const parameters = {
 }
 
 export const decorators = [
-  Story => (
-    <>
-      <GlobalCss />
-      <ResetCss />
-      <Story />
-    </>
+  (Story) => (
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalCss />
+        <ResetCss />
+        <Story />
+      </>
+    </ThemeProvider>
   )
 ];

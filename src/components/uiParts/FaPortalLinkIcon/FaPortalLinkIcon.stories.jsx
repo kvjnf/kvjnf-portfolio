@@ -15,7 +15,7 @@ FaGithubIcon.args = {
   bgc: '#000000',
   link: 'https://github.com/kvjnf/kvjnf-portfolio',
 }
-console.log(faLinkedinIn);
+
 export const FaLinkedInIcon = Template.bind({});
 FaLinkedInIcon.args = {
   faIcon: faLinkedinIn,

@@ -1,10 +1,20 @@
 import { createGlobalStyle, css } from 'styled-components';
 
-const black = '#222';
+export const black = '#222';
+export const gray = '#f8f8f8';
+
+const mediaQuery = point => (...args) => css`
+  @media (max-width: ${point}) {
+    ${css(...args)}
+  }
+`;
+
+const breakpoints = ['640px', '768px', '1024px', '1280px'];
 
 export const theme = {
   colors: {
-    black
+    black,
+    gray,
   },
   fill: {
     black
@@ -26,6 +36,13 @@ export const theme = {
     }
   },
   fontSizes: ['12px', '14px', '16px', '18px', '20px', '23px'],
+  breakpoints,
+  media: {
+    sm: mediaQuery(breakpoints[0]),
+    md: mediaQuery(breakpoints[1]),
+    lg: mediaQuery(breakpoints[2]),
+    xl: mediaQuery(breakpoints[3]),
+  }
 };
 
 export const GlobalCss = createGlobalStyle`

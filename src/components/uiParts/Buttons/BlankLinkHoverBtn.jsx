@@ -9,7 +9,6 @@ const Button = styled.a`
 
 function BlankLinkHoverBtn({ text, link, color, fontStyle, isArrow }) {
   const Inner = isArrow ? ArrowInnerText : InnerText;
-  console.log(isArrow);
 
   return (
     <Button

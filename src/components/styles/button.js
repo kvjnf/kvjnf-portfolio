@@ -10,7 +10,7 @@ export const ButtonBase = css`
   line-height: 40px;
   display: block;
   border: 1px solid;
-    ${border}
+  ${border}
   box-sizing: border-box;
   text-align: center;
   overflow: hidden;

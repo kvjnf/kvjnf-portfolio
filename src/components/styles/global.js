@@ -30,7 +30,7 @@ export const theme = {
     alt: {
       fontFamily: "'Montserrat', sans-serif",
       fontStyle: "normal",
-      fontWeight: 400,
+      fontWeight: 300,
       letterSpacing: "4px",
       fontSize: "12px"
     }

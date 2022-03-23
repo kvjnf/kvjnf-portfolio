@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { compose, space, color, typography } from 'styled-system';
+import { compose, space, color, typography, layout } from 'styled-system';
 
-const Section = styled('section')(
+const Section = styled('div')(
   compose(
     space,
     color,
     typography,
+    layout,
   )
 )
 

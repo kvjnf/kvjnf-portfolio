@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'; 
 import styled from 'styled-components';
-import { space } from 'styled-system';
+import { layout } from 'styled-system';
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -21,13 +21,13 @@ const StyledLink = styled(Link)`
 `;
 
 const Img = styled.img`
-  ${space}
+  ${layout}
 `;
 
 const ThumbNailsMini = ({ postId, src, alt }) => {
   return (
     <StyledLink to={`/detail/${postId}/`}>
-      <Img w='100%' src={src} alt={alt} />
+      <Img width={1} maxWidth='fit-content' src={src} alt={alt} />
     </StyledLink>
   )
 }

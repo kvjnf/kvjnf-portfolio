@@ -4,73 +4,11 @@ import styled from "styled-components";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { variant } from 'styled-system';
+
+import { DropDown, DropDownMenu, DropDownItem } from "../DropDown/DropDown";
 import { theme } from '../../styles/global';
 
 const languages = { 'jp': 'Japanese', 'gb': 'English' };
-
-const DropDown = styled.div`
-  position: relative;
-  padding-top: 1em;
-  padding-bottom: 1em;
-  padding-left: 4.07142857em;
-  padding-right: 1.5em;
-  cursor: pointer;
-  display: inline-block;
-  outline: 0;
-  -webkit-tap-highlight-color: transparent;
-  min-height: 1em;
-  border: none;
-  vertical-align: baseline;
-  background: #e0e1e2 none;
-  margin: 0 0.25em 0 0;
-  text-transform: none;
-  text-shadow: none;
-  text-decoration: none;
-  border-radius: 0.28571429rem;
-  user-select: none;
-  background-color: initial;
-  transition: box-shadow .5s cubic-bezier(.165,.84,.44,1);
-  
-  &:hover {
-    box-shadow: 0 10px 18px rgb(0 0 0 / 12%);
-  }
-`;
-
-const DropDownMenu = styled.div`
-  position: absolute;
-  top: 120%;
-  left: 1rem;
-  margin-top: 0.5em;
-  border-radius: 0.28571429rem;
-  box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.15)!important;
-  backface-visibility: hidden;
-  outline: 0;
-  overflow-x: hidden;
-  overflow-y: auto;
-  transition: opacity .1s ease;
-  z-index: 11;
-  will-change: transform,opacity;
-  border: 1px solid rgba(34,36,38,.15);
-  margin: 0;
-  padding: 0 0;
-  background: #fff;
-  -webkit-tap-highlight-color: transparent;
-  visibility: ${(props) => props.open ? "visible" : "hidden"};
-  background-color: #f1f3f4;
-`;
-
-const DropDownItem = styled.div`
-  display: flex;
-  gap: 0 15px;
-  cursor: pointer;
-  border: none;
-  height: auto;
-  border-top: none;
-  line-height: 1em;
-  padding: 0.78571429rem 1.14285714rem;
-  ${variant({ prop: 'fontStyle', variants: theme.fontFamilies })}
-  align-items: center;
-`;
 
 const FaGlobeIcon = styled(FontAwesomeIcon)`
   color: #183153;
@@ -98,18 +36,24 @@ const CurrentLanguage = styled.span`
   z-index: 3;
   display: inline-block;
   font-size: 14px !important;
-
   ${variant({ prop: 'fontStyle', variants: theme.fontFamilies })}
 `;
 
-function PureLangageSelector({ lang, open }) {
+function PureLangageSelector({ lang, onLanguageChange }) {
+
   return (
     <DropDown>
       <FaGlobeIcon icon={faGlobe} />
-      <CurrentLanguage fontStyle='alt'>{lang.toUpperCase()}</CurrentLanguage>
-      <DropDownMenu open={open}>
+      <CurrentLanguage fontStyle='alt'>
+        {lang.toUpperCase()}
+      </CurrentLanguage>
+      <DropDownMenu>
         { Object.keys(languages).map(country => (
-          <DropDownItem fontStyle='alt'>
+          <DropDownItem
+            key={`id-${country}`}
+            fontStyle='alt'
+            onClick={() => onLanguageChange(country)}
+            >
             <Flag 
               countryCode={country} 
               aria-label={languages[country]}
@@ -126,12 +70,11 @@ function PureLangageSelector({ lang, open }) {
 
 PureLangageSelector.propTypes = {
   lang: PropTypes.string.isRequired,
-  open: PropTypes.bool.isRequired,
+  onLanguageChange: PropTypes.func
 }
 
 PureLangageSelector.defaultProps = {
   lang: 'jp',
-  open: false,
 }
 
 export default PureLangageSelector;

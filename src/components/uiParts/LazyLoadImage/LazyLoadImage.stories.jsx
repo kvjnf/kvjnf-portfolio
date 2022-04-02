@@ -17,6 +17,7 @@ const Template = (args) => {
         width={args.width}
         height={args.height}
         option={args.option}
+        {...args}
       />)
     }
     </>
@@ -28,7 +29,9 @@ Default.args = {
   src: 'https://picsum.photos/600/600',
   alt: 'random',
   width: '604px',
-  height: '461px'
+  height: '461px',
+  lightest: '#e1e1e1',
+  darkest: '#f7f7f7',
 }
 
 export const GrayScale = Template.bind({});

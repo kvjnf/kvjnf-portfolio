@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components';
 import { useIntersectionObserver } from 'usehooks-ts'
 
-import { ShimmerPlaceholder } from '../ShimmerPlaceHolder/ShimmerPlaceHolder';
+import ShimmerPlaceholder from '../ShimmerPlaceHolder/ShimmerPlaceHolder';
 
 const StyledImage = styled.img`
   visibility: ${props => props.visible ? 'visible' : 'hidden'};
@@ -17,7 +17,7 @@ const StyledImage = styled.img`
   }} 
 `;
 
-function LazyLoadImage({ src, alt, width, height, option }) {
+function LazyLoadImage({ src, alt, width, height, option, ...args }) {
   const ref = useRef(null);
   const [loaded, setLoaded] = useState(false);
   const entry = useIntersectionObserver(ref, {
@@ -37,6 +37,7 @@ function LazyLoadImage({ src, alt, width, height, option }) {
         width={width}
         height={height}
         display={loaded ? 'none' : 'block'}
+        {...args}
       />
     {
       isVisible && <StyledImage
@@ -59,7 +60,9 @@ LazyLoadImage.propTypes = {
   alt: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
   height: PropTypes.string.isRequired,
-  option: PropTypes.string
+  option: PropTypes.oneOf(['blur', 'grayscale', 'none']),
+  lightest: PropTypes.string,
+  darkest: PropTypes.string,
 }
 
 LazyLoadImage.defaultProps = {

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { layout, space } from 'styled-system';
 import { PropTypes } from 'prop-types';
 
-export const ShimmerPlaceholder = styled.div`
+const ShimmerPlaceholder = styled.div`
   @keyframes placeHolderShimmer{
     0% {
         background-position: -468px 0;
@@ -26,13 +26,21 @@ export const ShimmerPlaceholder = styled.div`
 `;
 
 ShimmerPlaceholder.propTypes = {
-  width: PropTypes.string,
-  height: PropTypes.string,
+  width: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]),
+  height: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]),
   lightest: PropTypes.string,
   darkest: PropTypes.string,
 }
 
 ShimmerPlaceholder.defaultProps = {
-  lightest: '#f6f7f9',
-  darkest: '#e9ebee',
+  lightest: '#e1e1e1',
+  darkest: '#f7f7f7',
 }
+
+export default ShimmerPlaceholder;

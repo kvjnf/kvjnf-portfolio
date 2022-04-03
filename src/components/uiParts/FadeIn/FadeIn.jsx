@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 function FadeIn({ 
   children,
   easing = [0.42, 0, 0.58, 1],
-  yOffset = 20, 
+  yOffset = 20,
+  duration = 0.4,
   delayOrder
 }) {
   const [delay, setDelay] = useState(0.25);
@@ -17,7 +18,7 @@ function FadeIn({
 
   const transition = useMemo(
     () => ({
-      duration: 0.4,
+      duration,
       delay,
       ease: easing
     }),
@@ -72,6 +73,7 @@ FadeIn.propTypes = {
     ])
   ]),
   yOffset: PropTypes.number,
+  duration: PropTypes.number,
   delayOrder: PropTypes.number
 }
 

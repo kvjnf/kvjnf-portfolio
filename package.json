@@ -71,6 +71,7 @@
     "@storybook/preset-create-react-app": "^4.0.1",
     "@storybook/react": "^6.4.19",
     "babel-plugin-macros": "^2.5.1",
+    "lorem-ipsum": "^2.0.4",
     "sass": "^1.49.7",
     "webpack": "^5.68.0"
   }

@@ -8,6 +8,7 @@ import ShimmerPlaceholder from '../ShimmerPlaceHolder/ShimmerPlaceHolder';
 const StyledImage = styled.img`
   visibility: ${props => props.visible ? 'visible' : 'hidden'};
   transition: filter 1s;
+  width: 100%;
   ${(props) => {
     if (props.option === 'blur') {
       return `filter: blur(${props.loaded ? '0' : '10px'});`;
@@ -31,7 +32,7 @@ function LazyLoadImage({ src, alt, width, height, option, ...args }) {
   const onLoad = () => setLoaded(true);
 
   return (
-    <>
+    <div>
       <ShimmerPlaceholder
         ref={ref}
         width={width}
@@ -51,18 +52,15 @@ function LazyLoadImage({ src, alt, width, height, option, ...args }) {
         option={option}
       />
     }
-    </>
+    </div>
   )
 }
 
 LazyLoadImage.propTypes = {
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
-  width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
   option: PropTypes.oneOf(['blur', 'grayscale', 'none']),
-  lightest: PropTypes.string,
-  darkest: PropTypes.string,
+  ...ShimmerPlaceholder.propTypes,
 }
 
 LazyLoadImage.defaultProps = {

@@ -5,18 +5,18 @@ import { nl2br } from '../../utils/index';
 import { theme } from '../../styles/global';
 
 const StyledParagraph = styled('p')(
+  variant({
+    prop: 'fontStyle',
+    variants: theme.fontFamilies
+  }),
   compose(
     typography,
     space,
     layout
   ),
-  variant({
-    prop: 'fontStyle',
-    variants: theme.fontFamilies
-  })
 )
 
-export default function Paragraph ({ texts }) {
+export default function Paragraph ({ texts, ...args }) {
   return (
     <StyledParagraph
       width={['100%', 700]}
@@ -24,6 +24,7 @@ export default function Paragraph ({ texts }) {
       mx="auto"
       my={0}
       fontStyle="default"
+      {...args}
     >
       { nl2br(texts) }
     </StyledParagraph>

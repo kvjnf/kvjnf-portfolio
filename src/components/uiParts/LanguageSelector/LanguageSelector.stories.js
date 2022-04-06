@@ -1,4 +1,4 @@
-import PureLangageSelector from "./LanguageSelector";
+import { PureLangageSelector } from "./LanguageSelector";
 
 export default {
   title: 'UIParts/LanguageSelector',

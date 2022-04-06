@@ -10,6 +10,7 @@ const TimeLineArticle = styled.article`
   justify-content: center;
   align-items: flex-start;
   gap: 20px;
+  margin-bottom: 30px;
 
   ${theme.media.lg`
     flex-direction: column;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { compose, space, color, typography, layout } from 'styled-system';
+import { compose, space, color, typography, layout, position } from 'styled-system';
 
 const Section = styled('div')(
   compose(
@@ -7,6 +7,7 @@ const Section = styled('div')(
     color,
     typography,
     layout,
+    position
   )
 )
 

@@ -58,7 +58,7 @@ const strokePaths = {
   }
 }
 
-export function SVGAnimationLogo() {
+export default function SVGAnimationLogo() {
   const pathControl = useAnimation();
 
   async function pathSequence() {

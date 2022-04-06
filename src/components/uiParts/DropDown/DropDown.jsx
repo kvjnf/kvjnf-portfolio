@@ -41,7 +41,7 @@ export function DropDown({ children }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
 
-  useOnClickOutSide(ref, () => setOpen(!open));
+  useOnClickOutSide(ref, () => setOpen(false));
 
   return (
     <StyledDropDown ref={ref} onClick={() => setOpen(!open)}>

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import ReactCountryFlag from "react-country-flag"
 import { PropTypes } from 'prop-types';
 import styled from "styled-components";
@@ -39,7 +40,7 @@ const CurrentLanguage = styled.span`
   ${variant({ prop: 'fontStyle', variants: theme.fontFamilies })}
 `;
 
-function PureLangageSelector({ lang, onLanguageChange }) {
+export function PureLangageSelector({ lang, onLanguageChange }) {
 
   return (
     <DropDown>
@@ -77,4 +78,29 @@ PureLangageSelector.defaultProps = {
   lang: 'jp',
 }
 
-export default PureLangageSelector;
+export function LanguageSelector() {
+  const [lang, setLang] = useState('jp');
+
+  useEffect(() => {
+    const priorityLang = getPriorityLanguage();
+
+    if (priorityLang === 'ja-JP') {
+      setLang('ja');
+    }
+  }, []);
+
+  /**
+   * @todo scroll fix and layout change
+   */
+
+  return ( <PureLangageSelector lang={lang} /> )
+}
+
+function getPriorityLanguage() {
+  return (
+    (window.navigator.languages && window.navigator.languages[0]) ||
+    window.navigator.language ||
+    window.navigator.userLanguage ||
+    window.navigator.browserLanguage
+  );
+}

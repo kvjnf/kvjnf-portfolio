@@ -1,13 +1,34 @@
 import styled from "styled-components";
 import { PropTypes } from 'prop-types';
+import { motion } from 'framer-motion';
+
+import { theme } from "../../../styles/global";
 
 const Content = styled.div`
+  max-width: 590px;
+  position: relative;
+`;
+
+const ContentInner = styled.div`
   background: #fff;
   box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
   padding: 15px;
   border-radius: 3px;
   text-align: left;
-  max-width: 590px;
+`;
+
+const LineBar = styled.div`
+  position: absolute;
+  width: 4px;
+  top: 0;
+  bottom: 0;
+  background-color: #021521;
+  left: -47px;
+  z-index: 2;
+
+  ${theme.media.lg`
+    left: -32px
+  `}
 `;
 
 const Title = styled.h3`
@@ -29,13 +50,53 @@ const Description = styled.p`
   margin: 0;
 `;
 
-function TimeLineContent ({ title, roll, description}) {
+const content = {
+  initial: {
+    opacity: 0,
+    y: 10,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1.5
+    }
+  }
+}
+
+function TimeLineContent ({ title, roll, description, animate, isLast }) {
+  
+  const bar = {
+    initial: {
+      bottom: '100%',
+    },
+    visible: {
+      bottom: isLast ? '0%' : '-18%',
+      transition: {
+        duration: 2,
+        ease: [0, 0.55, 0.45, 1]
+      }
+    }
+  }
 
   return (
     <Content>
-      <Title>{title}</Title>
-      <Roll>{roll}</Roll>
-      <Description>{description}</Description>
+      <LineBar 
+        variants={bar}
+        initial='initial'
+        animate={animate}
+        as={motion.div}
+      />
+      <ContentInner
+        variants={content}
+        initial='initial'
+        animate={animate}
+        as={motion.div}
+      >
+        <Title>{title}</Title>
+        <Roll>{roll}</Roll>
+        <Description>{description}</Description>
+      </ContentInner>
     </Content>
   )
 }

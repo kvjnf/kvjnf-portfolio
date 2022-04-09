@@ -45,14 +45,14 @@ const strokePaths = {
   stroke: {
     strokeDashoffset: 0,
     transition: {
-      duration: 0.8,
+      duration: 0.1,
       easing
     }
   },
   fill: {
     fill: 'rgba(4,0,0,1)',
     transition: {
-      duration: 0.8,
+      duration: 0.5,
       easing
     }
   }

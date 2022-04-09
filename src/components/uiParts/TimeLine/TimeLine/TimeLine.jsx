@@ -4,6 +4,8 @@ import { PropTypes } from 'prop-types';
 import TimeLineArrow from '../TimeLineArrow/TimeLineArrow';
 import TimeLineContent from '../TimeLineContent/TimeLineContent';
 import { theme } from '../../../styles/global';
+import { useRef } from 'react';
+import { useIntersectionObserver } from 'usehooks-ts';
 
 const TimeLineArticle = styled.article`
   display: flex;
@@ -11,38 +13,55 @@ const TimeLineArticle = styled.article`
   align-items: flex-start;
   gap: 20px;
   margin-bottom: 30px;
+  position: relative;
 
   ${theme.media.lg`
     flex-direction: column;
     row-gap: 10px;
     padding-left: 50px;
-    position: relative;
   `}
 `;
 
-function TimeLine ({ id, start, end, title, roll, description }) {
+export default function TimeLine ({ 
+  start,
+  end,
+  title,
+  roll,
+  description,
+  isLast,
+}) {
+  const ref = useRef(null);
+  const entry = useIntersectionObserver(ref, {
+    root: null,
+    rootMargin: '20px',
+    threshold: 0.5,
+    freezeOnceVisible: true
+  })
+  const isVisible = !!entry?.isIntersecting;
+  
   return (
-    <TimeLineArticle id={`time-line-article-${id}`}>
+    <TimeLineArticle ref={ref}>
       <TimeLineArrow start={start} end={end}/>
       <TimeLineContent 
         title={title} 
         roll={roll} 
-        description={description}/>
+        description={description}
+        isLast={isLast}
+        animate={isVisible ? 'visible' : ''}
+      />
     </TimeLineArticle>
   )
 }
 
 TimeLine.propTypes = {
-  id: PropTypes.number.isRequired,
   start: PropTypes.string.isRequired,
   end: PropTypes.string,
   title: PropTypes.string.isRequired,
   roll: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
+  isLast: PropTypes.bool
 };
 
 TimeLine.defaultProps = {
   end: null,
 }
-
-export default TimeLine;

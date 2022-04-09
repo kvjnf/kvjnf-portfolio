@@ -6,7 +6,6 @@ import { useTheme } from 'styled-components';
 import Section from '../../../uiParts/Sections/Section/Section';
 import VerticalBorder from '../../../uiParts/VerticalBorder/VerticalBorder';
 import BlankLinkHoverBtn from '../../../uiParts/Buttons/BlankLinkHoverBtn';
-import FadeIn from '../../../uiParts/FadeIn/FadeIn';
 
 export default function CVPdfSection() {
   const theme = useTheme();
@@ -22,14 +21,12 @@ export default function CVPdfSection() {
   const isVisible = !!entry?.isIntersecting;
 
   useEffect(() => {
-    if (isVisible) {
-      control.start({
-        height: '50px',
-        transition: {
-          duration: 1
-        }
-      })
-    }
+    control.start({
+      height: '50px',
+      transition: {
+        duration: 1
+      }
+    });
   }, [isVisible, control]);
 
   return (
@@ -42,19 +39,11 @@ export default function CVPdfSection() {
       bg={theme.colors.gray}
       >
       <VerticalBorder control={control} />
-      {isVisible && 
-        <FadeIn
-          yOffset={10}
-          duration={0.8}  
-          delayOrder={2}
-        >
-          <BlankLinkHoverBtn 
-            text="View CV" 
-            link="/resources/pdf/cv-daisukev3.pdf" 
-            isArrow={true}
-          />
-        </FadeIn>
-      }
+      <BlankLinkHoverBtn 
+        text="View CV" 
+        link="/resources/pdf/cv-daisukev3.pdf" 
+        isArrow={true}
+      />
     </Section>
   )
 }

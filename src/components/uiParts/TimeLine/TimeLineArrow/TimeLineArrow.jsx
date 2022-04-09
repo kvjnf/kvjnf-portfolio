@@ -19,12 +19,8 @@ const TimeLineDate = styled.span`
 const FaIconWrapper = styled.div`
   width: 50px;
   height: 50px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
   background: #021521;
   border-radius: 50%;
-  position: relative;
 
   ${theme.media.lg`
     width: 40px;
@@ -33,23 +29,31 @@ const FaIconWrapper = styled.div`
     left: 0;
     top: -10px;
   `}
+`;
 
-  &::before {
-    position: absolute;
-    content: "";
-    top: 0;
-    width: 2.5px;
-    background: #021521;
-    z-index: -1;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-  }
+const FaIconRoundBG = styled.div`
+  width: 50px;
+  height: 50px;
+  background: #021521;
+  border-radius: 50%;
+  position: absolute;
+
+  ${theme.media.lg`
+    width: 40px;
+    height: 40px;
+  `}
 `;
 
 const FaArrowIcon = styled(FontAwesomeIcon)`
   color: #ffffff;
   height: 1.8rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  margin: auto;
 
   ${theme.media.lg`
     height: 1.5rem;
@@ -63,7 +67,9 @@ function TimeLineArrow({ start, end }){
     <TimeLineArrowWrap>
       <TimeLineDate>{`${start} – ${end}`}</TimeLineDate>
       <FaIconWrapper>
-        <FaArrowIcon icon={faLocationDot} />
+        <FaIconRoundBG>
+          <FaArrowIcon icon={faLocationDot} />
+        </FaIconRoundBG>
       </FaIconWrapper>
     </TimeLineArrowWrap>
   )

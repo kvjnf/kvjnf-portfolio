@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+import { useAnimation } from 'framer-motion';
 import { useIntersectionObserver } from 'usehooks-ts';
 import PropTypes from 'prop-types';
 
@@ -16,8 +17,12 @@ export default function AboutSection ({ title, description }) {
     threshold: 0.5,
     freezeOnceVisible: true
   })
-
   const isVisible = !!entry?.isIntersecting;
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start('show');
+  }, [isVisible, controls]);
 
   return (
     <Section
@@ -25,36 +30,31 @@ export default function AboutSection ({ title, description }) {
       py={75}
       px={20}
     >
-      {
-        isVisible && (
-          <>
-            <FadeIn
-              yOffset={10}
-              duration={0.6}     
-            >
-              <SectionHeader2 text='ABOUT ME' />
-            </FadeIn>
-            <FadeIn
-              yOffset={10}
-              duration={0.6}
-              delayOrder={2}
-            >
-              <Paragraph
-              fontSize={20}
-              marginBottom={20}
-              maxWidth={700} 
-              texts={title} 
-              textAlign='center'
-              fontStyle='alt'
-              />
-              <Paragraph 
-                texts={description}
-              />
-            </FadeIn>
-          </>
-        )
-      }
-
+      <FadeIn
+        yOffset={10}
+        duration={1}
+        controls={controls}
+      >
+        <SectionHeader2 text='ABOUT ME' />
+      </FadeIn>
+      <FadeIn
+        yOffset={10}
+        duration={0.6}
+        delayOrder={2}
+        controls={controls}
+      >
+        <Paragraph
+          fontSize={20}
+          marginBottom={20}
+          maxWidth={700} 
+          texts={title} 
+          textAlign='center'
+          fontStyle='alt'
+        />
+        <Paragraph 
+          texts={description}
+        />
+      </FadeIn>
     </Section>
   )
 }

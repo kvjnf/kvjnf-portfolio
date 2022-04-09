@@ -2,11 +2,12 @@ import { useState, useEffect, useMemo } from 'react';
 import PropTypes from 'prop-types'
 import { motion } from 'framer-motion';
 
-function FadeIn({ 
+export default function FadeIn({
   children,
   easing = [0.42, 0, 0.58, 1],
   yOffset = 20,
   duration = 0.4,
+  controls,
   delayOrder
 }) {
   const [delay, setDelay] = useState(0.25);
@@ -22,11 +23,11 @@ function FadeIn({
       delay,
       ease: easing
     }),
-    [delay, easing]
+    [delay, easing, duration]
   );
 
   const variants = {
-    hidden: { 
+    initial: { 
       y: yOffset, 
       opacity: 0, 
       transition 
@@ -41,9 +42,8 @@ function FadeIn({
 
   return (
     <motion.div
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true }}
+      initial="initial"
+      animate={controls}
       variants={variants}
     >
       {children}
@@ -74,7 +74,5 @@ FadeIn.propTypes = {
   ]),
   yOffset: PropTypes.number,
   duration: PropTypes.number,
-  delayOrder: PropTypes.number
+  delayOrder: PropTypes.number,
 }
-
-export default FadeIn

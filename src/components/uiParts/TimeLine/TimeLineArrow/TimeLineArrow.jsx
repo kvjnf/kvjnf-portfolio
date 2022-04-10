@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { PropTypes } from 'prop-types';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 
 import { theme } from "../../../styles/global";
 
@@ -21,6 +22,9 @@ const FaIconWrapper = styled.div`
   height: 50px;
   background: #021521;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   ${theme.media.lg`
     width: 40px;
@@ -32,15 +36,15 @@ const FaIconWrapper = styled.div`
 `;
 
 const FaIconRoundBG = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   background: #021521;
   border-radius: 50%;
-  position: absolute;
+  position: relative;
 
   ${theme.media.lg`
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
   `}
 `;
 
@@ -60,15 +64,36 @@ const FaArrowIcon = styled(FontAwesomeIcon)`
   `}
 `;
 
-function TimeLineArrow({ start, end }){
+const arrow = {
+  initial: {
+    opacity: 0,
+    y: -5
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1
+    }
+  }
+}
+
+function TimeLineArrow({ start, end, animate }){
   end = end?? 'Present';
 
   return (
     <TimeLineArrowWrap>
       <TimeLineDate>{`${start} – ${end}`}</TimeLineDate>
       <FaIconWrapper>
-        <FaIconRoundBG>
-          <FaArrowIcon icon={faLocationDot} />
+        <FaIconRoundBG
+          initial='initial'
+          variants={arrow}
+          animate={animate}
+          as={motion.div}
+        >
+          <FaArrowIcon
+            icon={faLocationDot}
+          />
         </FaIconRoundBG>
       </FaIconWrapper>
     </TimeLineArrowWrap>

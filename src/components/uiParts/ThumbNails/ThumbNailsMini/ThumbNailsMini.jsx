@@ -14,6 +14,7 @@ const StyledLink = styled(Link)`
   width: 100%;
   height: 100%;
   background-color: #fff;
+  transition: box-shadow .3s ease-in-out;
 
   &:hover {
     box-shadow: 0 10px 18px rgb(0 0 0 / 12%);

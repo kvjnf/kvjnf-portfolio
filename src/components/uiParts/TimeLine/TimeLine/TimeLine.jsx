@@ -37,17 +37,21 @@ export default function TimeLine ({
     threshold: 0.5,
     freezeOnceVisible: true
   })
-  const isVisible = !!entry?.isIntersecting;
+  const visible = !!entry?.isIntersecting ? 'visible' : '';
   
   return (
     <TimeLineArticle ref={ref}>
-      <TimeLineArrow start={start} end={end}/>
+      <TimeLineArrow 
+        start={start} 
+        end={end}
+        animate={visible}
+        />
       <TimeLineContent 
         title={title} 
         roll={roll} 
         description={description}
         isLast={isLast}
-        animate={isVisible ? 'visible' : ''}
+        animate={visible}
       />
     </TimeLineArticle>
   )

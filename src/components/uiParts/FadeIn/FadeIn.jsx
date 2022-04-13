@@ -6,6 +6,7 @@ export default function FadeIn({
   children,
   easing = [0.42, 0, 0.58, 1],
   yOffset = 20,
+  xOffset = 0,
   duration = 0.4,
   controls,
   delayOrder
@@ -28,7 +29,8 @@ export default function FadeIn({
 
   const variants = {
     initial: { 
-      y: yOffset, 
+      y: yOffset,
+      x: xOffset,
       opacity: 0, 
       transition 
     },

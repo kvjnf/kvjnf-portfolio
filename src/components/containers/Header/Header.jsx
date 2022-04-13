@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { Link } from "react-router-dom";
 
 import { theme } from "../../styles/global";
 import SVGAnimationLogo from "../../uiParts/SVGAnimationLogo/SvgAnimationLogo";
@@ -30,7 +31,9 @@ export default function Header() {
     <>
       <StyledHeader>
         <h1>
-          <SVGAnimationLogo />
+          <Link to='/'>
+            <SVGAnimationLogo />
+          </Link>
         </h1>
         <StyledFlexBox 
           justifyContent='center'

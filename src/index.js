@@ -31,8 +31,8 @@ ReactDOM.render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <>
-          <GlobalCss />
           <ResetCss />
+          <GlobalCss />
           <App />
         </>
       </ThemeProvider>

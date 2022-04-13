@@ -53,8 +53,12 @@ export const GlobalCss = createGlobalStyle`
     line-height: 1.6em;
     font-size: ${props => props.theme.fontSizes[1]};
     color: ${props => props.theme.colors.black};
+    font-family: ${props => props.theme.fontFamilies.default.fontFamily};
   }
   a {
     text-decoration: none;
+  }
+  h2{
+    font-size: 24px;
   }
 `

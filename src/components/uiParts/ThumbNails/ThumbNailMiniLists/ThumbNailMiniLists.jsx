@@ -28,15 +28,15 @@ export function PureMiniThumbLists ({ thumbs }) {
 }
 
 export function ThumbNailMiniLists () {
-  const fake = { postId: 0, src: placeholder, alt: 'test' };
+  const fake = { postId: 'thumb-test0', src: placeholder, alt: 'test' };
   const thumbs = [
     { ...fake },
-    { ...fake, postId: 1 },
-    { ...fake, postId: 2 },
-    { ...fake, postId: 3 },
-    { ...fake, postId: 4 },
-    { ...fake, postId: 5 },
-  ]
+    { ...fake, postId: 'thumb-test1' },
+    { ...fake, postId: 'thumb-test2' },
+    { ...fake, postId: 'thumb-test3' },
+    { ...fake, postId: 'thumb-test4' },
+    { ...fake, postId: 'thumb-test5' },
+  ];
 
   return (
     <PureMiniThumbLists thumbs={thumbs}/>

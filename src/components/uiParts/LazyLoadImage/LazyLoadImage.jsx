@@ -18,13 +18,13 @@ const StyledImage = styled.img`
   }} 
 `;
 
-function LazyLoadImage({ src, alt, width, height, option, ...args }) {
+function LazyLoadImage({ src, alt, width, height, option, threshold = 0.5, ...args }) {
   const ref = useRef(null);
   const [loaded, setLoaded] = useState(false);
   const entry = useIntersectionObserver(ref, {
     root: null,
-    rootMargin: '20px',
-    threshold: 0.5,
+    rootMargin: '0px',
+    threshold,
     freezeOnceVisible: true
   });
   

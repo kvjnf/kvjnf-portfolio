@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
 import ProjectLogo from '../containers/Details/ProjectLogo/ProjectLogo';
 import ProjectDemo from '../containers/Details/ProjectDemo/ProjectDemo';
 import ProjectDescription from '../containers/Details/ProjectDescription/ProjectDescription';
+import ProjectCaptures from '../containers/Details/ProjectCaptures/ProjectCaptures';
 
 export default function Detail() {
   const params = useParams();
@@ -16,6 +18,7 @@ export default function Detail() {
       <ProjectLogo />
       <ProjectDemo />
       <ProjectDescription />
+      <ProjectCaptures />
     </>
   )
 }

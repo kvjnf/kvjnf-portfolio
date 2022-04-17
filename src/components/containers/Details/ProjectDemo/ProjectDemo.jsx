@@ -78,7 +78,7 @@ export default function ProjectDemo() {
       my={0}
       mx='auto'
       py={100}
-      px={0}
+      px={20}
       position='relative'
     >
       <DeviceImage>
@@ -93,6 +93,7 @@ export default function ProjectDemo() {
             width={604}
             height={401}
             option='blur'
+            threshold={0.2}
           />
         </FadeIn>
       </DeviceImage>
@@ -111,6 +112,7 @@ export default function ProjectDemo() {
               width={170}
               height={350}
               option='blur'
+              threshold={0.2}
             />
           </FadeIn>
         </DeviceImageSp>

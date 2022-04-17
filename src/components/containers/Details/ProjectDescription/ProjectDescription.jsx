@@ -1,6 +1,6 @@
 import { loremIpsum } from "lorem-ipsum";
-import DetailDescription from "../../../uiParts/DetailDescription/DetailDescription";
 
+import DetailDescription from "../../../uiParts/DetailDescription/DetailDescription";
 
 export default function ProjectDescription() {
   const description = {

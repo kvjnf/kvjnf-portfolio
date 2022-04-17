@@ -1,6 +1,6 @@
 import ProjectCaptures from "./ProjectCaptures";
-import LazyLoadImage from "../LazyLoadImage/LazyLoadImage";
-import { Blur } from "../LazyLoadImage/LazyLoadImage.stories";
+import LazyLoadImage from "../../../uiParts/LazyLoadImage/LazyLoadImage";
+import { Blur } from "../../../uiParts/LazyLoadImage/LazyLoadImage.stories";
 
 export default {
   title: 'UIParts/ProjectCaptures',

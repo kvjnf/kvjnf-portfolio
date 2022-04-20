@@ -1,4 +1,5 @@
-import { 
+import {
+  BrowserRouter, 
   Routes,
   Route
  } from 'react-router-dom';
@@ -10,12 +11,14 @@ import Layout from '../components/pages/Layout';
 
 export default function RouterConfig() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Home/>} />
-        <Route path='/detail/:postId' element={<Detail />} />
-        <Route path='*' element={<NotFound />} />
-      </Route>
-    </Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home/>} />
+          <Route path='/detail/:postId' element={<Detail />} />
+          <Route path='*' element={<NotFound />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }

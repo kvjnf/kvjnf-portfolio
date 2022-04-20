@@ -78,12 +78,12 @@ const arrow = {
   }
 }
 
-function TimeLineArrow({ start, end, animate }){
-  end = end?? 'Present';
+function TimeLineArrow({ date_start, date_end, animate }){
+  date_end = date_end?? 'Present';
 
   return (
     <TimeLineArrowWrap>
-      <TimeLineDate>{`${start} – ${end}`}</TimeLineDate>
+      <TimeLineDate>{`${date_start} – ${date_end}`}</TimeLineDate>
       <FaIconWrapper>
         <FaIconRoundBG
           initial='initial'
@@ -101,8 +101,8 @@ function TimeLineArrow({ start, end, animate }){
 }
 
 TimeLineArrow.propTypes = {
-  start: PropTypes.string.isRequired,
-  end: PropTypes.string,
+  date_start: PropTypes.string.isRequired,
+  date_end: PropTypes.string,
 }
 
 export default TimeLineArrow;

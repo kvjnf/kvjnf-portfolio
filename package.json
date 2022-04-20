@@ -9,6 +9,7 @@
     "@fortawesome/react-fontawesome": "^0.1.17",
     "@react-hook/intersection-observer": "^3.1.1",
     "@reduxjs/toolkit": "^1.8.1",
+    "contentful": "^9.1.22",
     "framer-motion": "^6.2.6",
     "react": "17.0.2",
     "react-country-flag": "^3.0.2",

@@ -1,34 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
-import App from './components/App';
+import App from './app/App';
 import { GlobalCss, theme } from './components/styles/global';
 import { ResetCss } from './components/styles/reset';
+import { store } from './store';
 
-// import configureStore from './store';
-
-// const store = configureStore();
-// const mainRender = () => {
-//   ReactDOM.render(
-//     <Provider store={store}>
-//       <App />
-//     </Provider>,
-//     document.getElementById('root')
-//   );
-// };
-
-// if (process.env.NODE_ENV === 'development') {
-//   setTimeout(mainRender, 10);
-// } else {
-//   mainRender();
-// }
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <Provider store={store}>
       <ThemeProvider theme={theme}>
         <>
           <ResetCss />
@@ -36,7 +19,7 @@ ReactDOM.render(
           <App />
         </>
       </ThemeProvider>
-    </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

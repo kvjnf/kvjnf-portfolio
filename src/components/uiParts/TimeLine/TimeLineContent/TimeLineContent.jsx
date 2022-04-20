@@ -64,7 +64,7 @@ const content = {
   }
 }
 
-function TimeLineContent ({ title, roll, description, animate, isLast }) {
+function TimeLineContent ({ title, role, description, animate, isLast }) {
   
   const bar = {
     initial: {
@@ -94,7 +94,7 @@ function TimeLineContent ({ title, roll, description, animate, isLast }) {
         as={motion.div}
       >
         <Title>{title}</Title>
-        <Roll>{roll}</Roll>
+        <Roll>{role}</Roll>
         <Description>{description}</Description>
       </ContentInner>
     </Content>
@@ -103,7 +103,7 @@ function TimeLineContent ({ title, roll, description, animate, isLast }) {
 
 TimeLineContent.propTypes = {
   title: PropTypes.string.isRequired,
-  roll: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
 };
 

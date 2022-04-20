@@ -23,10 +23,10 @@ const TimeLineArticle = styled.article`
 `;
 
 export default function TimeLine ({ 
-  start,
-  end,
+  date_start,
+  date_end,
   title,
-  roll,
+  role,
   description,
   isLast,
 }) {
@@ -42,13 +42,13 @@ export default function TimeLine ({
   return (
     <TimeLineArticle ref={ref}>
       <TimeLineArrow 
-        start={start} 
-        end={end}
+        date_start={date_start} 
+        date_end={date_end}
         animate={visible}
         />
       <TimeLineContent 
         title={title} 
-        roll={roll} 
+        role={role} 
         description={description}
         isLast={isLast}
         animate={visible}
@@ -58,14 +58,14 @@ export default function TimeLine ({
 }
 
 TimeLine.propTypes = {
-  start: PropTypes.string.isRequired,
-  end: PropTypes.string,
+  date_start: PropTypes.string.isRequired,
+  date_end: PropTypes.string,
   title: PropTypes.string.isRequired,
-  roll: PropTypes.string.isRequired,
+  role: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   isLast: PropTypes.bool
 };
 
 TimeLine.defaultProps = {
-  end: null,
+  date_end: null,
 }

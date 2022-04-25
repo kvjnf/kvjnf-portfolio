@@ -26,8 +26,18 @@ export const contentApi = createApi({
           content_type: 'experience'
         }
       })
-    })
+    }),
+    getProjects: builder.query({
+      query: () => ({
+        url: '/entries',
+        params: {
+          //?select=sys.id,fields.productName&content_type=2PqfXUJwE8qSYKuM0U6w8M
+          select: 'sys.id,fields.title,fields.slug,fields.thumbnail',
+          content_type: 'blogPost'
+        }
+      })
+    }),
   })
 });
 
-export const { useGetAboutQuery, useGetExperienceQuery } = contentApi;
+export const { useGetAboutQuery, useGetExperienceQuery, useGetProjectsQuery } = contentApi;

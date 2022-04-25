@@ -25,16 +25,16 @@ const Img = styled.img`
   ${layout}
 `;
 
-const ThumbNailsMini = ({ postId, src, alt }) => {
+const ThumbNailsMini = ({ slug, src, alt }) => {
   return (
-    <StyledLink to={`/detail/${postId}/`}>
+    <StyledLink to={`/detail/${slug}/`}>
       <Img width={1} maxWidth='fit-content' src={src} alt={alt} />
     </StyledLink>
   )
 }
 
 ThumbNailsMini.propTypes = {
-  postId: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
 }

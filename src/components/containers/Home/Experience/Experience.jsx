@@ -43,7 +43,7 @@ export default function Experience() {
           />
       </FadeIn>
       { 
-        items?.length && items.map(({ sys: { id }, fields }, i, { length }) => { 
+        items && items.map(({ sys: { id }, fields }, i, { length }) => { 
           const isLast = length - 1 === i;
 
           return <TimeLine key={id} isLast={isLast} {...fields} />

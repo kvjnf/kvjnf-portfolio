@@ -36,14 +36,15 @@ export default function ProjectCaptures() {
     };
 
     const option = {
-      y: [-20, 0],
-      x: i % 2 === 0 ? [-20, 0] : [20, 0],
+      y: -20,
+      x: i % 2 === 0 ? -20 : 20,
       easing: [0.33, 1, 0.68, 1],
       duration: 1
     }
 
     return (
       <FadeIn
+        key={`cap-${i}`}
         yOffset={option.y}
         xOffset={option.x}
         duration={option.duration}
@@ -51,7 +52,6 @@ export default function ProjectCaptures() {
         controls={control}
       >
         <LazyLoadImage 
-          key={`cap-${i}`}
           { ...placeHolder }
         />
       </FadeIn>

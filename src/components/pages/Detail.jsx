@@ -1,17 +1,16 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import ProjectLogo from '../containers/Details/ProjectLogo/ProjectLogo';
 import ProjectDemo from '../containers/Details/ProjectDemo/ProjectDemo';
 import ProjectDescription from '../containers/Details/ProjectDescription/ProjectDescription';
 import ProjectCaptures from '../containers/Details/ProjectCaptures/ProjectCaptures';
+import { useGetProjectQuery } from '../../services/api';
 
 export default function Detail() {
-  const params = useParams();
+  const { slug } = useParams();
+  const { data } = useGetProjectQuery(slug);
 
-  useEffect(() => {
-    console.log(params.postId);
-  }, [params]);
+  console.log(data);
 
   return (
     <>

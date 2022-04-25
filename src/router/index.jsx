@@ -15,7 +15,7 @@ export default function RouterConfig() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home/>} />
-          <Route path='/detail/:postId' element={<Detail />} />
+          <Route path='/detail/:slug' element={<Detail />} />
           <Route path='*' element={<NotFound />} />
         </Route>
       </Routes>

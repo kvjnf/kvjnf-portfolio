@@ -31,13 +31,21 @@ export const contentApi = createApi({
       query: () => ({
         url: '/entries',
         params: {
-          //?select=sys.id,fields.productName&content_type=2PqfXUJwE8qSYKuM0U6w8M
           select: 'sys.id,fields.title,fields.slug,fields.thumbnail',
           content_type: 'blogPost'
         }
       })
     }),
+    getProject: builder.query({
+       query: (slug) => ({
+         url: `/entries`,
+         params: {
+          'fields.slug': slug,
+          content_type: 'blogPost'
+         }
+       })
+    })
   })
 });
 
-export const { useGetAboutQuery, useGetExperienceQuery, useGetProjectsQuery } = contentApi;
+export const { useGetAboutQuery, useGetExperienceQuery, useGetProjectsQuery, useGetProjectQuery } = contentApi;

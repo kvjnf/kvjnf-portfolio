@@ -20,14 +20,15 @@ const ContentInner = styled.div`
 const LineBar = styled.div`
   position: absolute;
   width: 4px;
-  top: 40px;
+  top: 0px;
   bottom: 0;
   background-color: #021521;
   left: -47px;
   z-index: 2;
 
   ${theme.media.lg`
-    left: -32px
+    left: -32px;
+    top: -1px;
   `}
 `;
 
@@ -71,7 +72,7 @@ function TimeLineContent ({ title, role, description, animate, isLast }) {
       bottom: '100%',
     },
     visible: {
-      bottom: isLast ? '0%' : '-16%',
+      bottom: isLast ? '0%' : '-20%',
       transition: {
         duration: 2,
         ease: [0, 0.55, 0.45, 1]

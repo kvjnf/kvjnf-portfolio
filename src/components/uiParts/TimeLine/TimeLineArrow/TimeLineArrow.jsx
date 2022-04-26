@@ -9,7 +9,8 @@ import { theme } from "../../../styles/global";
 const TimeLineArrowWrap = styled.div`
   display: flex;
   align-items: center;
-  gap: 20px;
+  width: 240px;
+  justify-content: space-between;
 `;
 
 const TimeLineDate = styled.span`
@@ -31,7 +32,7 @@ const FaIconWrapper = styled.div`
     height: 40px;
     position: absolute;
     left: 0;
-    top: -10px;
+    top: -8px;
   `}
 `;
 

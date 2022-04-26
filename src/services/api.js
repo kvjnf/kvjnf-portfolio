@@ -23,7 +23,8 @@ export const contentApi = createApi({
       query: () => ({
         url: '/entries',
         params: {
-          content_type: 'experience'
+          content_type: 'experience',
+          order: '-fields.date_start'
         }
       })
     }),
@@ -56,7 +57,7 @@ export const contentApi = createApi({
                 data = getIdForMediaField(data);
               }
 
-              if (Array.isArray(data)) {
+              if (key === 'captures' && Array.isArray(data)) {
                 data = data.map(getIdForMediaField);
               }
 

@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from '@reduxjs/toolkit/query';
+import { useSelector as rawUseSelector } from 'react-redux'
 
 import { contentApi } from "./services/api";
 
@@ -12,3 +13,5 @@ export const store = configureStore({
 });
 
 setupListeners(store.dispatch)
+
+export const useSelector = rawUseSelector;

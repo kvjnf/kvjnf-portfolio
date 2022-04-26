@@ -43,9 +43,43 @@ export const contentApi = createApi({
           'fields.slug': slug,
           content_type: 'blogPost'
          }
-       })
-    })
+       }),
+       transformResponse: (res) => {
+          const resources = getResourcesFromAsset(res.includes.Asset);
+          const item = res.items[0];
+
+          return {
+            id: item.sys.id,
+            resources,
+            fields: Object.entries(item.fields).reduce((accumulator, [key, data]) => {
+              if (data.sys) {
+                data = getIdForMediaField(data);
+              }
+
+              if (Array.isArray(data)) {
+                data = data.map(getIdForMediaField);
+              }
+
+              return {
+                ...accumulator,
+                [key]: data
+              }
+            }, {})
+          }
+        }
+     })
   })
 });
 
 export const { useGetAboutQuery, useGetExperienceQuery, useGetProjectsQuery, useGetProjectQuery } = contentApi;
+
+function getResourcesFromAsset(Asset) {
+  return Asset.reduce((accumulator, asset) => ({
+    ...accumulator, 
+    [asset.sys.id]: asset.fields.file.url,
+  }), {});
+}
+
+function getIdForMediaField(media) {
+  return media.sys.id;
+}

@@ -8,16 +8,41 @@ import { useGetProjectQuery } from '../../services/api';
 
 export default function Detail() {
   const { slug } = useParams();
-  const { data } = useGetProjectQuery(slug);
+  const { 
+    data: { fields, resources } = { fields: {}, resources: [] },
+    isLoading,
+  } = useGetProjectQuery(slug);
 
-  console.log(data);
+  if (isLoading) {
+    return null;
+  }
+
+  const logo = resources[fields.thumbnail];
+  const devices = {
+    pc: {
+      src: resources[fields.pcCapture],
+      alt: `pc capture: ${fields.slug}`
+    },
+    ...fields.spCapture && { 
+      sp: { 
+        src: resources[fields.spCapture],
+        alt: `sp capture: ${fields.slug}`,        
+       } 
+    }
+  };
+  const description = {
+    title: fields.title,
+    client: fields.client,
+    description: fields.description,
+  };
+  const captures = fields.captures?.map(id => resources[id]) ?? [];
 
   return (
     <>
-      <ProjectLogo />
-      <ProjectDemo />
-      <ProjectDescription />
-      <ProjectCaptures />
+      <ProjectLogo logo={logo} />
+      <ProjectDemo devices={devices}/>
+      <ProjectDescription description={description} />
+      <ProjectCaptures captures={captures}/>
     </>
   )
 }

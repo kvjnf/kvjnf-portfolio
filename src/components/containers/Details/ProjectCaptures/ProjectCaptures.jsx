@@ -1,11 +1,11 @@
+import { useAnimation } from 'framer-motion';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { theme } from '../../../styles/global';
 import LazyLoadImage from '../../../uiParts/LazyLoadImage/LazyLoadImage';
 import Grid from '../../../uiParts/Grid/Grid';
 import FadeIn from '../../../uiParts/FadeIn/FadeIn';
-import { useAnimation } from 'framer-motion';
-import { useEffect } from 'react';
 
 const StyledGrid = styled(Grid)`
   justify-items: center;
@@ -17,27 +17,25 @@ const StyledGrid = styled(Grid)`
   `}
 `;
 
-export default function ProjectCaptures() {
-  const listsNumbers = [...Array(4).keys()];
+export default function ProjectCaptures({ captures }) {
   const control = useAnimation();
 
   useEffect(() => {
     control.start('show');
   }, [control])
 
-  const lists = listsNumbers.map((_, i) => {
+  const lists = captures.map((src, i) => {
     const placeHolder = {
       width: 480, 
       height: 1000,
-      src: `https://picsum.photos/480/1000?random=${i}`,
+      src,
       option: 'blur',
       alt: 'test',
-      threshold: 0.1
+      threshold: 0.01
     };
-
     const option = {
-      y: -20,
-      x: i % 2 === 0 ? -20 : 20,
+      yOffset: -20,
+      xOffset: i % 2 === 0 ? -20 : 20,
       easing: [0.33, 1, 0.68, 1],
       duration: 1
     }
@@ -45,11 +43,8 @@ export default function ProjectCaptures() {
     return (
       <FadeIn
         key={`cap-${i}`}
-        yOffset={option.y}
-        xOffset={option.x}
-        duration={option.duration}
-        easing={option.easing}
         controls={control}
+        {...option}
       >
         <LazyLoadImage 
           { ...placeHolder }

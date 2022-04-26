@@ -9,15 +9,13 @@ import VerticalBorder from '../../../uiParts/VerticalBorder/VerticalBorder';
 import LazyLoadImage from '../../../uiParts/LazyLoadImage/LazyLoadImage';
 import FadeIn from '../../../uiParts/FadeIn/FadeIn';
 import Section from '../../../uiParts/Sections/Section/Section';
-import placeholder from '../../../../static/pc_midi_logo.png';
-
 
 const FlexSection = styled(Section)`
   ${flexbox}
   position: relative;
 `;
 
-export default function ProjectLogo() {
+export default function ProjectLogo({ logo }) {
   const theme = useTheme();
   const control = useAnimation();
   const logoControl = useAnimation();
@@ -28,7 +26,6 @@ export default function ProjectLogo() {
     threshold: 0.5,
     freezeOnceVisible: true
   });
-
   const isVisible = !!entry?.isIntersecting;
 
   useEffect(() => {
@@ -56,7 +53,7 @@ export default function ProjectLogo() {
         duration={1}
         controls={logoControl}
       >
-        <LazyLoadImage src={placeholder} alt="test" />
+        <LazyLoadImage src={logo} alt="test" />
       </FadeIn>
     </FlexSection>
   )

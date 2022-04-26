@@ -1,11 +1,8 @@
 import styled from 'styled-components';
-
-import pcPlaceholder from '../../../../static/mhd-pc.png';
 import { useRef, useEffect } from 'react';
 import { useAnimation } from 'framer-motion';
 import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts';
 
-import spPlaceholder from '../../../../static/mhd-sp.png';
 import Section from '../../../uiParts/Sections/Section/Section';
 import LazyLoadImage from '../../../uiParts/LazyLoadImage/LazyLoadImage';
 import FadeIn from '../../../uiParts/FadeIn/FadeIn';
@@ -43,18 +40,7 @@ const DeviceImageSp = styled(DeviceImage)`
   `}
 `;
 
-export default function ProjectDemo() {
-  const devices = {
-    pc: {
-      src: pcPlaceholder,
-      alt: 'pc test'
-    },
-    sp: {
-      src: spPlaceholder,
-      alt: 'sp test',
-    }
-  }
-  
+export default function ProjectDemo({ devices }) {
   const control = useAnimation();
   const ref = useRef(null);
   const entry = useIntersectionObserver(ref, {

@@ -45,7 +45,7 @@ const strokePaths = {
   stroke: {
     strokeDashoffset: 0,
     transition: {
-      duration: 0.1,
+      duration: 0.2,
       easing
     }
   },
@@ -58,37 +58,52 @@ const strokePaths = {
   }
 }
 
-export default function SVGAnimationLogo() {
-  const pathControl = useAnimation();
+const MotionPath = (path, i) => (
+    <StyledMotionPath
+      key={`motion-path-${i}`}
+      paintOrder="stroke"
+      d={path}
+      pathLength={100}
+      variants={strokePaths}
+    />
+  );
 
-  async function pathSequence() {
-    await pathControl.start('stroke');
-    pathControl.start('fill');
-  }
+export default function SVGAnimationLogo() {
+  const firstPathSetControl = useAnimation();
+  const secondPathSetControl = useAnimation();
 
   useEffect(() => {
+    const pathSequence = async () => {
+      await Promise.all([
+        firstPathSetControl.start('stroke'),
+        secondPathSetControl.start('stroke'),
+      ]);
+      firstPathSetControl.start('fill');
+      secondPathSetControl.start('fill');
+    }
+
     pathSequence();
-  }, []);
+  }, [firstPathSetControl, secondPathSetControl]);
+
+  const FirstPathGroup = pathLists.slice(0, 7).map(MotionPath);
+  const SecondPathGroup = pathLists.slice(7).map(MotionPath);
   
   return (
-    <motion.svg
-      viewBox="0 0 386 150"
-      initial="initial"
-      animate={pathControl}
-      variants={container}
-    >
-      {pathLists.map((path, i) => {
-          return (
-            <StyledMotionPath
-              key={`motion-path-${i}`}
-              paintOrder="stroke"
-              d={path}
-              pathLength={100}
-              variants={strokePaths}
-            />
-          );
-        })
-      }
-    </motion.svg>
+    <svg viewBox="0 0 386 150" xmlns="http://www.w3.org/2000/svg">
+      <motion.g
+        initial="initial"
+        animate={firstPathSetControl}
+        variants={container}
+      >
+        {FirstPathGroup}
+      </motion.g>
+      <motion.g
+        initial="initial"
+        animate={secondPathSetControl}
+        variants={container}
+      >
+        {SecondPathGroup}
+      </motion.g>
+    </svg>
   )
 }

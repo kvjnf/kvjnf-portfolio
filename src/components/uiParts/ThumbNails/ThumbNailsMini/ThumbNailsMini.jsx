@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'; 
 import styled from 'styled-components';
 import { layout } from 'styled-system';
+import Picture from '../../Picture/Picture';
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -21,7 +22,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const Img = styled.img`
+const Img = styled(Picture)`
   ${layout}
 `;
 

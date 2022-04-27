@@ -4,8 +4,9 @@ import styled from 'styled-components';
 import { useIntersectionObserver } from 'usehooks-ts'
 
 import ShimmerPlaceholder from '../ShimmerPlaceHolder/ShimmerPlaceHolder';
+import Picture from '../Picture/Picture';
 
-const StyledImage = styled.img`
+const StyledImage = styled(Picture)`
   visibility: ${props => props.visible ? 'visible' : 'hidden'};
   transition: filter 1s;
   width: 100%;
@@ -44,8 +45,6 @@ function LazyLoadImage({ src, alt, width, height, option, threshold = 0.5, ...ar
       isVisible && <StyledImage
         src={src}
         alt={alt}
-        loading="lazy"
-        decoding="async"
         visible={isVisible}
         loaded={loaded}
         onLoad={onLoad}

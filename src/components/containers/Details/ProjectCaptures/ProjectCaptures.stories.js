@@ -1,6 +1,4 @@
 import ProjectCaptures from "./ProjectCaptures";
-import LazyLoadImage from "../../../uiParts/LazyLoadImage/LazyLoadImage";
-import { Blur } from "../../../uiParts/LazyLoadImage/LazyLoadImage.stories";
 
 export default {
   title: 'UIParts/ProjectCaptures',
@@ -10,21 +8,9 @@ export default {
 const Template = (args) => <ProjectCaptures {...args} />
 
 const listsNumbers = [...Array(4).keys()];
-const lists = listsNumbers.map(i => {
-  const args = { 
-    ...Blur.args, 
-    width: 400, 
-    height: 1000,
-    src: `https://picsum.photos/400/1000?random=${i}`
-  };
-
-  return <LazyLoadImage 
-    key={i}
-    { ...args }
-  />
-})
+const captures = listsNumbers.map(i => `https://picsum.photos/400/1000?random=${i}`);
 
 export const Default = Template.bind({});
 Default.args = {
-  lists
+  captures
 }

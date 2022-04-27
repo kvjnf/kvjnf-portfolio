@@ -20,7 +20,7 @@ const ContentInner = styled.div`
 const LineBar = styled.div`
   position: absolute;
   width: 4px;
-  top: 0px;
+  top: 40px;
   bottom: 0;
   background-color: #021521;
   left: -47px;

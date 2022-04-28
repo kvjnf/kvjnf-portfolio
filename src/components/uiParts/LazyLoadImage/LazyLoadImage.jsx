@@ -7,14 +7,14 @@ import ShimmerPlaceholder from '../ShimmerPlaceHolder/ShimmerPlaceHolder';
 import Picture from '../Picture/Picture';
 
 const StyledImage = styled(Picture)`
-  visibility: ${props => props.visible ? 'visible' : 'hidden'};
+  visibility: ${props => props.$visible ? 'visible' : 'hidden'};
   transition: filter 1s;
   width: 100%;
   ${(props) => {
     if (props.option === 'blur') {
-      return `filter: blur(${props.loaded ? '0' : '10px'});`;
+      return `filter: blur(${props.$loaded ? '0' : '10px'});`;
     } else if (props.option === 'grayscale') {
-      return `filter: grayscale(${props.loaded ? '0%' : '100%'});`;
+      return `filter: grayscale(${props.$loaded ? '0%' : '100%'});`;
     }
   }} 
 `;
@@ -45,8 +45,8 @@ function LazyLoadImage({ src, alt, width, height, option, threshold = 0.5, ...ar
       isVisible && <StyledImage
         src={src}
         alt={alt}
-        visible={isVisible}
-        loaded={loaded}
+        $visible={isVisible}
+        $loaded={loaded}
         onLoad={onLoad}
         option={option}
       />

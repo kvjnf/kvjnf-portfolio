@@ -79,7 +79,7 @@ export default function ProjectDemo({ devices }) {
             width={604}
             height={401}
             option='blur'
-            threshold={0.2}
+            threshold={0.1}
           />
         </FadeIn>
       </DeviceImage>

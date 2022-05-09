@@ -1,12 +1,15 @@
 import styled, { css } from "styled-components";
-import { color, border, layout, variant} from "styled-system";
+import { color, border, layout, variant, ColorProps, LayoutProps, BorderProps } from "styled-system";
 
 import { theme } from "./global";
+import { VariantsProps } from "./style.interfaces";
 
-export const ButtonBase = css`
+interface BaseProps extends ColorProps, LayoutProps, VariantsProps, BorderProps{}
+
+export const ButtonBase = css<BaseProps>`
   ${color}
   ${layout}
-  ${variant({ prop: 'fontStyle', variants: theme.fontFamilies})}
+  ${variant({ prop: 'fontVariant', variants: theme.fontFamilies})}
   line-height: 40px;
   display: block;
   border: 1px solid;
@@ -56,8 +59,8 @@ export const ArrowInnerText = styled(InnerText)`
     display: block;
     width: 6px;
     height: 6px;
-    border-top: 2px solid ${props => props.theme.btnFill};
-    border-right: 2px solid ${props => props.theme.btnFill};
+    border-top: 2px solid ${props => props.theme.fill.black};
+    border-right: 2px solid ${props => props.theme.fill.black};
     border-color: #fff;
     -webkit-transform: rotate(-135deg);
     transform: rotate(-135deg);

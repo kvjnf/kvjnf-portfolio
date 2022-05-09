@@ -1,15 +1,18 @@
 import { useRef, useEffect } from 'react';
 import { useAnimation } from 'framer-motion';
 import { useIntersectionObserver } from 'usehooks-ts';
-import PropTypes from 'prop-types';
 
 import Section from '../Sections/Section/Section';
 import Paragraph from '../Paragraph/Paragraph';
 import SectionHeader2 from '../SectionHeader2/SectionHeader2';
 import FadeIn from '../FadeIn/FadeIn';
 
+interface Props {
+  title: string;
+  description: string;
+}
 
-export default function AboutSection ({ title, description }) {
+export default function AboutSection ({ title, description }: Props) {
   const ref = useRef(null);
   const entry = useIntersectionObserver(ref, {
     root: null,
@@ -57,9 +60,4 @@ export default function AboutSection ({ title, description }) {
       </FadeIn>
     </Section>
   )
-}
-
-AboutSection.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
 }

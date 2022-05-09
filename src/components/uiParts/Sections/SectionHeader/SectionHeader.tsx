@@ -2,11 +2,8 @@ import styled from 'styled-components';
 import { typography, variant, space, TypographyProps, SpaceProps } from 'styled-system';
 
 import { theme } from '../../../styles/global';
+import { FontVariant, VariantsProps } from '../../../styles/style.interfaces'
 
-type FontVariant = 'default' | 'alt';
-interface VariantsProps { 
-  fontVariant: FontVariant
-}
 interface StyledProps extends TypographyProps, SpaceProps {};
 interface Props extends StyledProps {
   fontStyle: FontVariant;

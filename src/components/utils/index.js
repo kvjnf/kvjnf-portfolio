@@ -1,6 +1,6 @@
 import { jsx as _jsx } from 'react/jsx-runtime';
 
-export const nl2br = str => {
+export const nl2br = (str) => {
   const newlineRegex = /(\r\n|\r|\n)/g;
 
   if (typeof str === 'number') {

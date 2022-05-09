@@ -1,13 +1,27 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { FontVariant } from '../../styles/style.interfaces';
 import { HoverBgFillButton, InnerText, ArrowInnerText } from '../../styles/button';
+
+interface Props {
+  text: string;
+  link: string;
+  color: string;
+  fontStyle: FontVariant;
+  isArrow: boolean;
+}
 
 const Button = styled.a`
   ${HoverBgFillButton}
 `;
 
-function BlankLinkHoverBtn({ text, link, color, fontStyle, isArrow }) {
+function BlankLinkHoverBtn({ 
+  text, 
+  link, 
+  color = 'black', 
+  fontStyle = 'alt', 
+  isArrow = false }: Props) {
   const Inner = isArrow ? ArrowInnerText : InnerText;
 
   return (
@@ -16,7 +30,7 @@ function BlankLinkHoverBtn({ text, link, color, fontStyle, isArrow }) {
       height={40}
       color={color}
       borderColor={color}
-      fontStyle={fontStyle}
+      fontVariant={fontStyle}
       href={link}
       className="link_btn"
       target="_blank"

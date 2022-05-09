@@ -1,6 +1,6 @@
 import Section from "../Sections/Section/Section";
 
-export default function NotFound() {
+export default function NotFound(){
   return (
     <Section
       p={60}
@@ -8,6 +8,5 @@ export default function NotFound() {
     >
       <h2>404 NOT FOUND</h2>
     </Section>
-
   )
 }

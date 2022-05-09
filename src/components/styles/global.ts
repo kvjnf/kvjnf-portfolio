@@ -1,11 +1,14 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle, css, CSSObject } from 'styled-components';
 
 export const black = '#222';
 export const gray = '#f8f8f8';
 
-const mediaQuery = point => (...args) => css`
+/**
+ * @todo type
+ */
+const mediaQuery = (point: string) => (style: TemplateStringsArray | CSSObject) => css`
   @media (max-width: ${point}) {
-    ${css(...args)}
+    ${css(style)}
   }
 `;
 

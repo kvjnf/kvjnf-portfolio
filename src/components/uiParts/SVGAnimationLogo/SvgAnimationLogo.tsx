@@ -20,14 +20,7 @@ const pathLists = [
   "M327.5,86.4h1.6v18.1h-1.6V86.4z",
   "M371.4,86.1v1.4c-4.2,0.1-6.9,3.5-6.9,8c0,4.5,2.7,7.8,6.9,8v1.4c-5.2-0.1-8.5-4.1-8.5-9.4C362.9,90.2,366.2,86.2,371.4,86.1z M372.1,104.8v-1.4c4.1-0.2,6.8-3.5,6.8-8c0-4.4-2.7-7.8-6.8-7.9v-1.4c5.1,0.2,8.4,4.2,8.4,9.4C380.5,100.6,377.1,104.6,372.1,104.8z",
 ];
-
-const StyledMotionPath = styled(motion.path)`
-  stroke: #040000;
-  stroke-width: 0.3;
-`;
-
 const easing = [0.33, 1, 0.68, 1];
-
 const container = {
   stroke: {
     transition: {
@@ -35,7 +28,6 @@ const container = {
     }
   },
 }
-
 const strokePaths = {
   initial: {
     strokeDasharray: 100,
@@ -57,8 +49,12 @@ const strokePaths = {
     }
   }
 }
+const StyledMotionPath = styled(motion.path)`
+  stroke: #040000;
+  stroke-width: 0.3;
+`;
 
-const MotionPath = (path, i) => (
+const MotionPath = (path: string, i: number) => (
     <StyledMotionPath
       key={`motion-path-${i}`}
       paintOrder="stroke"

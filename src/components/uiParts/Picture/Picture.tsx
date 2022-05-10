@@ -1,7 +1,12 @@
 import path from 'path-browserify';
 import { motion } from 'framer-motion'
 
-function Picture({ src, alt, ...args}) {
+interface Props {
+  src: string;
+  alt: string;
+}
+
+export default function Picture({ src, alt, ...args}: Props) {
   const ext = path.extname(src);
 
   if (ext === '.gif') {
@@ -30,5 +35,3 @@ function Picture({ src, alt, ...args}) {
     </picture>
   )
 }
-
-export default Picture

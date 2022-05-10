@@ -2,9 +2,9 @@ import styled, { css } from "styled-components";
 import { color, border, layout, variant, ColorProps, LayoutProps, BorderProps } from "styled-system";
 
 import { theme } from "./global";
-import { VariantsProps } from "./style.interfaces";
+import { FontVariantProps } from "./style.interfaces";
 
-interface BaseProps extends ColorProps, LayoutProps, VariantsProps, BorderProps{}
+interface BaseProps extends ColorProps, LayoutProps, FontVariantProps, BorderProps{}
 
 export const ButtonBase = css<BaseProps>`
   ${color}

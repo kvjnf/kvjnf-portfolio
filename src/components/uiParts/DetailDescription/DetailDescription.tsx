@@ -1,15 +1,19 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { nl2br } from '../../utils';
 import { theme } from '../../styles/global';
+
+interface Props {
+  title: string;
+  client: string;
+  description: string;
+}
 
 const StyledWrapper = styled.div`
   border-top: 1px solid #eee;
   border-bottom: 1px solid #eee;
   padding: 70px 0;
 `;
-
 const StyledDescription = styled.div`
   max-width: 1000px;
   margin: 0 auto;
@@ -18,19 +22,17 @@ const StyledDescription = styled.div`
     padding: 20px;
   `}
 `;
-
 const StyledHeader = styled.h2`
   font-size: 22px;
   margin-bottom: 25px;
   line-height: 1.6em;
 `;
-
 const StyledParagraph1 = styled.p`
   font-size: 18px;
   margin-bottom: 20px;
 `;
 
-export default function DetailDescription({ title, client, description }) {
+export default function DetailDescription({ title, client, description }: Props) {
   return (
     <StyledWrapper>
       <StyledDescription>
@@ -40,10 +42,4 @@ export default function DetailDescription({ title, client, description }) {
       </StyledDescription>
     </StyledWrapper>
   )
-}
-
-DetailDescription.propTypes = {
-  title: PropTypes.string.isRequired,
-  client: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
 }

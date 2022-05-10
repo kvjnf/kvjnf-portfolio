@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { typography, variant, space, TypographyProps, SpaceProps } from 'styled-system';
 
 import { theme } from '../../../styles/global';
-import { FontVariant, VariantsProps } from '../../../styles/style.interfaces'
+import { FontVariant, FontVariantProps } from '../../../styles/style.interfaces'
 
 interface StyledProps extends TypographyProps, SpaceProps {};
 interface Props extends StyledProps {
@@ -10,7 +10,7 @@ interface Props extends StyledProps {
   title: string;
 }
 
-const Header = styled.h3<VariantsProps>`
+const Header = styled.h3<FontVariantProps>`
   ${typography}
   ${space}
   ${variant({

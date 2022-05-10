@@ -15,11 +15,11 @@ import {
 } from 'styled-system';
 
 
-interface Props extends SpaceProps, ColorProps, TypographyProps, LayoutProps, PositionProps {
+export interface SectionProps extends SpaceProps, ColorProps, TypographyProps, LayoutProps, PositionProps {
   children: React.ReactNode;
 }
 
-const Section = styled('section')<Props>(
+const Section = styled('section')<SectionProps>(
   compose(
     space,
     color,

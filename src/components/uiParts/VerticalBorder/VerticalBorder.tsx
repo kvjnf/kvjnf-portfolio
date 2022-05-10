@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, AnimationControls } from 'framer-motion';
 
-import { theme } from '../../styles/global';
+interface Props {
+  control: AnimationControls;
+}
 
 const AnimationVerticalBorder = styled(motion.span)`
   display: block;
@@ -10,15 +12,13 @@ const AnimationVerticalBorder = styled(motion.span)`
   top: -25px;
   content: "";
   width: 2px;
-  background-color: ${theme.colors.black};
+  background-color: ${(props) => props.theme.colors.black};
 `;
 
-function VerticalBorder({ control }) {
+export default function VerticalBorder({ control }: Props) {
   return (
     <AnimationVerticalBorder
       animate={control}
     />
   )
 }
-
-export default VerticalBorder

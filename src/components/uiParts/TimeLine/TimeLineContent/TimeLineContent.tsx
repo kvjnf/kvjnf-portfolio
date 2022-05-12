@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { PropTypes } from 'prop-types';
 import { motion } from 'framer-motion';
 
 import { theme } from "../../../styles/global";
@@ -8,7 +7,6 @@ const Content = styled.div`
   max-width: 590px;
   position: relative;
 `;
-
 const ContentInner = styled.div`
   background: #fff;
   box-shadow: 0 10px 18px rgba(0, 0, 0, 0.12);
@@ -16,7 +14,6 @@ const ContentInner = styled.div`
   border-radius: 3px;
   text-align: left;
 `;
-
 const LineBar = styled.div`
   position: absolute;
   width: 4px;
@@ -31,26 +28,22 @@ const LineBar = styled.div`
     top: -1px;
   `}
 `;
-
 const Title = styled.h3`
   font-size: 1.5em;
   font-weight: 300;
   display: inline-block;
   margin-bottom: 8px;
 `;
-
 const Roll = styled.h4`
   font-size: 1.2em;
   font-weight: 300;
   color: #7e8890;
   margin: 0 0 15px 0;
 `;
-
 const Description = styled.p`
   font-size: 0.9em;
   margin: 0;
 `;
-
 const content = {
   initial: {
     opacity: 0,
@@ -65,8 +58,21 @@ const content = {
   }
 }
 
-function TimeLineContent ({ title, role, description, animate, isLast }) {
-  
+interface Props {
+  title: string;
+  role: string;
+  description: string;
+  animate: 'visible' | '';
+  isLast: boolean;
+}
+
+export default function TimeLineContent ({ 
+  title,
+  role,
+  description,
+  animate,
+  isLast
+}: Props) {
   const bar = {
     initial: {
       bottom: '100%',
@@ -101,11 +107,3 @@ function TimeLineContent ({ title, role, description, animate, isLast }) {
     </Content>
   )
 }
-
-TimeLineContent.propTypes = {
-  title: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-};
-
-export default TimeLineContent;

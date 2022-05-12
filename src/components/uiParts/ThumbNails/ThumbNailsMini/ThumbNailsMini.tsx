@@ -1,8 +1,21 @@
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'; 
 import styled from 'styled-components';
-import { layout } from 'styled-system';
+import { layout, LayoutProps } from 'styled-system';
+
 import Picture from '../../Picture/Picture';
+
+export type ThumbNail = {
+  id: string;
+  title: string;
+  slug:string;
+  src: string;
+}
+interface ImgProps extends LayoutProps{}
+interface Props {
+  slug: string;
+  src: string;
+  alt: string;
+}
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -16,28 +29,18 @@ const StyledLink = styled(Link)`
   height: 100%;
   background-color: #fff;
   transition: box-shadow .3s ease-in-out;
-
   &:hover {
     box-shadow: 0 10px 18px rgb(0 0 0 / 12%);
   }
 `;
-
-const Img = styled(Picture)`
+const Img = styled(Picture)<ImgProps>`
   ${layout}
 `;
 
-const ThumbNailsMini = ({ slug, src, alt }) => {
+export default function ThumbNailsMini({ slug, src, alt }: Props) {
   return (
     <StyledLink to={`/detail/${slug}/`}>
       <Img width={1} maxWidth='fit-content' src={src} alt={alt} />
     </StyledLink>
   )
 }
-
-ThumbNailsMini.propTypes = {
-  slug: PropTypes.string.isRequired,
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-}
-
-export default ThumbNailsMini

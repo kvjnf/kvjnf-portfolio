@@ -1,11 +1,19 @@
+import { useRef } from 'react';
 import styled from 'styled-components';
-import { PropTypes } from 'prop-types';
+import { useIntersectionObserver } from 'usehooks-ts';
 
 import TimeLineArrow from '../TimeLineArrow/TimeLineArrow';
 import TimeLineContent from '../TimeLineContent/TimeLineContent';
 import { theme } from '../../../styles/global';
-import { useRef } from 'react';
-import { useIntersectionObserver } from 'usehooks-ts';
+
+interface Props {
+  date_start: string;
+  date_end?: string;
+  title: string;
+  role: string;
+  description: string;
+  isLast: boolean;
+}
 
 const TimeLineArticle = styled.article`
   display: flex;
@@ -24,12 +32,12 @@ const TimeLineArticle = styled.article`
 
 export default function TimeLine ({ 
   date_start,
-  date_end,
+  date_end = 'Present',
   title,
   role,
   description,
   isLast,
-}) {
+}: Props) {
   const ref = useRef(null);
   const entry = useIntersectionObserver(ref, {
     root: null,
@@ -55,17 +63,4 @@ export default function TimeLine ({
       />
     </TimeLineArticle>
   )
-}
-
-TimeLine.propTypes = {
-  date_start: PropTypes.string.isRequired,
-  date_end: PropTypes.string,
-  title: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  isLast: PropTypes.bool
-};
-
-TimeLine.defaultProps = {
-  date_end: null,
 }

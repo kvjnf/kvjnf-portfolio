@@ -1,6 +1,11 @@
-import ThumbNailsMini from '../ThumbNailsMini/ThumbNailsMini';
 import styled from 'styled-components';
+
+import ThumbNailsMini, { ThumbNail } from '../ThumbNailsMini/ThumbNailsMini';
 import { theme } from '../../../styles/global';
+
+interface Props {
+  thumbs: ThumbNail[];
+}
 
 const Grid = styled.div`
   display: grid;
@@ -15,8 +20,7 @@ const Grid = styled.div`
   `}
 `;
 
-export function PureMiniThumbLists ({ thumbs }) {
-
+export default function ThumbNailMiniLists ({ thumbs }: Props) {
   return (
     <Grid>
       {thumbs.map((thumb) => {

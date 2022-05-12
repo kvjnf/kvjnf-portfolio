@@ -1,11 +1,11 @@
 import Section from '../../Sections/Section/Section';
 import { Header } from "../../Sections/SectionHeader/SectionHeader.stories";
-import { PureMiniThumbLists } from "./ThumbNailMiniLists";
+import ThumbNailMiniLists from "./ThumbNailMiniLists";
 import { MiniThumbNail } from "../ThumbNailsMini/ThumbNailsMini.stories";
 
 export default {
   title: 'UIParts/ThumbNails',
-  component: PureMiniThumbLists,
+  component: ThumbNailMiniLists,
   parameters: {
     layout: 'fullscreen',
   },
@@ -14,7 +14,7 @@ export default {
 const Template = (args) => (
   <Section maxWidth={1000} p={20}>
     <Header {...Header.args} mb={[10, 60]} />
-    <PureMiniThumbLists {...args} />
+    <ThumbNailMiniLists {...args} />
   </Section>
 );
 

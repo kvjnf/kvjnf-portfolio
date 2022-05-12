@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { layout, space, SpaceProps } from 'styled-system';
-import { LayoutProps } from 'styled-system';
+import { layout, space, SpaceProps, LayoutProps } from 'styled-system';
 
 interface Props extends SpaceProps, LayoutProps {
-  lightest: string;
-  darkest: string;
+  lightest?: string;
+  darkest?: string;
 };
 
 const lightest = '#e1e1e1';

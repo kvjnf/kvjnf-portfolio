@@ -1,10 +1,16 @@
 import styled from "styled-components";
-import { PropTypes } from 'prop-types';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 
 import { theme } from "../../../styles/global";
+
+interface Props {
+  date_start: string;
+  date_end?: string;
+  animate: 'visible' | '';
+}
 
 const TimeLineArrowWrap = styled.div`
   display: flex;
@@ -12,12 +18,11 @@ const TimeLineArrowWrap = styled.div`
   width: 240px;
   justify-content: space-between;
 `;
-
 const TimeLineDate = styled.span`
   color: #374054;
-  ${theme.fontFamilies.default}
+  font-family: ${props => props.theme.fontFamilies.default.fontFamily};
+  font-size: ${props => props.theme.fontFamilies.default.fontSize};
 `;
-
 const FaIconWrapper = styled.div`
   width: 50px;
   height: 50px;
@@ -35,7 +40,6 @@ const FaIconWrapper = styled.div`
     top: -8px;
   `}
 `;
-
 const FaIconRoundBG = styled.div`
   width: 40px;
   height: 40px;
@@ -48,7 +52,6 @@ const FaIconRoundBG = styled.div`
     height: 30px;
   `}
 `;
-
 const FaArrowIcon = styled(FontAwesomeIcon)`
   color: #ffffff;
   height: 1.8rem;
@@ -64,7 +67,6 @@ const FaArrowIcon = styled(FontAwesomeIcon)`
     height: 1.5rem;
   `}
 `;
-
 const arrow = {
   initial: {
     opacity: 0,
@@ -79,9 +81,11 @@ const arrow = {
   }
 }
 
-function TimeLineArrow({ date_start, date_end, animate }){
-  date_end = date_end?? 'Present';
-
+export default function TimeLineArrow({ 
+  date_start,
+  date_end = 'Present',
+  animate 
+}: Props){
   return (
     <TimeLineArrowWrap>
       <TimeLineDate>{`${date_start} – ${date_end}`}</TimeLineDate>
@@ -92,18 +96,9 @@ function TimeLineArrow({ date_start, date_end, animate }){
           animate={animate}
           as={motion.div}
         >
-          <FaArrowIcon
-            icon={faLocationDot}
-          />
+          <FaArrowIcon icon={faLocationDot as IconProp} />
         </FaIconRoundBG>
       </FaIconWrapper>
     </TimeLineArrowWrap>
   )
 }
-
-TimeLineArrow.propTypes = {
-  date_start: PropTypes.string.isRequired,
-  date_end: PropTypes.string,
-}
-
-export default TimeLineArrow;

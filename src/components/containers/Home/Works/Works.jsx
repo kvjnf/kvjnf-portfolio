@@ -4,8 +4,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { useGetProjectsQuery } from "../../../../services/api";
 import SectionHeader2 from "../../../uiParts/SectionHeader2/SectionHeader2";
 import Section from "../../../uiParts/Sections/Section/Section";
-import { PureMiniThumbLists } from "../../../uiParts/ThumbNails/ThumbNailMiniLists/ThumbNailMiniLists";
-
+import ThumbNailMiniLists from "../../../uiParts/ThumbNails/ThumbNailMiniLists/ThumbNailMiniLists";
 
 export default function Works() {
   const selectThumbs = useMemo(() => {
@@ -46,7 +45,7 @@ export default function Works() {
         text='MY WORKS'
         mb={60}
       />
-      { thumbs && <PureMiniThumbLists thumbs={thumbs} /> }
+      { thumbs && <ThumbNailMiniLists thumbs={thumbs} /> }
     </Section>
   );
 }

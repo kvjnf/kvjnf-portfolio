@@ -1,12 +1,27 @@
 import { useRef, useState } from 'react';
-import PropTypes from 'prop-types'
 import styled from 'styled-components';
 import { useIntersectionObserver } from 'usehooks-ts'
+import { SpaceProps, LayoutProps } from 'styled-system';
 
 import ShimmerPlaceholder from '../ShimmerPlaceHolder/ShimmerPlaceHolder';
 import Picture from '../Picture/Picture';
 
-const StyledImage = styled(Picture)`
+type Option = 'none' | 'blur' | 'grayscale';
+
+interface StyledImageProps {
+  $visible: boolean;
+  $loaded: boolean;
+  option: Option;
+  onLoad: () => void;
+}
+interface Props extends SpaceProps, LayoutProps{
+  src: string;
+  alt: string;
+  option: Option;
+  threshold: number;
+}
+
+const StyledImage = styled(Picture)<StyledImageProps>`
   visibility: ${props => props.$visible ? 'visible' : 'hidden'};
   transition: filter 1s;
   width: 100%;
@@ -19,8 +34,8 @@ const StyledImage = styled(Picture)`
   }} 
 `;
 
-function LazyLoadImage({ src, alt, width, height, option, threshold = 0.5, ...args }) {
-  const ref = useRef(null);
+export default function LazyLoadImage({ src, alt, width, height, option = 'none', threshold = 0.5, ...args }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
   const [loaded, setLoaded] = useState(false);
   const entry = useIntersectionObserver(ref, {
     root: null,
@@ -28,7 +43,6 @@ function LazyLoadImage({ src, alt, width, height, option, threshold = 0.5, ...ar
     threshold,
     freezeOnceVisible: true
   });
-  
   const isVisible = !!entry?.isIntersecting;
   const onLoad = () => setLoaded(true);
 
@@ -54,16 +68,3 @@ function LazyLoadImage({ src, alt, width, height, option, threshold = 0.5, ...ar
     </div>
   )
 }
-
-LazyLoadImage.propTypes = {
-  src: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  option: PropTypes.oneOf(['blur', 'grayscale', 'none']),
-  ...ShimmerPlaceholder.propTypes,
-}
-
-LazyLoadImage.defaultProps = {
-  option: 'none'
-}
-
-export default LazyLoadImage

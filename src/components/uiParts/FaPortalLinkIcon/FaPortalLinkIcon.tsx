@@ -1,7 +1,20 @@
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
-const IconLink = styled.a`
+interface IconLinkProps {
+  bgc: string;
+}
+interface IconInnerProps {
+  bgc: string;
+}
+interface Props {
+  link: string;
+  bgc: string;
+  faIcon: IconDefinition;
+}
+
+const IconLink = styled.a<IconLinkProps>`
   position: relative;
   display: block;
   width: 30px;
@@ -15,8 +28,7 @@ const IconLink = styled.a`
     cursor: pointer;
   }
 `;
-
-const IconInner = styled.span`
+const IconInner = styled.span<IconInnerProps>`
   display: block;
   position: absolute;
   top: 2px;
@@ -40,7 +52,6 @@ const IconInner = styled.span`
     transform: scale(1);
   }
 `;
-
 const FaIcon = styled(FontAwesomeIcon)`
   position: absolute;
   top: 0;
@@ -54,7 +65,7 @@ const FaIcon = styled(FontAwesomeIcon)`
   color: #fff;
 `;
 
-export function FaPortalLinkIcon({ link, bgc, faIcon }) {
+export function FaPortalLinkIcon({ link, bgc, faIcon }: Props) {
 
   return (
     <IconLink

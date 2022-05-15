@@ -16,3 +16,12 @@ export const nl2br = (str) => {
     return line;
   });
 };
+
+export const getPriorityLanguage = () => {
+  return (
+    (window.navigator.languages && window.navigator.languages[0]) ||
+    window.navigator.language ||
+    window.navigator.userLanguage ||
+    window.navigator.browserLanguage
+  );
+}

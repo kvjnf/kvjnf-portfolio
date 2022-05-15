@@ -1,6 +1,16 @@
-import { useState, useEffect, useMemo } from 'react';
-import PropTypes from 'prop-types'
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useMemo } from 'react';
+import { AnimationControls, motion } from 'framer-motion';
+import { Easing } from 'framer-motion/types/types';
+
+interface Props {
+  children: React.ReactElement;
+  easing: Easing;
+  yOffset: number;
+  xOffset: number;
+  duration: number;
+  controls: AnimationControls;
+  delayOrder: number;
+}
 
 export default function FadeIn({
   children,
@@ -10,7 +20,7 @@ export default function FadeIn({
   duration = 0.4,
   controls,
   delayOrder
-}) {
+}:Props) {
   const [delay, setDelay] = useState(0.25);
   const offset = 0.4;
   
@@ -51,30 +61,4 @@ export default function FadeIn({
       {children}
     </motion.div>
   )
-}
-
-FadeIn.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired,
-  easing: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.number),
-    PropTypes.oneOf([
-      'linear',
-      'easeIn',
-      'easeOut',
-      'easeInOut',
-      'circIn',
-      'circOut',
-      'circInOut',
-      'backIn',
-      'backOut',
-      'backInOut',
-      'anticipate'
-    ])
-  ]),
-  yOffset: PropTypes.number,
-  duration: PropTypes.number,
-  delayOrder: PropTypes.number,
 }

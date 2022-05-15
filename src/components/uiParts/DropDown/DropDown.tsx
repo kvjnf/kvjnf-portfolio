@@ -5,7 +5,7 @@ import { useOnClickOutSide } from "../../utils/hooks";
 import { DropDownContextProvider, useDropDownContext } from "../../../context/DropDownContext";
 
 interface Props {
-  children: React.ReactElement;
+  children: React.ReactElement[];
 }
 
 const StyledDropDown = styled.div`

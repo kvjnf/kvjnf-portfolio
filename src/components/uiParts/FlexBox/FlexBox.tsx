@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { compose, flexbox, space, layout, SpaceProps, LayoutProps, FlexProps } from "styled-system";
+import { compose, flexbox, space, layout, SpaceProps, LayoutProps, FlexProps, JustifyContentProps } from "styled-system";
 
-interface FlexBoxProps extends SpaceProps, LayoutProps, FlexProps {}
+interface FlexBoxProps extends SpaceProps, LayoutProps, FlexProps, JustifyContentProps {};
 
 const FlexBox = styled.div<FlexBoxProps>`
   display: flex;

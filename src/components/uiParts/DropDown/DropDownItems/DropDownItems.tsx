@@ -10,7 +10,7 @@ interface StyledItemProps {
 interface Props {
   fontStyle: FontVariant;
   onClick: () => void;
-  children: React.ReactElement;
+  children: React.ReactElement[] | React.ReactElement;
 }
 
 const StyledDropDownItem = styled.div<StyledItemProps>`

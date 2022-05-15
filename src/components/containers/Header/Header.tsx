@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { Link } from "react-router-dom";
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 import { theme } from "../../styles/global";
 import SVGAnimationLogo from "../../uiParts/SVGAnimationLogo/SvgAnimationLogo";
@@ -20,7 +21,6 @@ const StyledHeader = styled.header`
     margin-bottom: 60px;
   `}
 `;
-
 const StyledFlexBox = styled(FlexBox)`
   gap: 25px;
   margin-bottom: 30px;
@@ -28,29 +28,27 @@ const StyledFlexBox = styled(FlexBox)`
 
 export default function Header() {
   return (
-    <>
-      <StyledHeader>
-        <h1>
-          <Link to='/'>
-            <SVGAnimationLogo />
-          </Link>
-        </h1>
-        <StyledFlexBox 
-          justifyContent='center'
-          >
-          <FaPortalLinkIcon 
-            faIcon={faGithub} 
-            bgc='#000000'
-            link='https://github.com/kvjnf/kvjnf-portfolio'
-            />
-          <FaPortalLinkIcon 
-            faIcon={faLinkedinIn}
-            bgc='#0073b1'
-            link='https://www.linkedin.com/in/daisuke-akiyama-5b0222120'
+    <StyledHeader>
+      <h1>
+        <Link to='/'>
+          <SVGAnimationLogo />
+        </Link>
+      </h1>
+      <StyledFlexBox 
+        justifyContent='center'
+        >
+        <FaPortalLinkIcon 
+          faIcon={faGithub as IconDefinition} 
+          bgc='#000000'
+          link='https://github.com/kvjnf/kvjnf-portfolio'
           />
-        </StyledFlexBox>
-        <LanguageSelector />
-      </StyledHeader>
-    </>
+        <FaPortalLinkIcon 
+          faIcon={faLinkedinIn as IconDefinition}
+          bgc='#0073b1'
+          link='https://www.linkedin.com/in/daisuke-akiyama-5b0222120'
+        />
+      </StyledFlexBox>
+      <LanguageSelector />
+    </StyledHeader>
   )
 }

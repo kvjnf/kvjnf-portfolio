@@ -7,7 +7,7 @@ interface StyledDropDownMenuProps {
   open: boolean;
 }
 interface Props {
-  children: React.ReactElement;
+  children: React.ReactElement[];
 }
 
 const StyledDropDownMenu = styled.div<StyledDropDownMenuProps>`

@@ -8,7 +8,7 @@ export default function About() {
     return null;
   }
 
-  let { title, description } = items[0]?.fields;
+  const { title, description } = items[0]?.fields;
 
   return (
     <AboutSection 

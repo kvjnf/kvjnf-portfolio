@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { FontVariant } from '../../styles/style.interfaces';
@@ -16,12 +15,13 @@ const Button = styled.a`
   ${HoverBgFillButton}
 `;
 
-function BlankLinkHoverBtn({ 
+export default function BlankLinkHoverBtn({ 
   text, 
   link, 
   color = 'black', 
   fontStyle = 'alt', 
-  isArrow = false }: Props) {
+  isArrow = false 
+}: Props) {
   const Inner = isArrow ? ArrowInnerText : InnerText;
 
   return (
@@ -42,19 +42,3 @@ function BlankLinkHoverBtn({
     </Button>
   );
 }
-
-BlankLinkHoverBtn.propTypes = {
-  text: PropTypes.string,
-  link: PropTypes.string,
-  color: PropTypes.string,
-  fontStyle: PropTypes.string,
-  arrow: PropTypes.bool
-};
-
-BlankLinkHoverBtn.defaultProps = {
-  color: 'black',
-  fontStyle: "alt",
-  isArrow: false
-}
-
-export default BlankLinkHoverBtn;

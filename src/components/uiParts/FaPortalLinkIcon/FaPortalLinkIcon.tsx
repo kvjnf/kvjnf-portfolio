@@ -66,7 +66,6 @@ const FaIcon = styled(FontAwesomeIcon)`
 `;
 
 export function FaPortalLinkIcon({ link, bgc, faIcon }: Props) {
-
   return (
     <IconLink
       href={link}

@@ -1,4 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Asset, Entry, EntryCollection } from 'contentful';
+import { IAbout, IBlogPost, IBlogPostFields, IExperience } from '../../@types/generated/contentful'
 
 const baseQuery = fetchBaseQuery({
   baseUrl: `https://cdn.contentful.com/spaces/${process.env.REACT_APP_SPACE_ID}/environments/${process.env.REACT_APP_ENV_ID}`,
@@ -11,7 +13,7 @@ const baseQuery = fetchBaseQuery({
 export const contentApi = createApi({
   baseQuery,
   endpoints: (builder) => ({
-    getAbout: builder.query({
+    getAbout: builder.query<EntryCollection<IAbout>, void>({
       query: () => ({
         url: '/entries',
         params: {
@@ -19,7 +21,7 @@ export const contentApi = createApi({
         }
       })
     }),
-    getExperience: builder.query({
+    getExperience: builder.query<EntryCollection<IExperience>, void>({
       query: () => ({
         url: '/entries',
         params: {
@@ -28,7 +30,7 @@ export const contentApi = createApi({
         }
       })
     }),
-    getProjects: builder.query({
+    getProjects: builder.query<EntryCollection<IBlogPost>, void>({
       query: () => ({
         url: '/entries',
         params: {
@@ -37,7 +39,7 @@ export const contentApi = createApi({
         }
       })
     }),
-    getProject: builder.query({
+    getProject: builder.query<EntryCollection<IBlogPost>, string>({
        query: (slug) => ({
          url: `/entries`,
          params: {
@@ -45,14 +47,14 @@ export const contentApi = createApi({
           content_type: 'blogPost'
          }
        }),
-       transformResponse: (res) => {
+       transformResponse: (res: EntryCollection<IBlogPost>) => {
           const resources = getResourcesFromAsset(res.includes.Asset);
           const item = res.items[0];
 
           return {
             id: item.sys.id,
             resources,
-            fields: Object.entries(item.fields).reduce((accumulator, [key, data]) => {
+            fields: Object.entries(item.fields).reduce((accumulator, [key, data]: [string, Entry<IBlogPostFields>]) => {
               if (data.sys) {
                 data = getIdForMediaField(data);
               }
@@ -74,13 +76,13 @@ export const contentApi = createApi({
 
 export const { useGetAboutQuery, useGetExperienceQuery, useGetProjectsQuery, useGetProjectQuery } = contentApi;
 
-function getResourcesFromAsset(Asset) {
+function getResourcesFromAsset(Asset: Asset) {
   return Asset.reduce((accumulator, asset) => ({
     ...accumulator, 
     [asset.sys.id]: asset.fields.file.url,
   }), {});
 }
 
-function getIdForMediaField(media) {
+function getIdForMediaField(media: Asset) {
   return media.sys.id;
 }

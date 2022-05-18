@@ -16,6 +16,8 @@
     "@types/react-dom": "^18.0.0",
     "@types/styled-system": "^5.1.15",
     "contentful": "^9.1.22",
+    "contentful-management": "^10.6.0",
+    "contentful-typescript-codegen": "^3.2.3",
     "framer-motion": "^6.2.6",
     "path-browserify": "^1.0.1",
     "react": "^17.0.2",
@@ -35,7 +37,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "contentful-typescript-codegen": "contentful-typescript-codegen --output @types/generated/contentful.d.ts"
   },
   "eslintConfig": {
     "extends": "react-app",
@@ -67,6 +70,7 @@
     "@storybook/react": "^6.4.19",
     "@types/styled-components": "^5.1.25",
     "babel-plugin-macros": "^2.5.1",
+    "dotenv": "^16.0.1",
     "lorem-ipsum": "^2.0.4",
     "webpack": "^5.68.0"
   }

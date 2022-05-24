@@ -1,10 +1,13 @@
-import { useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
-export function useOnClickOutSide(ref, handler) {
+type Event = MouseEvent | TouchEvent;
+
+export function useOnClickOutSide(ref: RefObject<HTMLElement>, handler: (e) => void) {
   useEffect(
     () => {
-      const listener = (event) => {
-        if (!ref.current || ref.current.contains(event.target)) {
+      const listener = (event: Event) => {
+
+        if (!ref.current || ref.current.contains(event.target as Node)) {
           return;
         }
 

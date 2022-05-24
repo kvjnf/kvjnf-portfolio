@@ -9,7 +9,7 @@ import { useGetProjectQuery } from '../../services/api';
 export default function Detail() {
   const { slug } = useParams();
   const { 
-    data: { fields, resources } = { fields: {}, resources: [] },
+    data: { fields, resources },
     isLoading,
   } = useGetProjectQuery(slug);
 

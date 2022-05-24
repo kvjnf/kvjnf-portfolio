@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { flexbox } from 'styled-system';
+import { flexbox, justifyContent, FlexboxProps, JustifyContentProps } from 'styled-system';
 import { useAnimation } from 'framer-motion';
 import { useIntersectionObserver } from 'usehooks-ts';
 
@@ -10,8 +10,11 @@ import LazyLoadImage from '../../../uiParts/LazyLoadImage/LazyLoadImage';
 import FadeIn from '../../../uiParts/FadeIn/FadeIn';
 import Section from '../../../uiParts/Sections/Section/Section';
 
-const FlexSection = styled(Section)`
+interface IFlexSection extends FlexboxProps, JustifyContentProps{}
+
+const FlexSection = styled(Section)<IFlexSection>`
   ${flexbox}
+  ${justifyContent}
   position: relative;
 `;
 
@@ -19,7 +22,7 @@ export default function ProjectLogo({ logo }) {
   const theme = useTheme();
   const control = useAnimation();
   const logoControl = useAnimation();
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const entry = useIntersectionObserver(ref, {
     root: null,
     rootMargin: '20px',
@@ -41,6 +44,7 @@ export default function ProjectLogo({ logo }) {
 
   return (
     <FlexSection
+      ref={ref}
       height={200}
       display='flex'
       justifyContent='center'

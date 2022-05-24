@@ -1,5 +1,4 @@
 // import original module declarations
-import { Interface } from 'readline';
 import 'styled-components';
 
 type Colors = Record<'black'|'gray', string>;

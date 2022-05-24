@@ -17,8 +17,8 @@ interface StyledImageProps {
 interface Props extends SpaceProps, LayoutProps{
   src: string;
   alt: string;
-  option: Option;
-  threshold: number;
+  option?: Option;
+  threshold?: number;
 }
 
 const StyledImage = styled(Picture)<StyledImageProps>`

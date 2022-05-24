@@ -19,7 +19,7 @@ export default function Experience() {
   });
   const isVisible = !!entry?.isIntersecting;
   const control = useAnimation();
-  const { data: { items } = [] } = useGetExperienceQuery();
+  const { data: { items } } = useGetExperienceQuery();
 
   useEffect(() => {
     control.start('show');
@@ -46,7 +46,16 @@ export default function Experience() {
         items && items.map(({ sys: { id }, fields }, i, { length }) => { 
           const isLast = length - 1 === i;
 
-          return <TimeLine key={id} isLast={isLast} {...fields} />
+          return (
+            <TimeLine 
+              key={id} 
+              isLast={isLast} 
+              date_start={fields.date_start} 
+              title={fields.title}
+              description={fields.description}
+              role={fields.role}
+            /> 
+          )
         })
       }
     </Section>

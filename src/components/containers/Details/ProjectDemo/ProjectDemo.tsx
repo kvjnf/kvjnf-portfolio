@@ -42,7 +42,7 @@ const DeviceImageSp = styled(DeviceImage)`
 
 export default function ProjectDemo({ devices }) {
   const control = useAnimation();
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement>(null);
   const entry = useIntersectionObserver(ref, {
     root: null,
     rootMargin: '20px',

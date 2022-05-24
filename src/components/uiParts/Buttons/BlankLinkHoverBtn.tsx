@@ -6,9 +6,9 @@ import { HoverBgFillButton, InnerText, ArrowInnerText } from '../../styles/butto
 interface Props {
   text: string;
   link: string;
-  color: string;
-  fontStyle: FontVariant;
-  isArrow: boolean;
+  color?: string;
+  fontStyle?: FontVariant;
+  isArrow?: boolean;
 }
 
 const Button = styled.a`

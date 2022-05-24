@@ -4,7 +4,7 @@ import { layout, LayoutProps } from 'styled-system';
 
 import Picture from '../../Picture/Picture';
 
-export type ThumbNail = {
+export interface ThumbNail {
   id: string;
   title: string;
   slug:string;

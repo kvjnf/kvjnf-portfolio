@@ -2,7 +2,6 @@ import { useAnimation } from 'framer-motion';
 import { useEffect } from 'react';
 import styled from 'styled-components';
 
-import { theme } from '../../../styles/global';
 import LazyLoadImage from '../../../uiParts/LazyLoadImage/LazyLoadImage';
 import Grid from '../../../uiParts/Grid/Grid';
 import FadeIn from '../../../uiParts/FadeIn/FadeIn';
@@ -12,7 +11,7 @@ const StyledGrid = styled(Grid)`
   align-content: space-between;
 
   grid-template-columns: 1fr 1fr;
-  ${theme.media.md`
+  ${(props) => props.theme.media.md`
     grid-template-columns: 1fr;
   `}
 `;
@@ -25,29 +24,22 @@ export default function ProjectCaptures({ captures }) {
   }, [control])
 
   const lists = captures.map((src, i) => {
-    const placeHolder = {
-      width: 480, 
-      height: 1000,
-      src,
-      option: 'blur',
-      alt: 'test',
-      threshold: 0.01
-    };
-    const option = {
-      yOffset: -20,
-      xOffset: i % 2 === 0 ? -20 : 20,
-      easing: [0.33, 1, 0.68, 1],
-      duration: 1
-    }
-
     return (
       <FadeIn
         key={`cap-${i}`}
         controls={control}
-        {...option}
+        yOffset={-20}
+        xOffset={i % 2 === 0 ? -20 : 20}
+        easing={[0.33, 1, 0.68, 1]}
+        duration={1}
       >
         <LazyLoadImage 
-          { ...placeHolder }
+          width={480}
+          height={1000}
+          src={src}
+          option='blur'
+          alt='test'
+          threshold={0.01}
         />
       </FadeIn>
     );

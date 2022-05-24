@@ -3,13 +3,13 @@ import { AnimationControls, motion } from 'framer-motion';
 import { Easing } from 'framer-motion/types/types';
 
 interface Props {
-  children: React.ReactElement;
-  easing: Easing;
-  yOffset: number;
-  xOffset: number;
-  duration: number;
+  children: React.ReactNode;
+  easing?: Easing;
+  yOffset?: number;
+  xOffset?: number;
+  duration?: number;
   controls: AnimationControls;
-  delayOrder: number;
+  delayOrder?: number;
 }
 
 export default function FadeIn({
@@ -19,7 +19,7 @@ export default function FadeIn({
   xOffset = 0,
   duration = 0.4,
   controls,
-  delayOrder
+  delayOrder = 1
 }:Props) {
   const [delay, setDelay] = useState(0.25);
   const offset = 0.4;

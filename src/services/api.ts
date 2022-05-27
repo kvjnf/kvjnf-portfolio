@@ -112,7 +112,7 @@ export const contentApi = createApi({
               if (keyName === 'captures') {
                 return {
                   ...accumulator,
-                  keyName: (item.fields[keyName] as Asset[]).map(getIdForMediaField)
+                  [keyName]: (item.fields[keyName] as Asset[]).map(getIdForMediaField)
                 }
               }
   

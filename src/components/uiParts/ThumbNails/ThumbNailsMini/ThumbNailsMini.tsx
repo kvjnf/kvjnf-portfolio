@@ -10,7 +10,9 @@ export interface ThumbNail {
   slug:string;
   src: string;
 }
-interface ImgProps extends LayoutProps{}
+interface ImgProps extends LayoutProps {
+  $maxWidth?: number | string;
+}
 interface Props {
   slug: string;
   src: string;
@@ -40,7 +42,7 @@ const Img = styled(Picture)<ImgProps>`
 export default function ThumbNailsMini({ slug, src, alt }: Props) {
   return (
     <StyledLink to={`/detail/${slug}/`}>
-      <Img width={1} maxWidth='fit-content' src={src} alt={alt} />
+      <Img width={1} $maxWidth='fit-content' src={src} alt={alt} />
     </StyledLink>
   )
 }

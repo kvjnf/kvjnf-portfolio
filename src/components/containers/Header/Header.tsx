@@ -7,7 +7,7 @@ import { theme } from "../../styles/global";
 import SVGAnimationLogo from "../../uiParts/SVGAnimationLogo/SvgAnimationLogo";
 import FlexBox from '../../uiParts/FlexBox/FlexBox';
 import { FaPortalLinkIcon } from '../../uiParts/FaPortalLinkIcon/FaPortalLinkIcon';
-import { LanguageSelector } from "../../uiParts/LanguageSelector/LanguageSelector";
+// import { LanguageSelector } from "../../uiParts/LanguageSelector/LanguageSelector";
 
 const StyledHeader = styled.header`
   max-width: 300px;
@@ -48,7 +48,7 @@ export default function Header() {
           link='https://www.linkedin.com/in/daisuke-akiyama-5b0222120'
         />
       </StyledFlexBox>
-      <LanguageSelector />
+      {/* <LanguageSelector /> */}
     </StyledHeader>
   )
 }

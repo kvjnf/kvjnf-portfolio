@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import { nl2br } from '../../utils';
 import { theme } from '../../styles/global';
 
-interface Props {
+interface IProps {
   title: string;
-  client: string;
+  client?: string;
   description: string;
 }
 
@@ -32,12 +32,12 @@ const StyledParagraph1 = styled.p`
   margin-bottom: 20px;
 `;
 
-export default function DetailDescription({ title, client, description }: Props) {
+export default function DetailDescription({ title, client, description }: IProps) {
   return (
     <StyledWrapper>
       <StyledDescription>
         <StyledHeader>{ title }</StyledHeader>
-        <StyledParagraph1>Client: { client }</StyledParagraph1>
+        { client && <StyledParagraph1>Client: { client }</StyledParagraph1> }
         <p>{nl2br(description)}</p>
       </StyledDescription>
     </StyledWrapper>

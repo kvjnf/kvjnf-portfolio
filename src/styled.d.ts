@@ -1,8 +1,9 @@
 // import original module declarations
 import 'styled-components';
+import { MediaQueryCallBack, PartialRecord } from './components/utils/types';
 
-type Colors = Record<'black'|'gray', string>;
-type Media = Record<'sm'|'md'|'lg'|'xl', string>
+type Colors = PartialRecord<'black'|'gray', string>;
+type Media = Record<'sm'|'md'|'lg'|'xl', MediaQueryCallBack>
 
 interface FontFamiliesDefault{
   fontFamily: string;

@@ -1,6 +1,3 @@
-import { useMemo } from 'react';
-import { createSelector } from '@reduxjs/toolkit';
-
 import { useGetProjectsQuery } from "../../../../services/api";
 import SectionHeader2 from "../../../uiParts/SectionHeader2/SectionHeader2";
 import Section from "../../../uiParts/Sections/Section/Section";

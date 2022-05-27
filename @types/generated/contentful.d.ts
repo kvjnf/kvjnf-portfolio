@@ -5,10 +5,10 @@ import { Document } from "@contentful/rich-text-types";
 
 export interface IAboutFields {
   /** Title */
-  title?: string | undefined;
+  title: string;
 
   /** Description */
-  description?: string | undefined;
+  description: string;
 }
 
 export interface IAbout extends Entry<IAboutFields> {
@@ -79,16 +79,16 @@ export interface IBlogPost extends Entry<IBlogPostFields> {
 
 export interface IExperienceFields {
   /** Title */
-  title?: string | undefined;
+  title: string;
 
   /** role */
-  role?: string | undefined;
+  role: string;
 
   /** Description */
-  description?: string | undefined;
+  description: string;
 
   /** Start date */
-  date_start?: string | undefined;
+  date_start: string;
 
   /** End date */
   date_end?: string | undefined;

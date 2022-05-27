@@ -19,7 +19,7 @@ export default function Experience() {
   });
   const isVisible = !!entry?.isIntersecting;
   const control = useAnimation();
-  const { data: { items } } = useGetExperienceQuery();
+  const { data } = useGetExperienceQuery();
 
   useEffect(() => {
     control.start('show');
@@ -43,7 +43,7 @@ export default function Experience() {
           />
       </FadeIn>
       { 
-        items && items.map(({ sys: { id }, fields }, i, { length }) => { 
+        data && data.items.map(({ sys: { id }, fields }, i, { length }) => { 
           const isLast = length - 1 === i;
 
           return (

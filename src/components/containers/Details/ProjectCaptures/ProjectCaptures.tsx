@@ -16,7 +16,11 @@ const StyledGrid = styled(Grid)`
   `}
 `;
 
-export default function ProjectCaptures({ captures }) {
+interface Props {
+  captures: string[];
+}
+
+export default function ProjectCaptures({ captures }: Props) {
   const control = useAnimation();
 
   useEffect(() => {

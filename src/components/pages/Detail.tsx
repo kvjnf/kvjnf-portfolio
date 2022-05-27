@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { skipToken } from '@reduxjs/toolkit/query/react'
 
 import ProjectLogo from '../containers/Details/ProjectLogo/ProjectLogo';
 import ProjectDemo from '../containers/Details/ProjectDemo/ProjectDemo';
@@ -9,13 +10,15 @@ import { useGetProjectQuery } from '../../services/api';
 export default function Detail() {
   const { slug } = useParams();
   const { 
-    data: { fields, resources },
+    data,
     isLoading,
-  } = useGetProjectQuery(slug);
-
-  if (isLoading) {
+  } = useGetProjectQuery(slug ?? skipToken);
+  
+  if (!data || isLoading) {
     return null;
   }
+
+  const { fields, resources } = data;
 
   const logo = resources[fields.thumbnail];
   const devices = {

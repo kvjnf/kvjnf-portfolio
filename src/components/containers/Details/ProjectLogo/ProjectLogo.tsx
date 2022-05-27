@@ -11,6 +11,9 @@ import FadeIn from '../../../uiParts/FadeIn/FadeIn';
 import Section from '../../../uiParts/Sections/Section/Section';
 
 interface IFlexSection extends FlexboxProps, JustifyContentProps{}
+interface IProps {
+  logo: string;
+}
 
 const FlexSection = styled(Section)<IFlexSection>`
   ${flexbox}
@@ -18,7 +21,7 @@ const FlexSection = styled(Section)<IFlexSection>`
   position: relative;
 `;
 
-export default function ProjectLogo({ logo }) {
+export default function ProjectLogo({ logo }: IProps) {
   const theme = useTheme();
   const control = useAnimation();
   const logoControl = useAnimation();

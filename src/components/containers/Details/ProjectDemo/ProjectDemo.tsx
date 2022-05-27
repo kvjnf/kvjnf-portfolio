@@ -40,7 +40,18 @@ const DeviceImageSp = styled(DeviceImage)`
   `}
 `;
 
-export default function ProjectDemo({ devices }) {
+type Device = {
+  src: string;
+  alt: string;
+}
+interface IProps {
+  devices: {
+    pc: Device,
+    sp?: Device
+  }
+};
+
+export default function ProjectDemo({ devices }: IProps) {
   const control = useAnimation();
   const ref = useRef<HTMLElement>(null);
   const entry = useIntersectionObserver(ref, {

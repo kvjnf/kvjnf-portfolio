@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Asset, EntryCollection } from 'contentful';
-import { IAboutFields, IBlogPost, IBlogPostFields } from '../../@types/generated/contentful'
-import { IExperienceFields } from '../../@types/generated/contentful.d';
+import { IAboutFields, IExperienceFields, IBlogPostFields } from '../../@types/generated/contentful'
 import { ThumbNail } from '../components/uiParts/ThumbNails/ThumbNailsMini/ThumbNailsMini';
 
 type AssetResources = Record<string, string>;
@@ -101,23 +100,25 @@ export const contentApi = createApi({
             id: item.sys.id,
             resources,
             fields: Object.keys(item.fields).reduce<TransformedProjectFields>((accumulator, key) => {
-              if (['thumbnail', 'pcCapture', 'spCapture'].includes(key)) {
+              const keyName = key as keyof typeof item.fields;
+
+              if (['thumbnail', 'pcCapture', 'spCapture'].includes(keyName)) {
                 return {
                   ...accumulator,
-                  [key]: getIdForMediaField(item.fields[key] as Asset)
+                  [keyName]: getIdForMediaField(item.fields[keyName] as Asset)
                 }
               }
   
-              if (key === 'captures') {
+              if (keyName === 'captures') {
                 return {
                   ...accumulator,
-                  captures: (item.fields[key] as Asset[]).map(getIdForMediaField)
+                  keyName: (item.fields[keyName] as Asset[]).map(getIdForMediaField)
                 }
               }
   
               return {
                 ...accumulator,
-                [key]: item.fields[key]
+                [keyName]: item.fields[keyName]
               }
             }, {} as TransformedProjectFields)
   

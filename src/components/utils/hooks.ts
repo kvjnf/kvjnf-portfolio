@@ -2,7 +2,7 @@ import { RefObject, useEffect } from 'react';
 
 type Event = MouseEvent | TouchEvent;
 
-export function useOnClickOutSide(ref: RefObject<HTMLElement>, handler: (e) => void) {
+export function useOnClickOutSide(ref: RefObject<HTMLElement>, handler: (e: Event) => void) {
   useEffect(
     () => {
       const listener = (event: Event) => {

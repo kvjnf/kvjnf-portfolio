@@ -41,7 +41,7 @@ export default function CVPdfSection() {
       <VerticalBorder control={control} />
       <BlankLinkHoverBtn 
         text="View CV" 
-        link="/resources/pdf/cv-daisukev3.pdf" 
+        link="/resources/pdf/cv-daisuke.pdf" 
         isArrow={true}
       />
     </Section>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const nl2br = (str: string) => {
+export function nl2br(str: string) {
   const newlineRegex = /(\r\n|\r|\n)/g;
 
   return str.split(newlineRegex).map(function(line, index) {
@@ -18,7 +18,7 @@ interface Navigator {
   language: string;
 }
 
-export const getPriorityLanguage = () => {
+export function getPriorityLanguage() {
   const navigator: Navigator = window.navigator;
 
   return (
@@ -28,3 +28,7 @@ export const getPriorityLanguage = () => {
     navigator.browserLanguage
   );
 }
+
+export function getUserTimeZone(): string {
+  return Intl.DateTimeFormat().resolvedOptions().timeZone
+} 

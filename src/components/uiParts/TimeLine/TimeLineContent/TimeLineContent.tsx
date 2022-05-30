@@ -2,9 +2,11 @@ import styled from "styled-components";
 import { motion } from 'framer-motion';
 
 import { theme } from "../../../styles/global";
+import { nl2br } from "../../../utils";
 
 const Content = styled.div`
   max-width: 590px;
+  width: 100%;
   position: relative;
 `;
 const ContentInner = styled.div`
@@ -102,7 +104,7 @@ export default function TimeLineContent ({
       >
         <Title>{title}</Title>
         <Roll>{role}</Roll>
-        <Description>{description}</Description>
+        <Description>{nl2br(description)}</Description>
       </ContentInner>
     </Content>
   )

@@ -5,6 +5,7 @@ import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 
 import { theme } from "../../../styles/global";
+import { format, parseISO } from 'date-fns';
 
 interface Props {
   date_start: string;
@@ -88,7 +89,9 @@ export default function TimeLineArrow({
 }: Props){
   return (
     <TimeLineArrowWrap>
-      <TimeLineDate>{`${date_start} – ${date_end}`}</TimeLineDate>
+      <TimeLineDate>
+        {`${format(parseISO(date_start), 'dd.MM.yyyy')} – ${date_end === 'Present' ? date_end: format(parseISO(date_end), 'dd.MM.yyyy')}`}
+      </TimeLineDate>
       <FaIconWrapper>
         <FaIconRoundBG
           initial='initial'

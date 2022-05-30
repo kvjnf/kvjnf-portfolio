@@ -50,7 +50,8 @@ export default function Experience() {
             <TimeLine 
               key={id} 
               isLast={isLast} 
-              date_start={fields.date_start} 
+              date_start={fields.date_start}
+              date_end={fields.date_end}
               title={fields.title}
               description={fields.description}
               role={fields.role}

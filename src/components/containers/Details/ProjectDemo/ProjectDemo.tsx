@@ -1,7 +1,7 @@
-import styled from 'styled-components';
 import { useRef, useEffect } from 'react';
 import { useAnimation } from 'framer-motion';
 import { useIntersectionObserver, useMediaQuery } from 'usehooks-ts';
+import styled from 'styled-components';
 
 import Section from '../../../uiParts/Sections/Section/Section';
 import LazyLoadImage from '../../../uiParts/LazyLoadImage/LazyLoadImage';
@@ -22,11 +22,12 @@ const DeviceImage = styled.div`
   left: 0;
   right: 0;
   margin: 0 auto;
-  max-width: max-content;
   position: absolute;
+  max-width: 604px;
 
   ${theme.media.lg`
     position: static;
+    max-width: max-content;
   `}
 `;
 
@@ -34,6 +35,8 @@ const DeviceImageSp = styled(DeviceImage)`
   bottom: 100px;
   left: 100px;
   margin: unset;
+  max-width: 170px;
+
   ${theme.media.lg`
     max-width: unset;
     width: 45%;

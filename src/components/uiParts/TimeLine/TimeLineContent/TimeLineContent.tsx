@@ -80,7 +80,7 @@ export default function TimeLineContent ({
     visible: {
       bottom: isLast ? '0%' : '-20%',
       transition: {
-        duration: 2,
+        duration: 4,
         ease: [0, 0.55, 0.45, 1]
       }
     }
